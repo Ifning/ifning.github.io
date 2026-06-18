@@ -63,9 +63,120 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, s
 <div class="tags-page">
   <h1 class="tags-page-title">标签</h1>
   <div class="tags-selector" id="tagSelector">
-    <button class="tags-pill tags-pill-active" data-tag="all" onclick="switchTag('all')">全部<span class="tags-pill-count">0</span></button>
+    <button class="tags-pill tags-pill-active" data-tag="all" onclick="switchTag('all')">全部<span class="tags-pill-count">4</span></button>
+    <button class="tags-pill" data-tag="日常" onclick="switchTag('日常')">日常<span class="tags-pill-count">1</span></button>
+    <button class="tags-pill" data-tag="技术" onclick="switchTag('技术')">技术<span class="tags-pill-count">1</span></button>
+    <button class="tags-pill" data-tag="__notag__" onclick="switchTag('__notag__')">无标签<span class="tags-pill-count">2</span></button>
   </div>
   <div id="tagAll">
+    <div class="tags-group">
+      <h2 class="tags-group-header">日常 <span class="tags-group-count">1</span></h2>
+      <div class="blog-cards">
+        <a href="/2026-06-18/normal-test-1/" class="blog-card">
+          <div class="blog-card-title">普通文章测试一</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">日常</span>
+            </div>
+            <span class="blog-card-words">46 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="tags-group">
+      <h2 class="tags-group-header">技术 <span class="tags-group-count">1</span></h2>
+      <div class="blog-cards">
+        <a href="/2026-06-17/normal-test-2/" class="blog-card">
+          <div class="blog-card-title">普通文章测试二</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">技术</span>
+            </div>
+            <span class="blog-card-words">38 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="tags-group">
+      <h2 class="tags-group-header">无标签 <span class="tags-group-count">2</span></h2>
+      <div class="blog-cards">
+        <a href="/2026-06-17/hello-world/" class="blog-card">
+          <div class="blog-card-title">Hello World</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag-empty">无标签</span>
+            </div>
+            <span class="blog-card-words">73 字</span>
+          </div>
+        </a>
+        <a href="/2026-06-18/My-New-Post/" class="blog-card">
+          <div class="blog-card-title">My New Post</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag-empty">无标签</span>
+            </div>
+            <span class="blog-card-words">0 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="tag-日常" style="display:none;">
+    <div class="tags-group">
+      <h2 class="tags-group-header">日常 <span class="tags-group-count">1</span></h2>
+      <div class="blog-cards">
+        <a href="/2026-06-18/normal-test-1/" class="blog-card">
+          <div class="blog-card-title">普通文章测试一</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">日常</span>
+            </div>
+            <span class="blog-card-words">46 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="tag-技术" style="display:none;">
+    <div class="tags-group">
+      <h2 class="tags-group-header">技术 <span class="tags-group-count">1</span></h2>
+      <div class="blog-cards">
+        <a href="/2026-06-17/normal-test-2/" class="blog-card">
+          <div class="blog-card-title">普通文章测试二</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag">技术</span>
+            </div>
+            <span class="blog-card-words">38 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="tag-__notag__" style="display:none;">
+    <div class="tags-group">
+      <h2 class="tags-group-header">无标签 <span class="tags-group-count">2</span></h2>
+      <div class="blog-cards">
+        <a href="/2026-06-17/hello-world/" class="blog-card">
+          <div class="blog-card-title">Hello World</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag-empty">无标签</span>
+            </div>
+            <span class="blog-card-words">73 字</span>
+          </div>
+        </a>
+        <a href="/2026-06-18/My-New-Post/" class="blog-card">
+          <div class="blog-card-title">My New Post</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag-empty">无标签</span>
+            </div>
+            <span class="blog-card-words">0 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 <script>
@@ -75,6 +186,9 @@ function switchTag(tag) {
   var activePill = document.querySelector('.tags-pill[data-tag="' + tag + '"]');
   if (activePill) activePill.classList.add("tags-pill-active");
   document.getElementById("tagAll").style.display = tag === "all" ? "block" : "none";
+  document.getElementById("tag-日常").style.display = tag === "日常" ? "block" : "none";
+  document.getElementById("tag-技术").style.display = tag === "技术" ? "block" : "none";
+  document.getElementById("tag-__notag__").style.display = tag === "__notag__" ? "block" : "none";
 }
 </script>
 <footer class="footer">

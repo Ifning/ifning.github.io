@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>归档 | 月见花园</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; }
+.nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
+.nav-link:hover { color: #cc785c; }
+.nav-link-active { color: #cc785c; }
+.page-wrap { width: 75%; max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+@keyframes article-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { .page-enter { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+.page-back { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 48px; transition: color 0.15s, gap 0.15s cubic-bezier(0.22, 1, 0.36, 1); }
+.page-back:hover { color: #cc785c; gap: 10px; }
+.page-title { font-family: "Playfair Display", Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1.1; letter-spacing: -1px; color: #141413; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid #e6dfd8; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.page-body { animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+.page-body p { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 24px; }
+.page-body h2 { font-family: "Playfair Display", Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.5px; color: #141413; margin: 56px 0 20px; line-height: 1.2; }
+.page-body h3 { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -0.3px; color: #141413; margin: 40px 0 16px; line-height: 1.3; }
+.page-body a { color: #cc785c; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(204, 120, 92, 0.3); transition: text-decoration-color 0.15s; }
+.page-body a:hover { text-decoration-color: rgba(204, 120, 92, 1); }
+.page-body ul, .page-body ol { margin: 0 0 24px 24px; }
+.page-body li { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 8px; }
+.page-body blockquote { border-left: 3px solid #cc785c; padding: 12px 24px; margin: 24px 0; background: #f5f0e8; }
+.page-body pre { background: #f5f0e8; border: 1px solid #e6dfd8; padding: 20px 24px; margin: 24px 0; overflow-x: auto; border-radius: 2px; }
+.page-body code { font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.6; color: #141413; }
+.page-body p code, .page-body li code { background: #f5f0e8; padding: 2px 6px; border-radius: 2px; }
+.page-body strong { font-weight: 600; color: #141413; }
+.page-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+.page-body th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; text-align: left; padding: 12px 16px; border-bottom: 2px solid #e6dfd8; }
+.page-body td { padding: 12px 16px; border-bottom: 1px solid #e6dfd8; color: #2d2d2a; }
+.footer { padding: 40px 48px; text-align: center; border-top: 1px solid #e6dfd8; }
+.footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.footer-text a { color: #6c6a64; text-decoration: none; }
+.footer-text a:hover { color: #cc785c; }
+@media (max-width: 767px) { .nav { padding: 16px 20px; } .page-wrap { width: 100%; padding: 48px 20px 80px; } .page-title { font-size: 32px; } .page-body p, .page-body li { font-size: 16px; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-brand">月见花园</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">首页</a>
+    <a href="/blog/" class="nav-link">博客</a>
+    <a href="/about/" class="nav-link">关于</a>
+    <a href="/tags/" class="nav-link">标签</a>
+    <a href="/archives/" class="nav-link">归档</a>
+  </div>
+</nav>
+<div class="page-wrap">
+  <a href="/" class="page-back">&larr; 返回首页</a>
+  <h1 class="page-title">归档</h1>
+  <div class="page-body">
+    
+  </div>
+</div>
+<footer class="footer">
+  <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
+</footer>
+</body>
+</html>

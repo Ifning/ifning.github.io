@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十五篇 关于完美主义者 | 月见花园</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #cc785c; z-index: 100; transition: width 80ms linear; }
+body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1.7; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; }
+.nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
+.nav-link:hover { color: #cc785c; }
+.article-wrap { width: 75%; max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+@keyframes article-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { .article-enter { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+.article-back { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 48px; transition: color 0.15s, gap 0.15s cubic-bezier(0.22, 1, 0.36, 1); }
+.article-back:hover { color: #cc785c; gap: 10px; }
+.article-title { font-family: "Playfair Display", Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1.1; letter-spacing: -1px; color: #141413; margin-bottom: 16px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid #e6dfd8; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
+.article-date { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.article-tag { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #cc785c; background: #f5f0e8; padding: 3px 10px; text-decoration: none; transition: background 0.15s; }
+.article-tag:hover { background: #ede6d8; }
+.article-meta-dot { color: #e6dfd8; font-size: 14px; }
+.article-body { animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+.article-body p { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 24px; }
+.article-body h2 { font-family: "Playfair Display", Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.5px; color: #141413; margin: 56px 0 20px; line-height: 1.2; }
+.article-body h3 { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -0.3px; color: #141413; margin: 40px 0 16px; line-height: 1.3; }
+.article-body h4 { font-family: Inter, sans-serif; font-size: 18px; font-weight: 600; color: #141413; margin: 32px 0 12px; }
+.article-body a { color: #cc785c; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(204, 120, 92, 0.3); transition: text-decoration-color 0.15s; }
+.article-body a:hover { text-decoration-color: rgba(204, 120, 92, 1); }
+.article-body ul, .article-body ol { margin: 0 0 24px 24px; }
+.article-body li { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 8px; }
+.article-body blockquote { border-left: 3px solid #cc785c; padding: 12px 24px; margin: 24px 0; background: #f5f0e8; font-size: 16px; line-height: 1.7; color: #3d3d3a; }
+.article-body blockquote p:last-child { margin-bottom: 0; }
+.article-body pre { background: #f5f0e8; border: 1px solid #e6dfd8; padding: 20px 24px; margin: 24px 0; overflow-x: auto; border-radius: 2px; }
+.article-body code { font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.6; color: #141413; }
+.article-body p code, .article-body li code { background: #f5f0e8; padding: 2px 6px; border-radius: 2px; font-size: 14px; }
+.article-body img { max-width: 100%; height: auto; margin: 32px 0; display: block; }
+.article-body hr { border: none; height: 1px; background: #e6dfd8; margin: 48px 0; }
+.article-body strong { font-weight: 600; color: #141413; }
+.article-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+.article-body th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; text-align: left; padding: 12px 16px; border-bottom: 2px solid #e6dfd8; }
+.article-body td { padding: 12px 16px; border-bottom: 1px solid #e6dfd8; color: #2d2d2a; }
+.article-nav { margin-top: 80px; padding-top: 32px; border-top: 1px solid #e6dfd8; display: flex; justify-content: space-between; gap: 32px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 180ms both; }
+.article-nav-item { flex: 1; }
+.article-nav-item.next { text-align: right; }
+.article-nav-label { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; margin-bottom: 6px; }
+.article-nav-title { font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.3; }
+.article-nav-title a { color: #141413; text-decoration: none; transition: color 0.15s; }
+.article-nav-title a:hover { color: #cc785c; }
+.footer { padding: 40px 48px; text-align: center; border-top: 1px solid #e6dfd8; }
+.footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.footer-text a { color: #6c6a64; text-decoration: none; }
+.footer-text a:hover { color: #cc785c; }
+@media (max-width: 767px) { .nav { padding: 16px 20px; } .article-wrap { padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; }}
+</style>
+</head>
+<body>
+<div class="reading-progress" id="readingProgress"></div>
+<nav class="nav">
+  <a href="/" class="nav-brand">月见花园</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">首页</a>
+    <a href="/blog/" class="nav-link nav-link-active">博客</a>
+    <a href="/about/" class="nav-link">关于</a>
+    <a href="/tags/" class="nav-link">标签</a>
+    <a href="/archives/" class="nav-link">归档</a>
+  </div>
+</nav>
+<article class="article-wrap">
+  <a href="/blog/" class="article-back">&larr; 返回博客</a>
+  <h1 class="article-title">第十五篇 关于完美主义者</h1>
+  <div class="article-meta">
+    <span class="article-date">2026-06-07</span>
+    <span class="article-meta-dot">&middot;</span>
+    <span class="article-tag">状态小作文</span>
+  </div>
+  <div class="article-body">
+    <p>关于完美主义者</p>
+<p>今天的话题是临时想出来的</p>
+<p>我自己其实之前，包括说现在其实是有点完美主义者的倾向的，具体的表现就是不让自己做错事，认为什么事都得成功，要不然自己就会陷入极其深的自责中，同时伴随着深度的内耗。</p>
+<p>这就导致了我在面对一些事情的时候会感觉说压力倍增，即使说这件事不是很重要，也会让自己处于高度紧张的状态</p>
+<p>啊……这样的话我基本上就没有任何容错了</p>
+<p>今天感觉讲不了什么呢……一方面有点困，另一方面这个话题讲着讲着就会变成“我是如何逃避困难的”，我只能试试看讲下去了</p>
+<p>单从描述上看这个就很痛苦了，因为心理压力很大，你必须要讲一件事做到自己的极致，不是说我有努力了就好，同时一般会有最低的指标，如果低于这个指标，那么即使再拼命也没用</p>
+<p>这就导致了月子在一些自己不擅长的领域显得格外无助，例如英语</p>
+<p>会出现这个症状的原因我自己也有想过，还是因为小时候，小时候（指幼儿园）的时候家里面就总是要求说每件事都得做好，当时幼儿园的时候是一直考满分的，忘记没考满分是怎么样的了，应该是还不会那么严重，等到小学的时候才是真的灾难，考不好，事情做不好，做错事都会被打骂，就导致我每件事都往完美主义上发展，渐渐的我也就变成了一个“完美主义者”</p>
+<p>为什么做不好会内耗呢，因为小时候做不好是会被指责之类的（具体看2024年那篇吧，如果看过应该会有点影响？如果没有也没关系，可以跟我说一说），就导致了形成一个通路：做错事-&gt;会被骂</p>
+<p>啊，有个话题！之后可以讲讲我为什么会有点玻璃心。总而言之，现在我一旦做错事便会自动联想到小时候的经历</p>
+<p>其实还有一个现象，如果我做了一件我觉得错的人事情，或者更加宽泛点，遇到了我觉得会影响到我的事，那么我便会在脑中模拟事情的发展，然后一般会卡死在最坏的情况（我认为的），然后疯狂内耗</p>
+<p>现在其实也还有这种情况，目测原因可能是为了让自己做好准备</p>
+<p>啊，说实话，我现在连我想要说什么我都不是很清楚了，在床上昏昏欲睡的一说</p>
+<p>那今天就这样吧，这个话题能补充很多的</p>
+<p>今天的题外话的话，讲点什么好呢……emmm其实我自己是挺希望说可以跟大家多聊天的</p>
+<p>我自己一般会跟比较熟的人同学主动发起聊天，根据画像来发话题</p>
+<p>有时候也想跟其他人聊聊天的，但是怕不熟所以就没有发过。所以平时没事其实可以试试看发点有的没的消息给我，或者转发你喜欢的东西给我，这些都可以的！</p>
+<p>今天是第十三篇，好困好困好困好困，谢谢你能看到这里</p>
+<p>现在是3:28</p>
+
+  </div>
+  <nav class="article-nav">
+    <div class="article-nav-item">
+      <div class="article-nav-label">上一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-06-09/posts16/">第十六篇 无题</a></div>
+    </div>
+    <div class="article-nav-item next">
+      <div class="article-nav-label">下一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-06-06/posts14/">第十四篇 关于跟别人相处中的画个人画像</a></div>
+    </div>
+  </nav>
+</article>
+<footer class="footer">
+  <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
+</footer>
+<script>
+(function() {
+  var bar = document.getElementById("readingProgress");
+  if (!bar) return;
+  var ticking = false;
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + "%" : "0%";
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+</script>
+</body>
+</html>

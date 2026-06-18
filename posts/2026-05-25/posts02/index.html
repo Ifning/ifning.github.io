@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第二篇 朋友 | 月见花园</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #cc785c; z-index: 100; transition: width 80ms linear; }
+body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1.7; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; }
+.nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
+.nav-link:hover { color: #cc785c; }
+.article-wrap { width: 75%; max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+@keyframes article-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { .article-enter { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+.article-back { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 48px; transition: color 0.15s, gap 0.15s cubic-bezier(0.22, 1, 0.36, 1); }
+.article-back:hover { color: #cc785c; gap: 10px; }
+.article-title { font-family: "Playfair Display", Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1.1; letter-spacing: -1px; color: #141413; margin-bottom: 16px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid #e6dfd8; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
+.article-date { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.article-tag { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #cc785c; background: #f5f0e8; padding: 3px 10px; text-decoration: none; transition: background 0.15s; }
+.article-tag:hover { background: #ede6d8; }
+.article-meta-dot { color: #e6dfd8; font-size: 14px; }
+.article-body { animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+.article-body p { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 24px; }
+.article-body h2 { font-family: "Playfair Display", Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.5px; color: #141413; margin: 56px 0 20px; line-height: 1.2; }
+.article-body h3 { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -0.3px; color: #141413; margin: 40px 0 16px; line-height: 1.3; }
+.article-body h4 { font-family: Inter, sans-serif; font-size: 18px; font-weight: 600; color: #141413; margin: 32px 0 12px; }
+.article-body a { color: #cc785c; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(204, 120, 92, 0.3); transition: text-decoration-color 0.15s; }
+.article-body a:hover { text-decoration-color: rgba(204, 120, 92, 1); }
+.article-body ul, .article-body ol { margin: 0 0 24px 24px; }
+.article-body li { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 8px; }
+.article-body blockquote { border-left: 3px solid #cc785c; padding: 12px 24px; margin: 24px 0; background: #f5f0e8; font-size: 16px; line-height: 1.7; color: #3d3d3a; }
+.article-body blockquote p:last-child { margin-bottom: 0; }
+.article-body pre { background: #f5f0e8; border: 1px solid #e6dfd8; padding: 20px 24px; margin: 24px 0; overflow-x: auto; border-radius: 2px; }
+.article-body code { font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.6; color: #141413; }
+.article-body p code, .article-body li code { background: #f5f0e8; padding: 2px 6px; border-radius: 2px; font-size: 14px; }
+.article-body img { max-width: 100%; height: auto; margin: 32px 0; display: block; }
+.article-body hr { border: none; height: 1px; background: #e6dfd8; margin: 48px 0; }
+.article-body strong { font-weight: 600; color: #141413; }
+.article-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+.article-body th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; text-align: left; padding: 12px 16px; border-bottom: 2px solid #e6dfd8; }
+.article-body td { padding: 12px 16px; border-bottom: 1px solid #e6dfd8; color: #2d2d2a; }
+.article-nav { margin-top: 80px; padding-top: 32px; border-top: 1px solid #e6dfd8; display: flex; justify-content: space-between; gap: 32px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 180ms both; }
+.article-nav-item { flex: 1; }
+.article-nav-item.next { text-align: right; }
+.article-nav-label { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; margin-bottom: 6px; }
+.article-nav-title { font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.3; }
+.article-nav-title a { color: #141413; text-decoration: none; transition: color 0.15s; }
+.article-nav-title a:hover { color: #cc785c; }
+.footer { padding: 40px 48px; text-align: center; border-top: 1px solid #e6dfd8; }
+.footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.footer-text a { color: #6c6a64; text-decoration: none; }
+.footer-text a:hover { color: #cc785c; }
+@media (max-width: 767px) { .nav { padding: 16px 20px; } .article-wrap { padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; }}
+</style>
+</head>
+<body>
+<div class="reading-progress" id="readingProgress"></div>
+<nav class="nav">
+  <a href="/" class="nav-brand">月见花园</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">首页</a>
+    <a href="/blog/" class="nav-link nav-link-active">博客</a>
+    <a href="/about/" class="nav-link">关于</a>
+    <a href="/tags/" class="nav-link">标签</a>
+    <a href="/archives/" class="nav-link">归档</a>
+  </div>
+</nav>
+<article class="article-wrap">
+  <a href="/blog/" class="article-back">&larr; 返回博客</a>
+  <h1 class="article-title">第二篇 朋友</h1>
+  <div class="article-meta">
+    <span class="article-date">2026-05-25</span>
+    <span class="article-meta-dot">&middot;</span>
+    <span class="article-tag">状态小作文</span>
+  </div>
+  <div class="article-body">
+    <p>朋友</p>
+<p>其实之前就蛮喜欢在状态这里写点什么，一方面是大家好像都不是很喜欢刷这个，另一方面就是每天都会自动隐藏，不像朋友圈那样，还有评论点赞这些是单向的，月子觉得都挺好的。虽然说写这个蛮费时间的，现在说实话时间也不是很充裕，但睡前把刷视频时间拿来写这个还是没什么问题的</p>
+<p>今天来讲讲一些我自己对于朋友的内容，我自己对于朋友是很珍视的，这个跟我成长过程中还有高中生活息息相关。昨天的状态内容中其实已经有写过我现在这个情况跟我小时候的经历有关，这方面也是一样的，我自己小时候便是接触电脑时间长一点，接触手机时间其实很少，主要是拿来聊天，玩游戏就不可能了，家里面对这一块管的很严，我自己对这个也有一些不太好的回忆。为什么我要谈到这个呢？因为上小学，初中的时候，身边的同学挺多都是通过王者开黑来变熟的，但是我自己没这个条件，除了同桌跟舍友外，没什么朋友，甚至很多毕业后就再也不联系的。也正因如此，我自己是很在意自己的朋友的，平时有什么忙我也会全力去帮（其实这里能延伸出一个点，如果想听我可以找个时间讲讲）。</p>
+<p>啊……好像忘记要说什么了呢。不过问题不大，想到什么就讲什么吧。其实我自己是很开心说大家可以来跟我说些有的没的，不管是什么内容都可以，哪怕我自己对该领域一无所知。甚至说没事丢个抖音视频都可以，或者直接加我后发私信也可以（抖音号：Gaizhedu），看到了会回的！</p>
+<p>啊，其实我很期待说大家跟我聊聊天的，倒也不用担心说会不会消息太多看不到什么的，我自己向来都是把微信未读信息清掉的，也就是一有新消息就会去看，所以这一块倒也不怎么需要担心</p>
+<p>月子自己因为一些心理问题，打不了任何需要联网PVP的游戏，包括王者，瓦这些，虽然你看我Steam有60多个小时的CS，但是事实上我一场休闲，一场排位都没玩过，很多时间都是在打人机，这一块也是一个话题。我自己是蛮乐意讲我自己身上的事情的，因为从我自己的角度来看，我觉得说很多人其实都只了解了我20%左右，所以我是很想讲讲自己的事情的，这样大家就可以了解我了。想要了解我哪个方面其实都可以留言的，或者直接私信问我也可以，我是觉得问题不大啦，不用担心什么的</p>
+<p>其实我还有很多想说的，但是微信状态最多只能写1000字，所以一次能写的很少，在写今天这篇的时候就又想到了几个可以写的话题，但是写不下去</p>
+<p>今天就写这样吧，朋友这个其实能讲的还有很多，其实这篇删删改改很多才不会超字数</p>
+<p>这是第二篇关于我的文章，谢谢你能看到这里</p>
+
+  </div>
+  <nav class="article-nav">
+    <div class="article-nav-item">
+      <div class="article-nav-label">上一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-05-26/posts03/">第三篇 亚公顶与她</a></div>
+    </div>
+    <div class="article-nav-item next">
+      <div class="article-nav-label">下一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-05-24/posts01/">第一篇 戒备心与无我</a></div>
+    </div>
+  </nav>
+</article>
+<footer class="footer">
+  <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
+</footer>
+<script>
+(function() {
+  var bar = document.getElementById("readingProgress");
+  if (!bar) return;
+  var ticking = false;
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + "%" : "0%";
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+</script>
+</body>
+</html>

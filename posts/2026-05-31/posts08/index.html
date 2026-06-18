@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第八篇 为什么我会加一个喵 | 月见花园</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #cc785c; z-index: 100; transition: width 80ms linear; }
+body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1.7; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; }
+.nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
+.nav-link:hover { color: #cc785c; }
+.article-wrap { width: 75%; max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+@keyframes article-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { .article-enter { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+.article-back { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 48px; transition: color 0.15s, gap 0.15s cubic-bezier(0.22, 1, 0.36, 1); }
+.article-back:hover { color: #cc785c; gap: 10px; }
+.article-title { font-family: "Playfair Display", Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1.1; letter-spacing: -1px; color: #141413; margin-bottom: 16px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid #e6dfd8; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
+.article-date { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.article-tag { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #cc785c; background: #f5f0e8; padding: 3px 10px; text-decoration: none; transition: background 0.15s; }
+.article-tag:hover { background: #ede6d8; }
+.article-meta-dot { color: #e6dfd8; font-size: 14px; }
+.article-body { animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+.article-body p { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 24px; }
+.article-body h2 { font-family: "Playfair Display", Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.5px; color: #141413; margin: 56px 0 20px; line-height: 1.2; }
+.article-body h3 { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -0.3px; color: #141413; margin: 40px 0 16px; line-height: 1.3; }
+.article-body h4 { font-family: Inter, sans-serif; font-size: 18px; font-weight: 600; color: #141413; margin: 32px 0 12px; }
+.article-body a { color: #cc785c; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(204, 120, 92, 0.3); transition: text-decoration-color 0.15s; }
+.article-body a:hover { text-decoration-color: rgba(204, 120, 92, 1); }
+.article-body ul, .article-body ol { margin: 0 0 24px 24px; }
+.article-body li { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 8px; }
+.article-body blockquote { border-left: 3px solid #cc785c; padding: 12px 24px; margin: 24px 0; background: #f5f0e8; font-size: 16px; line-height: 1.7; color: #3d3d3a; }
+.article-body blockquote p:last-child { margin-bottom: 0; }
+.article-body pre { background: #f5f0e8; border: 1px solid #e6dfd8; padding: 20px 24px; margin: 24px 0; overflow-x: auto; border-radius: 2px; }
+.article-body code { font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.6; color: #141413; }
+.article-body p code, .article-body li code { background: #f5f0e8; padding: 2px 6px; border-radius: 2px; font-size: 14px; }
+.article-body img { max-width: 100%; height: auto; margin: 32px 0; display: block; }
+.article-body hr { border: none; height: 1px; background: #e6dfd8; margin: 48px 0; }
+.article-body strong { font-weight: 600; color: #141413; }
+.article-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+.article-body th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; text-align: left; padding: 12px 16px; border-bottom: 2px solid #e6dfd8; }
+.article-body td { padding: 12px 16px; border-bottom: 1px solid #e6dfd8; color: #2d2d2a; }
+.article-nav { margin-top: 80px; padding-top: 32px; border-top: 1px solid #e6dfd8; display: flex; justify-content: space-between; gap: 32px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 180ms both; }
+.article-nav-item { flex: 1; }
+.article-nav-item.next { text-align: right; }
+.article-nav-label { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; margin-bottom: 6px; }
+.article-nav-title { font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.3; }
+.article-nav-title a { color: #141413; text-decoration: none; transition: color 0.15s; }
+.article-nav-title a:hover { color: #cc785c; }
+.footer { padding: 40px 48px; text-align: center; border-top: 1px solid #e6dfd8; }
+.footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.footer-text a { color: #6c6a64; text-decoration: none; }
+.footer-text a:hover { color: #cc785c; }
+@media (max-width: 767px) { .nav { padding: 16px 20px; } .article-wrap { padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; }}
+</style>
+</head>
+<body>
+<div class="reading-progress" id="readingProgress"></div>
+<nav class="nav">
+  <a href="/" class="nav-brand">月见花园</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">首页</a>
+    <a href="/blog/" class="nav-link nav-link-active">博客</a>
+    <a href="/about/" class="nav-link">关于</a>
+    <a href="/tags/" class="nav-link">标签</a>
+    <a href="/archives/" class="nav-link">归档</a>
+  </div>
+</nav>
+<article class="article-wrap">
+  <a href="/blog/" class="article-back">&larr; 返回博客</a>
+  <h1 class="article-title">第八篇 为什么我会加一个喵</h1>
+  <div class="article-meta">
+    <span class="article-date">2026-05-31</span>
+    <span class="article-meta-dot">&middot;</span>
+    <span class="article-tag">状态小作文</span>
+  </div>
+  <div class="article-body">
+    <p>为什么我有时候会在结尾加一个喵以及与之相关的延伸</p>
+<p>今天来讲讲这个，如果你跟我的共同好友足够多的话，那么在我生日的那条朋友圈底下是可以看到我给一些人的祝福回了“谢谢喵”（后面没回是因为太多了回不过来），这里我用了喵作为结束的语气词。如果你平时跟我聊天聊的多，并且关系比较好的话应该是可以遇到我聊着聊着就在每句话的后面加个喵的情况的</p>
+<p>那为什么要加个喵呢？其实很简单，如果我跟你聊天的时候加上喵，那就说明我跟你聊天的时候十分放松，语气也比较轻松的那种。</p>
+<p>那为什么是喵而不是其他的语气词呢？这个的话说起来比较复杂，如果想要延伸就得分为其一其二了，所以不做拓展，感兴趣可以自己来问我。</p>
+<p>总体上来讲就是这样了，接下来讲拓展。平时的话我自己是不太喜欢比较死板的样子的，按理来说在跟我接触的时候我一般会表现出一副人畜无害的样子，我自己认为这样会相对来讲比较容易亲近，不会说像钢板一样脸上写着生人勿近。</p>
+<p>如果你平时跟我聊天聊的多的话，应该会发现我用的表情包都是比较可爱的那种，为什么喜欢用这类表情包而不是以搞怪为主的表情包呢？一方面我自己是比较喜欢可爱的事物的，另一方面还是上文所提及的，我感觉这样的距离感会近一点，气氛会比较缓和一点。</p>
+<p>不知道之前的篇章有没有说，反正我自己平时聊天聊的都比较少，所以在跟别人初次聊天的时候我自己会试着拉进距离感，所以会使用到这些比较可爱的表情包</p>
+<p>另外的话就是比较重点的内容，聊天聊的少意味着我会去斟酌自己的发言，此时便会模拟语气，也就是把自己的话从对方的视角读一遍来判断说对面听起来是友善的，严肃的，还是其他的样子。举个例子，前几天我回复留言的时候用到了“谢谢”，从我自己得视角出发，谢谢在别人眼里可能是平淡的谢谢，有可能是不耐烦的谢谢，也有可能是激动的“谢谢！”，那这个时候要怎么避免出现误解语气呢？很简单，加个喵，谢谢喵的语气是偏向俏皮活泼可爱的，就不会引到其他方面。</p>
+<p>换句话讲就是定向情绪输出。而不是让他人来误解你的话中带有的情绪（单纯文字没法定向情绪表达，但是现实说话的时候是有音调的不同的，什么情绪可以很明显看出，所以可以不用加语气词来锚定），大致就是这些了</p>
+<p>今天这个是同学点的喵，还是蛮有意思的话题的</p>
+<p>没字数写题外话了</p>
+<p>这是第7篇，一个星期前为什么会写开始写也是有理由的，不是一时兴起</p>
+<p>要两点了，早点睡喵₍ᵔ･•･ᵔ₎</p>
+
+  </div>
+  <nav class="article-nav">
+    <div class="article-nav-item">
+      <div class="article-nav-label">上一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-06-01/posts09/">第九篇 关于欲望减速</a></div>
+    </div>
+    <div class="article-nav-item next">
+      <div class="article-nav-label">下一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-05-30/posts07/">第七篇 我与月见草</a></div>
+    </div>
+  </nav>
+</article>
+<footer class="footer">
+  <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
+</footer>
+<script>
+(function() {
+  var bar = document.getElementById("readingProgress");
+  if (!bar) return;
+  var ticking = false;
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + "%" : "0%";
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+</script>
+</body>
+</html>

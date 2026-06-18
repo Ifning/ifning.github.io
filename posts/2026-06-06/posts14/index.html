@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十四篇 关于跟别人相处中的画个人画像 | 月见花园</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #cc785c; z-index: 100; transition: width 80ms linear; }
+body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1.7; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; }
+.nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
+.nav-link:hover { color: #cc785c; }
+.article-wrap { width: 75%; max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
+@keyframes article-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { .article-enter { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+.article-back { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 48px; transition: color 0.15s, gap 0.15s cubic-bezier(0.22, 1, 0.36, 1); }
+.article-back:hover { color: #cc785c; gap: 10px; }
+.article-title { font-family: "Playfair Display", Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1.1; letter-spacing: -1px; color: #141413; margin-bottom: 16px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid #e6dfd8; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
+.article-date { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.article-tag { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #cc785c; background: #f5f0e8; padding: 3px 10px; text-decoration: none; transition: background 0.15s; }
+.article-tag:hover { background: #ede6d8; }
+.article-meta-dot { color: #e6dfd8; font-size: 14px; }
+.article-body { animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+.article-body p { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 24px; }
+.article-body h2 { font-family: "Playfair Display", Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.5px; color: #141413; margin: 56px 0 20px; line-height: 1.2; }
+.article-body h3 { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -0.3px; color: #141413; margin: 40px 0 16px; line-height: 1.3; }
+.article-body h4 { font-family: Inter, sans-serif; font-size: 18px; font-weight: 600; color: #141413; margin: 32px 0 12px; }
+.article-body a { color: #cc785c; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(204, 120, 92, 0.3); transition: text-decoration-color 0.15s; }
+.article-body a:hover { text-decoration-color: rgba(204, 120, 92, 1); }
+.article-body ul, .article-body ol { margin: 0 0 24px 24px; }
+.article-body li { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 8px; }
+.article-body blockquote { border-left: 3px solid #cc785c; padding: 12px 24px; margin: 24px 0; background: #f5f0e8; font-size: 16px; line-height: 1.7; color: #3d3d3a; }
+.article-body blockquote p:last-child { margin-bottom: 0; }
+.article-body pre { background: #f5f0e8; border: 1px solid #e6dfd8; padding: 20px 24px; margin: 24px 0; overflow-x: auto; border-radius: 2px; }
+.article-body code { font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.6; color: #141413; }
+.article-body p code, .article-body li code { background: #f5f0e8; padding: 2px 6px; border-radius: 2px; font-size: 14px; }
+.article-body img { max-width: 100%; height: auto; margin: 32px 0; display: block; }
+.article-body hr { border: none; height: 1px; background: #e6dfd8; margin: 48px 0; }
+.article-body strong { font-weight: 600; color: #141413; }
+.article-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+.article-body th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; text-align: left; padding: 12px 16px; border-bottom: 2px solid #e6dfd8; }
+.article-body td { padding: 12px 16px; border-bottom: 1px solid #e6dfd8; color: #2d2d2a; }
+.article-nav { margin-top: 80px; padding-top: 32px; border-top: 1px solid #e6dfd8; display: flex; justify-content: space-between; gap: 32px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 180ms both; }
+.article-nav-item { flex: 1; }
+.article-nav-item.next { text-align: right; }
+.article-nav-label { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; margin-bottom: 6px; }
+.article-nav-title { font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.3; }
+.article-nav-title a { color: #141413; text-decoration: none; transition: color 0.15s; }
+.article-nav-title a:hover { color: #cc785c; }
+.footer { padding: 40px 48px; text-align: center; border-top: 1px solid #e6dfd8; }
+.footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.footer-text a { color: #6c6a64; text-decoration: none; }
+.footer-text a:hover { color: #cc785c; }
+@media (max-width: 767px) { .nav { padding: 16px 20px; } .article-wrap { padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; }}
+</style>
+</head>
+<body>
+<div class="reading-progress" id="readingProgress"></div>
+<nav class="nav">
+  <a href="/" class="nav-brand">月见花园</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">首页</a>
+    <a href="/blog/" class="nav-link nav-link-active">博客</a>
+    <a href="/about/" class="nav-link">关于</a>
+    <a href="/tags/" class="nav-link">标签</a>
+    <a href="/archives/" class="nav-link">归档</a>
+  </div>
+</nav>
+<article class="article-wrap">
+  <a href="/blog/" class="article-back">&larr; 返回博客</a>
+  <h1 class="article-title">第十四篇 关于跟别人相处中的画个人画像</h1>
+  <div class="article-meta">
+    <span class="article-date">2026-06-06</span>
+    <span class="article-meta-dot">&middot;</span>
+    <span class="article-tag">状态小作文</span>
+  </div>
+  <div class="article-body">
+    <p>关于跟别人相处中的画个人画像</p>
+<p>今天讲的是这个。那么什么是个人画像呢，简单来说就是我在跟别人相处的过程中会根据你说的话，谈的话题，以及对某些事情的反应来对你的性格，以及爱好这些进行分析，从而渐渐得到这张在我这里的有关你的信息。一般来说这里面会有你的性格，还有你的喜好的事物等这些。当然，这个不是一次性就画完的，初步定下来之后再之后的相处过程中我会渐渐修补这个画像，如果行为符合走向（也就是我觉得这件事你确实会做），那么画像不变，反之如果你做了一件事让我感觉说“你居然会做”的话，那么会加入到画像中</p>
+<p>这个画像是没有实际记录的，全凭感觉，具体怎么运作说实话我也很难描述出来</p>
+<p>为什么我要做到这种程度呢？在之前的篇章中有提到原因，月子从小朋友就比较少，所以很珍惜每一位朋友，为了不被朋友抛弃，所以我会在潜意识里记录你在说话时的偏好，还有在聊天中展示的喜欢的东西跟讨厌的东西，尽可能在相处中不碰到雷区，也就是给予他人一个尽可能舒适的聊天环境</p>
+<p>脑袋有点晕，所以写的可能有点怪怪的</p>
+<p>嗯，当然，这个机制不是严格遵守的，更多是无意识的，所以有时候可能会无视这个画像来跟你相处</p>
+<p>不过这样一般得比较熟的人，再加上我比较激动才可能无视画像，其他情况下应该还是遵守画像的</p>
+<p>其实说实话我还是有点不太敢说这个话题的，因为怕被了解到我有这个特性后就不跟我聊天之类的</p>
+<p>不过既然自己写了可点话题，写出来好像也没什么，毕竟没人看</p>
+<p>说实话，这样还是比较累的，因为说的一句话都得考虑会不会踩到雷区，以及要思考同一句话怎么发对方才会最舒服。这就导致了如果画像信息比较少，说的话可能就会反复思考（实际例子就是前几天聊天一个表情包挑了快10分钟），但是如果聊天聊多了，画像信息多了，自然聊天就比较快了</p>
+<p>嗯……怎么感觉有点像聊天从一开始的不熟到变熟的过程</p>
+<p>说实话，如果你来问你的个人画像，我自己还是比较难答出来的，前文也有提及过，这个不是用笔记什么记起来的，全靠感觉。但是来问我还是能试着答出一点的OvO</p>
+<p>不过有一说一，这不就是我对你的印象吗</p>
+<p>其他的话等我补充吧，今天加班加到太困了</p>
+<p>语句可能读起来怪怪的，因为我真的好困好困</p>
+<p>今天这一篇是同学点的！谢谢啦</p>
+<p>这是第十二篇，快三点了，早点睡觉，谢谢你能看到这里</p>
+<p>好困好困好困好困</p>
+<p>今天的歌是随便选的，实在是没精力挑了</p>
+
+  </div>
+  <nav class="article-nav">
+    <div class="article-nav-item">
+      <div class="article-nav-label">上一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-06-07/posts15/">第十五篇 关于完美主义者</a></div>
+    </div>
+    <div class="article-nav-item next">
+      <div class="article-nav-label">下一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-06-05/posts13/">第十三篇 第二人生</a></div>
+    </div>
+  </nav>
+</article>
+<footer class="footer">
+  <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
+</footer>
+<script>
+(function() {
+  var bar = document.getElementById("readingProgress");
+  if (!bar) return;
+  var ticking = false;
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + "%" : "0%";
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+</script>
+</body>
+</html>

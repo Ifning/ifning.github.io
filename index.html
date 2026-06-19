@@ -67,6 +67,80 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, s
   0% { opacity: 0; transform: translateY(12px); filter: blur(4px); }
   100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
+html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
+html.dark-mode body { background: #1a1a1a; color: #e8e6e1; }
+html.dark-mode .nav { background: #1a1a1a; border-bottom-color: #2d2d2d; }
+html.dark-mode .nav-brand { color: #e8e6e1; }
+html.dark-mode .nav-link { color: #9e9b94; }
+html.dark-mode .nav-link:hover, html.dark-mode .nav-link-active { color: #cc785c; }
+html.dark-mode .footer { border-top-color: #2d2d2d; }
+html.dark-mode .footer-text { color: #7a7870; }
+html.dark-mode .footer-text a { color: #9e9b94; }
+html.dark-mode .hero-subtitle { color: #cc785c; }
+html.dark-mode .hero-title { color: #e8e6e1; }
+html.dark-mode .hero-desc { color: #9e9b94; }
+html.dark-mode .btn-secondary { background: #242424; color: #e8e6e1; border-color: #3d3d3d; }
+html.dark-mode .btn-secondary:hover { background: #2d2d2d; border-color: #5a5a5a; }
+html.dark-mode .btn-site { background: #4a4a4a; }
+html.dark-mode .btn-site:hover { background: #5a5a5a; }
+html.dark-mode .blog-page-title { color: #e8e6e1; }
+html.dark-mode .blog-date-heading { color: #e8e6e1; border-bottom-color: #2d2d2d; }
+html.dark-mode .blog-card { background: #242424; border-color: #2d2d2d; }
+html.dark-mode .blog-card:hover { border-color: #cc785c; }
+html.dark-mode .blog-card-title { color: #e8e6e1; }
+html.dark-mode .blog-card:hover .blog-card-title { color: #cc785c; }
+html.dark-mode .blog-card-tag { background: #2a2a2a; }
+html.dark-mode .blog-card-tag-empty { background: #2a2a2a; color: #7a7870; }
+html.dark-mode .article-title { color: #e8e6e1; }
+html.dark-mode .article-meta { border-bottom-color: #2d2d2d; }
+html.dark-mode .article-date { color: #7a7870; }
+html.dark-mode .article-tag { background: #2a2a2a; }
+html.dark-mode .article-tag:hover { background: #333333; }
+html.dark-mode .article-meta-dot { color: #2d2d2d; }
+html.dark-mode .article-body p { color: #c8c5be; }
+html.dark-mode .article-body h2, html.dark-mode .article-body h3, html.dark-mode .article-body h4 { color: #e8e6e1; }
+html.dark-mode .article-body li { color: #c8c5be; }
+html.dark-mode .article-body blockquote { background: #2a2a2a; color: #b8b5ae; }
+html.dark-mode .article-body pre { background: #2a2a2a; border-color: #3d3d3d; }
+html.dark-mode .article-body code { color: #e8e6e1; }
+html.dark-mode .article-body p code, html.dark-mode .article-body li code { background: #2a2a2a; }
+html.dark-mode .article-body strong { color: #e8e6e1; }
+html.dark-mode .article-body th { color: #7a7870; border-bottom-color: #3d3d3d; }
+html.dark-mode .article-body td { color: #c8c5be; border-bottom-color: #2d2d2d; }
+html.dark-mode .article-body hr { background: #2d2d2d; }
+html.dark-mode .article-nav { border-top-color: #2d2d2d; }
+html.dark-mode .article-nav-title a { color: #e8e6e1; }
+html.dark-mode .article-nav-label { color: #7a7870; }
+html.dark-mode .article-back { color: #7a7870; }
+html.dark-mode .reading-progress { background: #cc785c; }
+html.dark-mode .page-title { color: #e8e6e1; border-bottom-color: #2d2d2d; }
+html.dark-mode .page-back { color: #7a7870; }
+html.dark-mode .page-body p { color: #c8c5be; }
+html.dark-mode .page-body h2, html.dark-mode .page-body h3 { color: #e8e6e1; }
+html.dark-mode .page-body li { color: #c8c5be; }
+html.dark-mode .page-body blockquote { background: #2a2a2a; }
+html.dark-mode .page-body pre { background: #2a2a2a; border-color: #3d3d3d; }
+html.dark-mode .page-body code { color: #e8e6e1; }
+html.dark-mode .page-body p code, html.dark-mode .page-body li code { background: #2a2a2a; }
+html.dark-mode .page-body strong { color: #e8e6e1; }
+html.dark-mode .page-body th { color: #7a7870; border-bottom-color: #3d3d3d; }
+html.dark-mode .page-body td { color: #c8c5be; border-bottom-color: #2d2d2d; }
+html.dark-mode .tags-page-title { color: #e8e6e1; }
+html.dark-mode .tags-selector { border-bottom-color: #2d2d2d; }
+html.dark-mode .tags-pill { border-color: #3d3d3d; color: #9e9b94; }
+html.dark-mode .tags-pill:hover { border-color: #cc785c; color: #cc785c; }
+html.dark-mode .tags-pill-active { background: #cc785c; border-color: #cc785c; color: #fff; }
+html.dark-mode .tags-pill-active:hover { background: #b5694d; border-color: #b5694d; }
+html.dark-mode .tags-group-header { color: #e8e6e1; border-bottom-color: #2d2d2d; }
+.dark-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
+.dark-toggle:hover { border-color: #cc785c; background: #f5f0e8; }
+.dark-toggle-icon { display: none; color: #6c6a64; }
+html.dark-mode .dark-toggle { border-color: #3d3d3d; }
+html.dark-mode .dark-toggle:hover { border-color: #cc785c; background: #2a2a2a; }
+html.dark-mode .dark-toggle-icon { color: #9e9b94; }
+html.dark-mode .sun-icon { display: block; }
+.moon-icon { display: block; }
+html.dark-mode .moon-icon { display: none; }
 </style>
 </head>
 <body>
@@ -78,6 +152,7 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, s
     <a href="/about/" class="nav-link">关于</a>
     <a href="/tags/" class="nav-link">标签</a>
     <a href="/archives/" class="nav-link">归档</a>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="切换深色模式"><svg class="dark-toggle-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="dark-toggle-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
 </nav>
 <section class="hero">
@@ -96,5 +171,20 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, s
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
 </footer>
+<script>
+(function() {
+  var saved = localStorage.getItem("dark-mode");
+  if (saved === "true" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    document.documentElement.classList.add("dark-mode");
+  }
+})();
+function toggleDark() {
+  var html = document.documentElement;
+  html.classList.add("transitioning");
+  var isDark = html.classList.toggle("dark-mode");
+  localStorage.setItem("dark-mode", isDark);
+  setTimeout(function() { html.classList.remove("transitioning"); }, 400);
+}
+</script>
 </body>
 </html>

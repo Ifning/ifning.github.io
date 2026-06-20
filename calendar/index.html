@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日历 | 月见花园</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; width: 100%; flex-shrink: 0; }
+.nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
+.nav-link:hover { color: #cc785c; }
+.nav-link-active { color: #cc785c; }
+.calendar-page { max-width: 1100px; margin: 0 auto; padding: 64px 48px; flex: 1; width: 100%; }
+.calendar-page-title { font-family: "Playfair Display", Georgia, serif; font-size: 40px; font-weight: 400; letter-spacing: -0.8px; color: #141413; margin-bottom: 12px; }
+.calendar-page-subtitle { font-family: "JetBrains Mono", monospace; font-size: 13px; color: #8e8b82; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 48px; }
+.cal-nav { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 32px; }
+.cal-nav-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; transition: border-color 0.15s, background 0.15s; color: #6c6a64; font-size: 16px; }
+.cal-nav-btn:hover { border-color: #cc785c; background: #f5f0e8; color: #cc785c; }
+.cal-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.cal-nav-btn:disabled:hover { border-color: #e6dfd8; background: transparent; color: #6c6a64; }
+.cal-nav-year { font-family: "Playfair Display", Georgia, serif; font-size: 28px; font-weight: 600; color: #141413; min-width: 80px; text-align: center; }
+.cal-heatmap-container { display: flex; gap: 8px; margin-bottom: 48px; justify-content: center; }
+.cal-day-labels { display: flex; flex-direction: column; gap: 2px; padding-top: 22px; }
+.cal-day-label { font-family: "JetBrains Mono", monospace; font-size: 10px; color: #8e8b82; height: 12px; line-height: 12px; text-align: right; width: 20px; }
+.cal-heatmap-scroll { overflow-x: auto; }
+.cal-heatmap { display: flex; gap: 2px; }
+.cal-month-labels { display: flex; gap: 2px; margin-bottom: 6px; height: 16px; }
+.cal-month-label { font-family: "JetBrains Mono", monospace; font-size: 10px; color: #8e8b82; text-transform: uppercase; width: 12px; text-align: left; overflow: visible; white-space: nowrap; }
+.cal-month-spacer { width: 12px; flex-shrink: 0; }
+.cal-week { display: flex; flex-direction: column; gap: 2px; }
+.cal-cell { width: 12px; height: 12px; border-radius: 2px; background: #ebedf0; transition: outline 0.1s; position: relative; cursor: default; }
+.cal-cell:hover { outline: 2px solid #cc785c; outline-offset: 1px; }
+.cal-cell-l1 { background: #fce4d6; }
+.cal-cell-l2 { background: #f5b999; }
+.cal-cell-l3 { background: #e8906b; }
+.cal-cell-l4 { background: #cc785c; }
+.cal-cell-empty { background: transparent; }
+.cal-cell-empty:hover { outline: none; }
+.cal-legend { display: flex; align-items: center; gap: 4px; justify-content: flex-end; margin-bottom: 48px; font-family: "JetBrains Mono", monospace; font-size: 10px; color: #8e8b82; }
+.cal-legend-label { margin-right: 4px; }
+.cal-legend-cell { width: 12px; height: 12px; border-radius: 2px; }
+.cal-tooltip { position: fixed; pointer-events: none; background: #141413; color: #fff; font-family: "JetBrains Mono", monospace; font-size: 12px; padding: 6px 10px; border-radius: 4px; z-index: 100; white-space: nowrap; opacity: 0; transition: opacity 0.1s; }
+.cal-tooltip-show { opacity: 1; }
+.cal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+.cal-stat-card { background: #ffffff; border: 1px solid #e6dfd8; padding: 28px 24px; text-align: center; transition: border-color 0.15s, transform 0.15s; }
+.cal-stat-card:hover { border-color: #cc785c; transform: translateY(-2px); }
+.cal-stat-number { font-family: "Playfair Display", Georgia, serif; font-size: 42px; font-weight: 700; color: #cc785c; line-height: 1; margin-bottom: 8px; }
+.cal-stat-label { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8e8b82; }
+.footer { padding: 24px 48px; text-align: center; border-top: 1px solid #e6dfd8; flex-shrink: 0; }
+.footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
+.footer-text a { color: #6c6a64; text-decoration: none; }
+.footer-text a:hover { color: #cc785c; }
+.deploy-time { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
+.footer-stats { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
+@keyframes page-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+.nav { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.calendar-page-title { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
+.cal-stats { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+.cal-heatmap-container { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 180ms both; }
+@media (max-width: 767px) {
+  .nav { padding: 16px 20px; position: relative; }
+  .nav-right { position: static; order: 2; }
+  .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: #faf9f5; border-bottom: 1px solid #e6dfd8; flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; }
+  .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; }
+  .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #e6dfd8; width: 100%; }
+  .nav-link:last-child { border-bottom: none; }
+  .calendar-page { padding: 32px 20px; }
+  .calendar-page-title { font-size: 28px; }
+  .cal-stats { grid-template-columns: 1fr; }
+  .cal-stat-number { font-size: 32px; }
+}
+html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
+html.dark-mode body { background: #1a1a1a; color: #e8e6e1; }
+html.dark-mode .nav { background: #1a1a1a; border-bottom-color: #2d2d2d; }
+html.dark-mode .nav-brand { color: #e8e6e1; }
+html.dark-mode .nav-link { color: #9e9b94; }
+html.dark-mode .nav-link:hover, html.dark-mode .nav-link-active { color: #cc785c; }
+html.dark-mode .footer { border-top-color: #2d2d2d; }
+html.dark-mode .footer-text { color: #7a7870; }
+html.dark-mode .footer-text a { color: #9e9b94; }
+html.dark-mode .deploy-time { color: #7a7870; }
+html.dark-mode .footer-stats { color: #7a7870; }
+html.dark-mode .hero-subtitle { color: #cc785c; }
+html.dark-mode .hero-title { color: #e8e6e1; }
+html.dark-mode .hero-desc { color: #9e9b94; }
+html.dark-mode .btn-secondary { background: #242424; color: #e8e6e1; border-color: #3d3d3d; }
+html.dark-mode .btn-secondary:hover { background: #2d2d2d; border-color: #5a5a5a; }
+html.dark-mode .btn-site { background: #4a4a4a; }
+html.dark-mode .btn-site:hover { background: #5a5a5a; }
+html.dark-mode .blog-page-title { color: #e8e6e1; }
+html.dark-mode .blog-date-heading { color: #e8e6e1; border-bottom-color: #2d2d2d; }
+html.dark-mode .blog-card { background: #242424; border-color: #2d2d2d; }
+html.dark-mode .blog-card:hover { border-color: #cc785c; }
+html.dark-mode .blog-card-title { color: #e8e6e1; }
+html.dark-mode .blog-card:hover .blog-card-title { color: #cc785c; }
+html.dark-mode .blog-card-tag { background: #2a2a2a; }
+html.dark-mode .blog-card-tag-empty { background: #2a2a2a; color: #7a7870; }
+html.dark-mode .article-title { color: #e8e6e1; }
+html.dark-mode .article-meta { border-bottom-color: #2d2d2d; }
+html.dark-mode .article-date { color: #7a7870; }
+html.dark-mode .article-tag { background: #2a2a2a; }
+html.dark-mode .article-tag:hover { background: #333333; }
+html.dark-mode .article-meta-dot { color: #2d2d2d; }
+html.dark-mode .article-body p { color: #c8c5be; }
+html.dark-mode .article-body h2, html.dark-mode .article-body h3, html.dark-mode .article-body h4 { color: #e8e6e1; }
+html.dark-mode .article-body li { color: #c8c5be; }
+html.dark-mode .article-body blockquote { background: #2a2a2a; color: #b8b5ae; }
+html.dark-mode .article-body pre { background: #2a2a2a; border-color: #3d3d3d; }
+html.dark-mode .article-body code { color: #e8e6e1; }
+html.dark-mode .article-body p code, html.dark-mode .article-body li code { background: #2a2a2a; }
+html.dark-mode .article-body strong { color: #e8e6e1; }
+html.dark-mode .article-body th { color: #7a7870; border-bottom-color: #3d3d3d; }
+html.dark-mode .article-body td { color: #c8c5be; border-bottom-color: #2d2d2d; }
+html.dark-mode .article-body hr { background: #2d2d2d; }
+html.dark-mode .article-nav { border-top-color: #2d2d2d; }
+html.dark-mode .article-nav-title a { color: #e8e6e1; }
+html.dark-mode .article-nav-label { color: #7a7870; }
+html.dark-mode .article-back { color: #7a7870; }
+html.dark-mode .reading-progress { background: #cc785c; }
+html.dark-mode .page-title { color: #e8e6e1; border-bottom-color: #2d2d2d; }
+html.dark-mode .page-back { color: #7a7870; }
+html.dark-mode .page-body p { color: #c8c5be; }
+html.dark-mode .page-body h2, html.dark-mode .page-body h3 { color: #e8e6e1; }
+html.dark-mode .page-body li { color: #c8c5be; }
+html.dark-mode .page-body blockquote { background: #2a2a2a; }
+html.dark-mode .page-body pre { background: #2a2a2a; border-color: #3d3d3d; }
+html.dark-mode .page-body code { color: #e8e6e1; }
+html.dark-mode .page-body p code, html.dark-mode .page-body li code { background: #2a2a2a; }
+html.dark-mode .page-body strong { color: #e8e6e1; }
+html.dark-mode .page-body th { color: #7a7870; border-bottom-color: #3d3d3d; }
+html.dark-mode .page-body td { color: #c8c5be; border-bottom-color: #2d2d2d; }
+html.dark-mode .tags-page-title { color: #e8e6e1; }
+html.dark-mode .tags-selector { border-bottom-color: #2d2d2d; }
+html.dark-mode .tags-pill { border-color: #3d3d3d; color: #9e9b94; }
+html.dark-mode .tags-pill:hover { border-color: var(--tag-color, #cc785c); color: var(--tag-color, #cc785c); }
+html.dark-mode .tags-pill-active { background: var(--tag-color, #cc785c); border-color: var(--tag-color, #cc785c); color: #fff; }
+html.dark-mode .tags-pill-active:hover { background: var(--tag-color, #b5694d); border-color: var(--tag-color, #b5694d); }
+html.dark-mode .tags-group-header { color: #e8e6e1; border-bottom-color: #2d2d2d; }
+.dark-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
+.dark-toggle:hover { border-color: #cc785c; background: #f5f0e8; }
+.dark-toggle-icon { display: none; color: #6c6a64; }
+html.dark-mode .dark-toggle { border-color: #3d3d3d; }
+html.dark-mode .dark-toggle:hover { border-color: #cc785c; background: #2a2a2a; }
+html.dark-mode .dark-toggle-icon { color: #9e9b94; }
+html.dark-mode .sun-icon { display: block; }
+.moon-icon { display: block; }
+html.dark-mode .moon-icon { display: none; }
+.hamburger-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
+.hamburger-btn:hover { border-color: #cc785c; background: #f5f0e8; }
+.hamburger-icon, .close-icon { color: #6c6a64; }
+.close-icon { display: none; }
+.hamburger-btn.active .hamburger-icon { display: none; }
+.hamburger-btn.active .close-icon { display: block; }
+html.dark-mode .hamburger-btn { border-color: #3d3d3d; }
+html.dark-mode .hamburger-btn:hover { border-color: #cc785c; background: #2a2a2a; }
+html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
+@media (max-width: 767px) { .hamburger-btn { display: flex; } }
+html.dark-mode .cal-nav-btn { border-color: #3d3d3d; color: #9e9b94; }
+html.dark-mode .nav-links { background: #1a1a1a; border-color: #3d3d3d; }
+html.dark-mode .nav-link { border-color: #3d3d3d; }
+html.dark-mode .cal-nav-btn:hover { border-color: #cc785c; background: #2a2a2a; color: #cc785c; }
+html.dark-mode .cal-nav-year { color: #e8e6e1; }
+html.dark-mode .cal-cell { background: #2d2d2d; }
+html.dark-mode .cal-cell-l1 { background: #5c3a28; }
+html.dark-mode .cal-cell-l2 { background: #8a5030; }
+html.dark-mode .cal-cell-l3 { background: #b56a3c; }
+html.dark-mode .cal-cell-l4 { background: #cc785c; }
+html.dark-mode .cal-tooltip { background: #e8e6e1; color: #141413; }
+html.dark-mode .cal-stat-card { background: #242424; border-color: #2d2d2d; }
+html.dark-mode .cal-stat-card:hover { border-color: #cc785c; }
+html.dark-mode .cal-stat-number { color: #cc785c; }
+html.dark-mode .calendar-page-subtitle { color: #7a7870; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-brand">月见花园</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/" class="nav-link">首页</a>
+      <a href="/blog/" class="nav-link">博客</a>
+      <a href="/about/" class="nav-link">关于</a>
+      <a href="/tags/" class="nav-link">标签</a>
+      <a href="/calendar/" class="nav-link nav-link-active">日历</a>
+      <a href="/archives/" class="nav-link">归档</a>
+    </div>
+    <div class="nav-actions">
+      <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="切换深色模式"><svg class="dark-toggle-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="dark-toggle-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="菜单" aria-expanded="false"><svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg><svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+  </div>
+</nav>
+<div class="calendar-page">
+  <h1 class="calendar-page-title">创作日历</h1>
+  <p class="calendar-page-subtitle">记录每一篇文章的诞生时刻</p>
+  <div class="cal-stats">
+    <div class="cal-stat-card"><div class="cal-stat-number">24</div><div class="cal-stat-label">文章总数</div></div>
+    <div class="cal-stat-card"><div class="cal-stat-number">20,571</div><div class="cal-stat-label">总字数</div></div>
+    <div class="cal-stat-card"><div class="cal-stat-number">22</div><div class="cal-stat-label">创作天数</div></div>
+  </div>
+  <div class="cal-nav">
+    <button class="cal-nav-btn" id="calPrev" aria-label="上一年">&lsaquo;</button>
+    <span class="cal-nav-year" id="calYear"></span>
+    <button class="cal-nav-btn" id="calNext" aria-label="下一年">&rsaquo;</button>
+  </div>
+  <div class="cal-heatmap-container">
+    <div class="cal-day-labels" id="calDayLabels"></div>
+    <div class="cal-heatmap-scroll">
+      <div class="cal-month-labels" id="calMonthLabels"></div>
+      <div class="cal-heatmap" id="calHeatmap"></div>
+    </div>
+  </div>
+  <div class="cal-legend">
+    <span class="cal-legend-label">少</span>
+    <div class="cal-legend-cell" style="background:#ebedf0;"></div>
+    <div class="cal-legend-cell" style="background:#fce4d6;"></div>
+    <div class="cal-legend-cell" style="background:#f5b999;"></div>
+    <div class="cal-legend-cell" style="background:#e8906b;"></div>
+    <div class="cal-legend-cell" style="background:#cc785c;"></div>
+    <span class="cal-legend-label">多</span>
+  </div>
+</div>
+<footer class="footer">
+  <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
+  <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
+  <p class="deploy-time">Built: 2026-06-20 21:29</p>
+</footer>
+<div class="cal-tooltip" id="calTooltip"></div>
+<script>
+(function() {
+  var dateMap = {"2026-06-03":1,"2026-06-05":2,"2026-05-24":1,"2026-05-25":1,"2026-05-26":1,"2026-05-27":1,"2026-05-30":1,"2026-05-29":1,"2026-05-31":1,"2026-05-28":1,"2026-06-01":1,"2026-06-02":2,"2026-06-04":1,"2026-06-06":1,"2026-06-07":1,"2026-06-09":1,"2026-06-10":1,"2026-06-12":1,"2026-06-13":1,"2026-06-20":1,"2026-06-19":1,"2026-06-14":1};
+  var currentYear = new Date().getFullYear();
+  var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var dayLabels = ["日","一","二","三","四","五","六"];
+  var allYears = [];
+  for (var k in dateMap) { var y = parseInt(k.split("-")[0]); if (allYears.indexOf(y) === -1) allYears.push(y); }
+  allYears.sort();
+  var minYear = allYears.length > 0 ? allYears[0] : currentYear;
+  var maxYear = allYears.length > 0 ? allYears[allYears.length - 1] : currentYear;
+  function render() {
+    document.getElementById("calYear").textContent = currentYear;
+    document.getElementById("calPrev").disabled = currentYear <= minYear;
+    document.getElementById("calNext").disabled = currentYear >= maxYear;
+    var dayLabelsHtml = "";
+    for (var di = 0; di < 7; di++) {
+      dayLabelsHtml += '<div class="cal-day-label">' + (di % 2 === 1 ? dayLabels[di] : "") + '</div>';
+    }
+    document.getElementById("calDayLabels").innerHTML = dayLabelsHtml;
+    var heatmap = document.getElementById("calHeatmap");
+    var monthLabelsEl = document.getElementById("calMonthLabels");
+    var html = "";
+    var monthLabelsHtml = "";
+    var startDate = new Date(currentYear, 0, 1);
+    var endDate = new Date(currentYear, 11, 31);
+    var startDay = startDate.getDay();
+    var gridStart = new Date(startDate);
+    gridStart.setDate(gridStart.getDate() - startDay);
+    var tempDate = new Date(gridStart);
+    var prevMonth = -1;
+    while (tempDate <= endDate) {
+      var curMonth = tempDate.getMonth();
+      if (tempDate.getDay() === 0 && curMonth !== prevMonth) {
+        monthLabelsHtml += '<div class="cal-month-label">' + monthNames[curMonth] + '</div>';
+        prevMonth = curMonth;
+      } else if (tempDate.getDay() === 0) {
+        monthLabelsHtml += '<div class="cal-month-spacer"></div>';
+      }
+      tempDate.setDate(tempDate.getDate() + 1);
+    }
+    monthLabelsEl.innerHTML = monthLabelsHtml;
+    var d = new Date(gridStart);
+    html += '<div class="cal-week">';
+    while (d <= endDate || d.getDay() !== 0) {
+      var pad = function(n) { return n < 10 ? "0" + n : "" + n; };
+      var key = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+      var count = dateMap[key] || 0;
+      var inRange = d.getFullYear() === currentYear;
+      var cls = "cal-cell";
+      if (!inRange) { cls += " cal-cell-empty"; }
+      else if (count === 1) { cls += " cal-cell-l1"; }
+      else if (count === 2) { cls += " cal-cell-l2"; }
+      else if (count >= 3 && count <= 4) { cls += " cal-cell-l3"; }
+      else if (count >= 5) { cls += " cal-cell-l4"; }
+      html += '<div class="' + cls + '" data-date="' + key + '" data-count="' + count + '"></div>';
+      if (d.getDay() === 6 && d < endDate) { html += '</div><div class="cal-week">'; }
+      d.setDate(d.getDate() + 1);
+    }
+    html += '</div>';
+    heatmap.innerHTML = html;
+    var cells = heatmap.querySelectorAll(".cal-cell:not(.cal-cell-empty)");
+    var tooltip = document.getElementById("calTooltip");
+    for (var ci = 0; ci < cells.length; ci++) {
+      cells[ci].addEventListener("mouseenter", function(e) {
+        var date = this.getAttribute("data-date");
+        var count = parseInt(this.getAttribute("data-count"));
+        var parts = date.split("-");
+        tooltip.textContent = parts[0] + "年" + parseInt(parts[1]) + "月" + parseInt(parts[2]) + "日: " + count + "篇文章";
+        tooltip.classList.add("cal-tooltip-show");
+      });
+      cells[ci].addEventListener("mousemove", function(e) {
+        tooltip.style.left = (e.clientX + 12) + "px";
+        tooltip.style.top = (e.clientY - 30) + "px";
+      });
+      cells[ci].addEventListener("mouseleave", function() {
+        tooltip.classList.remove("cal-tooltip-show");
+      });
+    }
+  }
+  document.getElementById("calPrev").addEventListener("click", function() { if (currentYear > minYear) { currentYear--; render(); } });
+  document.getElementById("calNext").addEventListener("click", function() { if (currentYear < maxYear) { currentYear++; render(); } });
+  render();
+})();
+</script>
+<script>
+(function() {
+  var saved = localStorage.getItem("dark-mode");
+  if (saved === "true" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    document.documentElement.classList.add("dark-mode");
+  }
+})();
+function toggleDark() {
+  var html = document.documentElement;
+  html.classList.add("transitioning");
+  var isDark = html.classList.toggle("dark-mode");
+  localStorage.setItem("dark-mode", isDark);
+  setTimeout(function() { html.classList.remove("transitioning"); }, 400);
+}
+</script>
+<script>
+function toggleMobileMenu() {
+  var btn = document.getElementById("hamburgerBtn");
+  var navLinks = document.querySelector(".nav-links");
+  var isOpen = btn.classList.toggle("active");
+  navLinks.classList.toggle("mobile-open", isOpen);
+  btn.setAttribute("aria-expanded", isOpen);
+}
+document.addEventListener("click", function(e) {
+  var btn = document.getElementById("hamburgerBtn");
+  var navLinks = document.querySelector(".nav-links");
+  if (btn && navLinks && navLinks.classList.contains("mobile-open")) {
+    if (!btn.contains(e.target) && !navLinks.contains(e.target)) {
+      btn.classList.remove("active");
+      navLinks.classList.remove("mobile-open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  }
+});
+</script>
+</body>
+</html>

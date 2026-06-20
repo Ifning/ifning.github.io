@@ -12,7 +12,9 @@
 body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
 .nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; }
 .nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
 .nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
 .nav-link:hover { color: #cc785c; }
 .nav-link-active { color: #cc785c; }
@@ -48,7 +50,7 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, s
 .nav { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 .tags-page-title { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
 .tags-selector { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
-@media (max-width: 767px) { .nav { padding: 16px 20px; } .tags-page { padding: 32px 20px; } .tags-page-title { font-size: 28px; } .blog-cards { grid-template-columns: 1fr; } .tags-selector { gap: 8px; } .tags-pill { font-size: 11px; padding: 6px 12px; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; } }
+@media (max-width: 767px) { .nav { padding: 16px 20px; position: relative; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: #faf9f5; border-bottom: 1px solid #e6dfd8; flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #e6dfd8; width: 100%; } .nav-link:last-child { border-bottom: none; } .tags-page { padding: 32px 20px; } .tags-page-title { font-size: 28px; } .blog-cards { grid-template-columns: 1fr; } .tags-selector { gap: 8px; } .tags-pill { font-size: 11px; padding: 6px 12px; } }
 html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
 html.dark-mode body { background: #1a1a1a; color: #e8e6e1; }
 html.dark-mode .nav { background: #1a1a1a; border-bottom-color: #2d2d2d; }
@@ -125,18 +127,36 @@ html.dark-mode .dark-toggle-icon { color: #9e9b94; }
 html.dark-mode .sun-icon { display: block; }
 .moon-icon { display: block; }
 html.dark-mode .moon-icon { display: none; }
+.hamburger-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
+.hamburger-btn:hover { border-color: #cc785c; background: #f5f0e8; }
+.hamburger-icon, .close-icon { color: #6c6a64; }
+.close-icon { display: none; }
+.hamburger-btn.active .hamburger-icon { display: none; }
+.hamburger-btn.active .close-icon { display: block; }
+html.dark-mode .hamburger-btn { border-color: #3d3d3d; }
+html.dark-mode .hamburger-btn:hover { border-color: #cc785c; background: #2a2a2a; }
+html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
+@media (max-width: 767px) { .hamburger-btn { display: flex; } }
+html.dark-mode .nav-links { background: #1a1a1a; border-color: #3d3d3d; }
+html.dark-mode .nav-link { border-color: #3d3d3d; }
 </style>
 </head>
 <body>
 <nav class="nav">
   <a href="/" class="nav-brand">月见花园</a>
-  <div class="nav-links">
-    <a href="/" class="nav-link">首页</a>
-    <a href="/blog/" class="nav-link">博客</a>
-    <a href="/about/" class="nav-link">关于</a>
-    <a href="/tags/" class="nav-link nav-link-active">标签</a>
-    <a href="/archives/" class="nav-link">归档</a>
-    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="切换深色模式"><svg class="dark-toggle-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="dark-toggle-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/" class="nav-link">首页</a>
+      <a href="/blog/" class="nav-link">博客</a>
+      <a href="/about/" class="nav-link">关于</a>
+      <a href="/tags/" class="nav-link nav-link-active">标签</a>
+      <a href="/calendar/" class="nav-link">日历</a>
+      <a href="/archives/" class="nav-link">归档</a>
+    </div>
+    <div class="nav-actions">
+      <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="菜单" aria-expanded="false"><svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg><svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="切换深色模式"><svg class="dark-toggle-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="dark-toggle-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </div>
   </div>
 </nav>
 <div class="tags-page">
@@ -151,15 +171,6 @@ html.dark-mode .moon-icon { display: none; }
     <div class="tags-group">
       <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">22</span></h2>
       <div class="blog-cards">
-        <a href="/posts/2026-05-25/posts02/" class="blog-card">
-          <div class="blog-card-title">第二篇 朋友</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">914 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-05-24/posts01/" class="blog-card">
           <div class="blog-card-title">第一篇 戒备心与无我</div>
           <div class="blog-card-footer">
@@ -169,22 +180,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">666 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-27/posts04/" class="blog-card">
-          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
+        <a href="/posts/2026-05-25/posts02/" class="blog-card">
+          <div class="blog-card-title">第二篇 朋友</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">651 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-05-28/posts05/" class="blog-card">
-          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">904 字</span>
+            <span class="blog-card-words">914 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-26/posts03/" class="blog-card">
@@ -196,13 +198,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">889 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-29/posts06/" class="blog-card">
-          <div class="blog-card-title">第六篇 关于我为什么不再掏心掏肺帮别人 其二</div>
+        <a href="/posts/2026-05-27/posts04/" class="blog-card">
+          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">535 字</span>
+            <span class="blog-card-words">651 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-30/posts07/" class="blog-card">
@@ -214,13 +216,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">840 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-01/posts09/" class="blog-card">
-          <div class="blog-card-title">第九篇 关于欲望减速</div>
+        <a href="/posts/2026-05-29/posts06/" class="blog-card">
+          <div class="blog-card-title">第六篇 关于我为什么不再掏心掏肺帮别人 其二</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">668 字</span>
+            <span class="blog-card-words">535 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-31/posts08/" class="blog-card">
@@ -232,13 +234,22 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">898 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-04/posts12/" class="blog-card">
-          <div class="blog-card-title">第十二篇 这里是月子</div>
+        <a href="/posts/2026-05-28/posts05/" class="blog-card">
+          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">755 字</span>
+            <span class="blog-card-words">904 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-01/posts09/" class="blog-card">
+          <div class="blog-card-title">第九篇 关于欲望减速</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">668 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-02/posts10/" class="blog-card">
@@ -259,13 +270,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">800 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-05/posts13/" class="blog-card">
-          <div class="blog-card-title">第十三篇 第二人生</div>
+        <a href="/posts/2026-06-04/posts12/" class="blog-card">
+          <div class="blog-card-title">第十二篇 这里是月子</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">754 字</span>
+            <span class="blog-card-words">755 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-06/posts14/" class="blog-card">
@@ -277,6 +288,15 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">886 字</span>
           </div>
         </a>
+        <a href="/posts/2026-06-07/posts15/" class="blog-card">
+          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">913 字</span>
+          </div>
+        </a>
         <a href="/posts/2026-06-09/posts16/" class="blog-card">
           <div class="blog-card-title">第十六篇 无题</div>
           <div class="blog-card-footer">
@@ -286,13 +306,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">920 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-07/posts15/" class="blog-card">
-          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+        <a href="/posts/2026-06-05/posts13/" class="blog-card">
+          <div class="blog-card-title">第十三篇 第二人生</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">913 字</span>
+            <span class="blog-card-words">754 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-10/posts17/" class="blog-card">
@@ -322,13 +342,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">852 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-14/posts20/" class="blog-card">
-          <div class="blog-card-title">第二十篇 敏感的心</div>
+        <a href="/posts/2026-06-20/posts22/" class="blog-card">
+          <div class="blog-card-title">第二十二篇 关于棉花娃娃</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">741 字</span>
+            <span class="blog-card-words">783 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-19/posts21/" class="blog-card">
@@ -340,13 +360,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">835 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-20/posts22/" class="blog-card">
-          <div class="blog-card-title">第二十二篇 关于棉花娃娃</div>
+        <a href="/posts/2026-06-14/posts20/" class="blog-card">
+          <div class="blog-card-title">第二十篇 敏感的心</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">783 字</span>
+            <span class="blog-card-words">741 字</span>
           </div>
         </a>
       </div>
@@ -393,15 +413,6 @@ html.dark-mode .moon-icon { display: none; }
     <div class="tags-group">
       <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">22</span></h2>
       <div class="blog-cards">
-        <a href="/posts/2026-05-25/posts02/" class="blog-card">
-          <div class="blog-card-title">第二篇 朋友</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">914 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-05-24/posts01/" class="blog-card">
           <div class="blog-card-title">第一篇 戒备心与无我</div>
           <div class="blog-card-footer">
@@ -411,22 +422,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">666 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-27/posts04/" class="blog-card">
-          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
+        <a href="/posts/2026-05-25/posts02/" class="blog-card">
+          <div class="blog-card-title">第二篇 朋友</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">651 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-05-28/posts05/" class="blog-card">
-          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">904 字</span>
+            <span class="blog-card-words">914 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-26/posts03/" class="blog-card">
@@ -438,13 +440,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">889 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-29/posts06/" class="blog-card">
-          <div class="blog-card-title">第六篇 关于我为什么不再掏心掏肺帮别人 其二</div>
+        <a href="/posts/2026-05-27/posts04/" class="blog-card">
+          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">535 字</span>
+            <span class="blog-card-words">651 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-30/posts07/" class="blog-card">
@@ -456,13 +458,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">840 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-01/posts09/" class="blog-card">
-          <div class="blog-card-title">第九篇 关于欲望减速</div>
+        <a href="/posts/2026-05-29/posts06/" class="blog-card">
+          <div class="blog-card-title">第六篇 关于我为什么不再掏心掏肺帮别人 其二</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">668 字</span>
+            <span class="blog-card-words">535 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-31/posts08/" class="blog-card">
@@ -474,13 +476,22 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">898 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-04/posts12/" class="blog-card">
-          <div class="blog-card-title">第十二篇 这里是月子</div>
+        <a href="/posts/2026-05-28/posts05/" class="blog-card">
+          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">755 字</span>
+            <span class="blog-card-words">904 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-01/posts09/" class="blog-card">
+          <div class="blog-card-title">第九篇 关于欲望减速</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">668 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-02/posts10/" class="blog-card">
@@ -501,13 +512,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">800 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-05/posts13/" class="blog-card">
-          <div class="blog-card-title">第十三篇 第二人生</div>
+        <a href="/posts/2026-06-04/posts12/" class="blog-card">
+          <div class="blog-card-title">第十二篇 这里是月子</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">754 字</span>
+            <span class="blog-card-words">755 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-06/posts14/" class="blog-card">
@@ -519,6 +530,15 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">886 字</span>
           </div>
         </a>
+        <a href="/posts/2026-06-07/posts15/" class="blog-card">
+          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">913 字</span>
+          </div>
+        </a>
         <a href="/posts/2026-06-09/posts16/" class="blog-card">
           <div class="blog-card-title">第十六篇 无题</div>
           <div class="blog-card-footer">
@@ -528,13 +548,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">920 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-07/posts15/" class="blog-card">
-          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+        <a href="/posts/2026-06-05/posts13/" class="blog-card">
+          <div class="blog-card-title">第十三篇 第二人生</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">913 字</span>
+            <span class="blog-card-words">754 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-10/posts17/" class="blog-card">
@@ -564,13 +584,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">852 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-14/posts20/" class="blog-card">
-          <div class="blog-card-title">第二十篇 敏感的心</div>
+        <a href="/posts/2026-06-20/posts22/" class="blog-card">
+          <div class="blog-card-title">第二十二篇 关于棉花娃娃</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">741 字</span>
+            <span class="blog-card-words">783 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-19/posts21/" class="blog-card">
@@ -582,13 +602,13 @@ html.dark-mode .moon-icon { display: none; }
             <span class="blog-card-words">835 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-20/posts22/" class="blog-card">
-          <div class="blog-card-title">第二十二篇 关于棉花娃娃</div>
+        <a href="/posts/2026-06-14/posts20/" class="blog-card">
+          <div class="blog-card-title">第二十篇 敏感的心</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">783 字</span>
+            <span class="blog-card-words">741 字</span>
           </div>
         </a>
       </div>
@@ -651,7 +671,7 @@ function switchTag(tag) {
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
   <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
-  <p class="deploy-time">Built: 2026-06-20 17:13</p>
+  <p class="deploy-time">Built: 2026-06-20 21:29</p>
 </footer>
 <script>
 (function() {
@@ -667,6 +687,26 @@ function toggleDark() {
   localStorage.setItem("dark-mode", isDark);
   setTimeout(function() { html.classList.remove("transitioning"); }, 400);
 }
+</script>
+<script>
+function toggleMobileMenu() {
+  var btn = document.getElementById("hamburgerBtn");
+  var navLinks = document.querySelector(".nav-links");
+  var isOpen = btn.classList.toggle("active");
+  navLinks.classList.toggle("mobile-open", isOpen);
+  btn.setAttribute("aria-expanded", isOpen);
+}
+document.addEventListener("click", function(e) {
+  var btn = document.getElementById("hamburgerBtn");
+  var navLinks = document.querySelector(".nav-links");
+  if (btn && navLinks && navLinks.classList.contains("mobile-open")) {
+    if (!btn.contains(e.target) && !navLinks.contains(e.target)) {
+      btn.classList.remove("active");
+      navLinks.classList.remove("mobile-open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  }
+});
 </script>
 </body>
 </html>

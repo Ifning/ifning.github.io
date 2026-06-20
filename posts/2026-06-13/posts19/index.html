@@ -13,7 +13,9 @@
 body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1.7; }
 .nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid #e6dfd8; position: sticky; top: 0; z-index: 10; background: #faf9f5; }
 .nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: #141413; text-decoration: none; letter-spacing: -0.3px; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
 .nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #6c6a64; text-decoration: none; transition: color 0.15s; }
 .nav-link:hover { color: #cc785c; }
 .article-wrap { width: 75%; max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
@@ -60,7 +62,7 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, B
 .footer-text a:hover { color: #cc785c; }
 .deploy-time { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
 .footer-stats { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
-@media (max-width: 767px) { .nav { padding: 16px 20px; } .article-wrap { width: 92%; padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; }}
+@media (max-width: 767px) { .nav { padding: 16px 20px; position: relative; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: #faf9f5; border-bottom: 1px solid #e6dfd8; flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #e6dfd8; width: 100%; } .nav-link:last-child { border-bottom: none; } .article-wrap { width: 92%; padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; }}
 html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
 html.dark-mode body { background: #1a1a1a; color: #e8e6e1; }
 html.dark-mode .nav { background: #1a1a1a; border-bottom-color: #2d2d2d; }
@@ -137,19 +139,37 @@ html.dark-mode .dark-toggle-icon { color: #9e9b94; }
 html.dark-mode .sun-icon { display: block; }
 .moon-icon { display: block; }
 html.dark-mode .moon-icon { display: none; }
+.hamburger-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
+.hamburger-btn:hover { border-color: #cc785c; background: #f5f0e8; }
+.hamburger-icon, .close-icon { color: #6c6a64; }
+.close-icon { display: none; }
+.hamburger-btn.active .hamburger-icon { display: none; }
+.hamburger-btn.active .close-icon { display: block; }
+html.dark-mode .hamburger-btn { border-color: #3d3d3d; }
+html.dark-mode .hamburger-btn:hover { border-color: #cc785c; background: #2a2a2a; }
+html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
+@media (max-width: 767px) { .hamburger-btn { display: flex; } }
+html.dark-mode .nav-links { background: #1a1a1a; border-color: #3d3d3d; }
+html.dark-mode .nav-link { border-color: #3d3d3d; }
 </style>
 </head>
 <body>
 <div class="reading-progress" id="readingProgress"></div>
 <nav class="nav">
   <a href="/" class="nav-brand">月见花园</a>
-  <div class="nav-links">
-    <a href="/" class="nav-link">首页</a>
-    <a href="/blog/" class="nav-link nav-link-active">博客</a>
-    <a href="/about/" class="nav-link">关于</a>
-    <a href="/tags/" class="nav-link">标签</a>
-    <a href="/archives/" class="nav-link">归档</a>
-    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="切换深色模式"><svg class="dark-toggle-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="dark-toggle-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/" class="nav-link">首页</a>
+      <a href="/blog/" class="nav-link nav-link-active">博客</a>
+      <a href="/about/" class="nav-link">关于</a>
+      <a href="/tags/" class="nav-link">标签</a>
+      <a href="/calendar/" class="nav-link">日历</a>
+      <a href="/archives/" class="nav-link">归档</a>
+    </div>
+    <div class="nav-actions">
+      <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="菜单" aria-expanded="false"><svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg><svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="切换深色模式"><svg class="dark-toggle-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="dark-toggle-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </div>
   </div>
 </nav>
 <article class="article-wrap">
@@ -201,7 +221,7 @@ html.dark-mode .moon-icon { display: none; }
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
   <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
-  <p class="deploy-time">Built: 2026-06-20 17:13</p>
+  <p class="deploy-time">Built: 2026-06-20 21:29</p>
 </footer>
 <script>
 (function() {
@@ -235,6 +255,26 @@ function toggleDark() {
   localStorage.setItem("dark-mode", isDark);
   setTimeout(function() { html.classList.remove("transitioning"); }, 400);
 }
+</script>
+<script>
+function toggleMobileMenu() {
+  var btn = document.getElementById("hamburgerBtn");
+  var navLinks = document.querySelector(".nav-links");
+  var isOpen = btn.classList.toggle("active");
+  navLinks.classList.toggle("mobile-open", isOpen);
+  btn.setAttribute("aria-expanded", isOpen);
+}
+document.addEventListener("click", function(e) {
+  var btn = document.getElementById("hamburgerBtn");
+  var navLinks = document.querySelector(".nav-links");
+  if (btn && navLinks && navLinks.classList.contains("mobile-open")) {
+    if (!btn.contains(e.target) && !navLinks.contains(e.target)) {
+      btn.classList.remove("active");
+      navLinks.classList.remove("mobile-open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  }
+});
 </script>
 </body>
 </html>

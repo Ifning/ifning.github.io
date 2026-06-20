@@ -120,9 +120,9 @@ html.dark-mode .page-body td { color: #c8c5be; border-bottom-color: #2d2d2d; }
 html.dark-mode .tags-page-title { color: #e8e6e1; }
 html.dark-mode .tags-selector { border-bottom-color: #2d2d2d; }
 html.dark-mode .tags-pill { border-color: #3d3d3d; color: #9e9b94; }
-html.dark-mode .tags-pill:hover { border-color: #cc785c; color: #cc785c; }
-html.dark-mode .tags-pill-active { background: #cc785c; border-color: #cc785c; color: #fff; }
-html.dark-mode .tags-pill-active:hover { background: #b5694d; border-color: #b5694d; }
+html.dark-mode .tags-pill:hover { border-color: var(--tag-color, #cc785c); color: var(--tag-color, #cc785c); }
+html.dark-mode .tags-pill-active { background: var(--tag-color, #cc785c); border-color: var(--tag-color, #cc785c); color: #fff; }
+html.dark-mode .tags-pill-active:hover { background: var(--tag-color, #b5694d); border-color: var(--tag-color, #b5694d); }
 html.dark-mode .tags-group-header { color: #e8e6e1; border-bottom-color: #2d2d2d; }
 .dark-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .dark-toggle:hover { border-color: #cc785c; background: #f5f0e8; }
@@ -153,6 +153,8 @@ html.dark-mode .moon-icon { display: none; }
   <h1 class="article-title">关于这里</h1>
   <div class="article-meta">
     <span class="article-date">2026-06-19</span>
+    <span class="article-meta-dot">&middot;</span>
+    <span class="article-tag">公告</span>
   </div>
   <div class="article-body">
     <h1 id="公告正文"><a href="#公告正文" class="headerlink" title="公告正文"></a>公告正文</h1><p>你好，这里是月见花园，是月见草的第二个博客，定位是子站</p>
@@ -173,7 +175,10 @@ html.dark-mode .moon-icon { display: none; }
 
   </div>
   <nav class="article-nav">
-    <div class="article-nav-item"></div>
+    <div class="article-nav-item">
+      <div class="article-nav-label">上一篇</div>
+      <div class="article-nav-title"><a href="/posts/2026-06-20/posts22/">第二十二篇 关于棉花娃娃</a></div>
+    </div>
     <div class="article-nav-item next">
       <div class="article-nav-label">下一篇</div>
       <div class="article-nav-title"><a href="/posts/2026-06-19/posts21/">第二十一篇 关于称呼混乱</a></div>

@@ -20,9 +20,9 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, s
 .tags-page-title { font-family: "Playfair Display", Georgia, serif; font-size: 40px; font-weight: 400; letter-spacing: -0.8px; color: #141413; margin-bottom: 32px; }
 .tags-selector { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid #e6dfd8; }
 .tags-pill { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; padding: 8px 16px; background: transparent; border: 1px solid #e6dfd8; color: #6c6a64; cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-.tags-pill:hover { border-color: #cc785c; color: #cc785c; }
-.tags-pill-active { background: #cc785c; border-color: #cc785c; color: #fff; }
-.tags-pill-active:hover { background: #b5694d; border-color: #b5694d; color: #fff; }
+.tags-pill:hover { border-color: var(--tag-color, #cc785c); color: var(--tag-color, #cc785c); }
+.tags-pill-active { background: var(--tag-color, #cc785c); border-color: var(--tag-color, #cc785c); color: #fff; }
+.tags-pill-active:hover { background: var(--tag-color, #b5694d); border-color: var(--tag-color, #b5694d); color: #fff; }
 .tags-pill-count { font-size: 10px; opacity: 0.7; }
 .tags-group { margin-bottom: 48px; }
 .tags-group-header { font-family: "Playfair Display", Georgia, serif; font-size: 26px; font-weight: 600; color: #141413; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e6dfd8; display: flex; align-items: baseline; gap: 10px; }
@@ -108,9 +108,9 @@ html.dark-mode .page-body td { color: #c8c5be; border-bottom-color: #2d2d2d; }
 html.dark-mode .tags-page-title { color: #e8e6e1; }
 html.dark-mode .tags-selector { border-bottom-color: #2d2d2d; }
 html.dark-mode .tags-pill { border-color: #3d3d3d; color: #9e9b94; }
-html.dark-mode .tags-pill:hover { border-color: #cc785c; color: #cc785c; }
-html.dark-mode .tags-pill-active { background: #cc785c; border-color: #cc785c; color: #fff; }
-html.dark-mode .tags-pill-active:hover { background: #b5694d; border-color: #b5694d; }
+html.dark-mode .tags-pill:hover { border-color: var(--tag-color, #cc785c); color: var(--tag-color, #cc785c); }
+html.dark-mode .tags-pill-active { background: var(--tag-color, #cc785c); border-color: var(--tag-color, #cc785c); color: #fff; }
+html.dark-mode .tags-pill-active:hover { background: var(--tag-color, #b5694d); border-color: var(--tag-color, #b5694d); }
 html.dark-mode .tags-group-header { color: #e8e6e1; border-bottom-color: #2d2d2d; }
 .dark-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .dark-toggle:hover { border-color: #cc785c; background: #f5f0e8; }
@@ -138,64 +138,74 @@ html.dark-mode .moon-icon { display: none; }
 <div class="tags-page">
   <h1 class="tags-page-title">标签</h1>
   <div class="tags-selector" id="tagSelector">
-    <button class="tags-pill tags-pill-active" data-tag="all" onclick="switchTag('all')">全部<span class="tags-pill-count">22</span></button>
-    <button class="tags-pill" data-tag="状态小作文" onclick="switchTag('状态小作文')">状态小作文<span class="tags-pill-count">21</span></button>
-    <button class="tags-pill" data-tag="__notag__" onclick="switchTag('__notag__')">无标签<span class="tags-pill-count">1</span></button>
+    <button class="tags-pill tags-pill-active" data-tag="all" onclick="switchTag('all')">全部<span class="tags-pill-count">25</span></button>
+    <button class="tags-pill" data-tag="状态小作文" style="--tag-color:#5b8fa8" onclick="switchTag('状态小作文')">状态小作文<span class="tags-pill-count">22</span></button>
+    <button class="tags-pill" data-tag="拓展内容" style="--tag-color:#a36b7c" onclick="switchTag('拓展内容')">拓展内容<span class="tags-pill-count">2</span></button>
+    <button class="tags-pill" data-tag="公告" style="--tag-color:#6b8e5e" onclick="switchTag('公告')">公告<span class="tags-pill-count">1</span></button>
   </div>
   <div id="tagAll">
     <div class="tags-group">
-      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">21</span></h2>
+      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">22</span></h2>
       <div class="blog-cards">
-        <a href="/posts/2026-05-24/posts01/" class="blog-card">
-          <div class="blog-card-title">第一篇 戒备心与无我</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">666 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-05-25/posts02/" class="blog-card">
           <div class="blog-card-title">第二篇 朋友</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">914 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-26/posts03/" class="blog-card">
-          <div class="blog-card-title">第三篇 亚公顶与她</div>
+        <a href="/posts/2026-05-24/posts01/" class="blog-card">
+          <div class="blog-card-title">第一篇 戒备心与无我</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">889 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-05-27/posts04/" class="blog-card">
-          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">651 字</span>
+            <span class="blog-card-words">666 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-29/posts06/" class="blog-card">
           <div class="blog-card-title">第六篇 关于我为什么不再掏心掏肺帮别人 其二</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">535 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-27/posts04/" class="blog-card">
+          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">651 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-28/posts05/" class="blog-card">
+          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">904 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-26/posts03/" class="blog-card">
+          <div class="blog-card-title">第三篇 亚公顶与她</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">889 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-30/posts07/" class="blog-card">
           <div class="blog-card-title">第七篇 我与月见草</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">840 字</span>
           </div>
@@ -204,147 +214,170 @@ html.dark-mode .moon-icon { display: none; }
           <div class="blog-card-title">第九篇 关于欲望减速</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">668 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-02/posts10/" class="blog-card">
-          <div class="blog-card-title">第十篇 无题（杂项）</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">746 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-31/posts08/" class="blog-card">
           <div class="blog-card-title">第八篇 为什么我会加一个喵</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">898 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-28/posts05/" class="blog-card">
-          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
+        <a href="/posts/2026-06-02/posts10/" class="blog-card">
+          <div class="blog-card-title">第十篇 无题（杂项）</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">904 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-04/posts12/" class="blog-card">
-          <div class="blog-card-title">第十二篇 这里是月子</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">755 字</span>
+            <span class="blog-card-words">746 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-02/posts11/" class="blog-card">
           <div class="blog-card-title">第十一篇 我为什么需要自习</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">800 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-07/posts15/" class="blog-card">
-          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+        <a href="/posts/2026-06-04/posts12/" class="blog-card">
+          <div class="blog-card-title">第十二篇 这里是月子</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">913 字</span>
+            <span class="blog-card-words">755 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-05/posts13/" class="blog-card">
           <div class="blog-card-title">第十三篇 第二人生</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">754 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-09/posts16/" class="blog-card">
-          <div class="blog-card-title">第十六篇 无题</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">920 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-06/posts14/" class="blog-card">
           <div class="blog-card-title">第十四篇 关于跟别人相处中的画个人画像</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">886 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-07/posts15/" class="blog-card">
+          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">913 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-09/posts16/" class="blog-card">
+          <div class="blog-card-title">第十六篇 无题</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">920 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-10/posts17/" class="blog-card">
           <div class="blog-card-title">第十七篇 本心</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">662 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-13/posts19/" class="blog-card">
-          <div class="blog-card-title">第十九篇 做事的核心准则</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">852 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-12/posts18/" class="blog-card">
           <div class="blog-card-title">第十八篇 未曾停歇的乐曲 其二</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">947 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-14/posts20/" class="blog-card">
-          <div class="blog-card-title">第二十篇 敏感的心</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">741 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-19/posts21/" class="blog-card">
           <div class="blog-card-title">第二十一篇 关于称呼混乱</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">835 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-14/posts20/" class="blog-card">
+          <div class="blog-card-title">第二十篇 敏感的心</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">741 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-13/posts19/" class="blog-card">
+          <div class="blog-card-title">第十九篇 做事的核心准则</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">852 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-20/posts22/" class="blog-card">
+          <div class="blog-card-title">第二十二篇 关于棉花娃娃</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">783 字</span>
           </div>
         </a>
       </div>
     </div>
     <div class="tags-group">
-      <h2 class="tags-group-header">无标签 <span class="tags-group-count">1</span></h2>
+      <h2 class="tags-group-header">拓展内容 <span class="tags-group-count">2</span></h2>
+      <div class="blog-cards">
+        <a href="/posts/2026-06-05/DLC02/" class="blog-card">
+          <div class="blog-card-title">第二人生 其二</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
+            </div>
+            <span class="blog-card-words">1599 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-03/DLC01/" class="blog-card">
+          <div class="blog-card-title">为什么说我是内向的，但是好像一点都不内向</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
+            </div>
+            <span class="blog-card-words">1413 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="tags-group">
+      <h2 class="tags-group-header">公告 <span class="tags-group-count">1</span></h2>
       <div class="blog-cards">
         <a href="/posts/2026-06-19/announcement/" class="blog-card">
           <div class="blog-card-title">关于这里</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag-empty">无标签</span>
+              <span class="blog-card-tag" style="color:#6b8e5e;border-color:#6b8e5e33">公告</span>
             </div>
             <span class="blog-card-words">331 字</span>
           </div>
@@ -354,58 +387,67 @@ html.dark-mode .moon-icon { display: none; }
   </div>
   <div id="tag-状态小作文" style="display:none;">
     <div class="tags-group">
-      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">21</span></h2>
+      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">22</span></h2>
       <div class="blog-cards">
-        <a href="/posts/2026-05-24/posts01/" class="blog-card">
-          <div class="blog-card-title">第一篇 戒备心与无我</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">666 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-05-25/posts02/" class="blog-card">
           <div class="blog-card-title">第二篇 朋友</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">914 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-26/posts03/" class="blog-card">
-          <div class="blog-card-title">第三篇 亚公顶与她</div>
+        <a href="/posts/2026-05-24/posts01/" class="blog-card">
+          <div class="blog-card-title">第一篇 戒备心与无我</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">889 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-05-27/posts04/" class="blog-card">
-          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">651 字</span>
+            <span class="blog-card-words">666 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-29/posts06/" class="blog-card">
           <div class="blog-card-title">第六篇 关于我为什么不再掏心掏肺帮别人 其二</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">535 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-27/posts04/" class="blog-card">
+          <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">651 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-28/posts05/" class="blog-card">
+          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">904 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-26/posts03/" class="blog-card">
+          <div class="blog-card-title">第三篇 亚公顶与她</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">889 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-30/posts07/" class="blog-card">
           <div class="blog-card-title">第七篇 我与月见草</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">840 字</span>
           </div>
@@ -414,149 +456,174 @@ html.dark-mode .moon-icon { display: none; }
           <div class="blog-card-title">第九篇 关于欲望减速</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">668 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-02/posts10/" class="blog-card">
-          <div class="blog-card-title">第十篇 无题（杂项）</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">746 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-31/posts08/" class="blog-card">
           <div class="blog-card-title">第八篇 为什么我会加一个喵</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">898 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-28/posts05/" class="blog-card">
-          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
+        <a href="/posts/2026-06-02/posts10/" class="blog-card">
+          <div class="blog-card-title">第十篇 无题（杂项）</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">904 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-04/posts12/" class="blog-card">
-          <div class="blog-card-title">第十二篇 这里是月子</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">755 字</span>
+            <span class="blog-card-words">746 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-02/posts11/" class="blog-card">
           <div class="blog-card-title">第十一篇 我为什么需要自习</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">800 字</span>
           </div>
         </a>
-        <a href="/posts/2026-06-07/posts15/" class="blog-card">
-          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+        <a href="/posts/2026-06-04/posts12/" class="blog-card">
+          <div class="blog-card-title">第十二篇 这里是月子</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">913 字</span>
+            <span class="blog-card-words">755 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-05/posts13/" class="blog-card">
           <div class="blog-card-title">第十三篇 第二人生</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">754 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-09/posts16/" class="blog-card">
-          <div class="blog-card-title">第十六篇 无题</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">920 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-06/posts14/" class="blog-card">
           <div class="blog-card-title">第十四篇 关于跟别人相处中的画个人画像</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">886 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-07/posts15/" class="blog-card">
+          <div class="blog-card-title">第十五篇 关于完美主义者</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">913 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-09/posts16/" class="blog-card">
+          <div class="blog-card-title">第十六篇 无题</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">920 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-10/posts17/" class="blog-card">
           <div class="blog-card-title">第十七篇 本心</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">662 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-13/posts19/" class="blog-card">
-          <div class="blog-card-title">第十九篇 做事的核心准则</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">852 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-12/posts18/" class="blog-card">
           <div class="blog-card-title">第十八篇 未曾停歇的乐曲 其二</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">947 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-14/posts20/" class="blog-card">
-          <div class="blog-card-title">第二十篇 敏感的心</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
-            </div>
-            <span class="blog-card-words">741 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-19/posts21/" class="blog-card">
           <div class="blog-card-title">第二十一篇 关于称呼混乱</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag">状态小作文</span>
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">835 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-14/posts20/" class="blog-card">
+          <div class="blog-card-title">第二十篇 敏感的心</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">741 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-13/posts19/" class="blog-card">
+          <div class="blog-card-title">第十九篇 做事的核心准则</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">852 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-20/posts22/" class="blog-card">
+          <div class="blog-card-title">第二十二篇 关于棉花娃娃</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">783 字</span>
           </div>
         </a>
       </div>
     </div>
   </div>
-  <div id="tag-__notag__" style="display:none;">
+  <div id="tag-拓展内容" style="display:none;">
     <div class="tags-group">
-      <h2 class="tags-group-header">无标签 <span class="tags-group-count">1</span></h2>
+      <h2 class="tags-group-header">拓展内容 <span class="tags-group-count">2</span></h2>
+      <div class="blog-cards">
+        <a href="/posts/2026-06-05/DLC02/" class="blog-card">
+          <div class="blog-card-title">第二人生 其二</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
+            </div>
+            <span class="blog-card-words">1599 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-03/DLC01/" class="blog-card">
+          <div class="blog-card-title">为什么说我是内向的，但是好像一点都不内向</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
+            </div>
+            <span class="blog-card-words">1413 字</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="tag-公告" style="display:none;">
+    <div class="tags-group">
+      <h2 class="tags-group-header">公告 <span class="tags-group-count">1</span></h2>
       <div class="blog-cards">
         <a href="/posts/2026-06-19/announcement/" class="blog-card">
           <div class="blog-card-title">关于这里</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
-              <span class="blog-card-tag-empty">无标签</span>
+              <span class="blog-card-tag" style="color:#6b8e5e;border-color:#6b8e5e33">公告</span>
             </div>
             <span class="blog-card-words">331 字</span>
           </div>
@@ -573,7 +640,8 @@ function switchTag(tag) {
   if (activePill) activePill.classList.add("tags-pill-active");
   document.getElementById("tagAll").style.display = tag === "all" ? "block" : "none";
   document.getElementById("tag-状态小作文").style.display = tag === "状态小作文" ? "block" : "none";
-  document.getElementById("tag-__notag__").style.display = tag === "__notag__" ? "block" : "none";
+  document.getElementById("tag-拓展内容").style.display = tag === "拓展内容" ? "block" : "none";
+  document.getElementById("tag-公告").style.display = tag === "公告" ? "block" : "none";
 }
 </script>
 <footer class="footer">

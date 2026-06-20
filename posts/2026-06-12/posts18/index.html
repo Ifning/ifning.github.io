@@ -58,6 +58,8 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, B
 .footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
 .footer-text a { color: #6c6a64; text-decoration: none; }
 .footer-text a:hover { color: #cc785c; }
+.deploy-time { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
+.footer-stats { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
 @media (max-width: 767px) { .nav { padding: 16px 20px; } .article-wrap { width: 92%; padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; } .nav-links { gap: 16px; } .nav-link { font-size: 12px; }}
 html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
 html.dark-mode body { background: #1a1a1a; color: #e8e6e1; }
@@ -68,6 +70,8 @@ html.dark-mode .nav-link:hover, html.dark-mode .nav-link-active { color: #cc785c
 html.dark-mode .footer { border-top-color: #2d2d2d; }
 html.dark-mode .footer-text { color: #7a7870; }
 html.dark-mode .footer-text a { color: #9e9b94; }
+html.dark-mode .deploy-time { color: #7a7870; }
+html.dark-mode .footer-stats { color: #7a7870; }
 html.dark-mode .hero-subtitle { color: #cc785c; }
 html.dark-mode .hero-title { color: #e8e6e1; }
 html.dark-mode .hero-desc { color: #9e9b94; }
@@ -227,6 +231,8 @@ html.dark-mode .moon-icon { display: none; }
 </article>
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
+  <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
+  <p class="deploy-time">Built: 2026-06-20 17:13</p>
 </footer>
 <script>
 (function() {

@@ -29,6 +29,7 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, B
 .article-tag { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #cc785c; background: #f5f0e8; padding: 3px 10px; text-decoration: none; transition: background 0.15s; }
 .article-tag:hover { background: #ede6d8; }
 .article-meta-dot { color: #e6dfd8; font-size: 14px; }
+.article-wordcount { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500; color: #8e8b82; text-transform: uppercase; letter-spacing: 0.8px; margin-left: 4px; }
 .article-body { animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
 .article-body p { font-size: 17px; line-height: 1.75; color: #2d2d2a; margin-bottom: 24px; }
 .article-body h2 { font-family: "Playfair Display", Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.5px; color: #141413; margin: 56px 0 20px; line-height: 1.2; }
@@ -62,7 +63,7 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, B
 .footer-text a:hover { color: #cc785c; }
 .deploy-time { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
 .footer-stats { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a3a09a; margin-top: 6px; }
-@media (max-width: 767px) { .nav { padding: 16px 20px; position: relative; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: #faf9f5; border-bottom: 1px solid #e6dfd8; flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #e6dfd8; width: 100%; } .nav-link:last-child { border-bottom: none; } .article-wrap { width: 92%; padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; }}
+@media (max-width: 767px) { .nav { padding: 16px 20px; position: sticky; top: 0; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: #faf9f5; border-bottom: 1px solid #e6dfd8; flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #e6dfd8; width: 100%; } .nav-link:last-child { border-bottom: none; } .article-wrap { width: 92%; padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; }}
 html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
 html.dark-mode body { background: #1a1a1a; color: #e8e6e1; }
 html.dark-mode .nav { background: #1a1a1a; border-bottom-color: #2d2d2d; }
@@ -95,6 +96,7 @@ html.dark-mode .article-date { color: #7a7870; }
 html.dark-mode .article-tag { background: #2a2a2a; }
 html.dark-mode .article-tag:hover { background: #333333; }
 html.dark-mode .article-meta-dot { color: #2d2d2d; }
+html.dark-mode .article-wordcount { color: #7a7870; }
 html.dark-mode .article-body p { color: #c8c5be; }
 html.dark-mode .article-body h2, html.dark-mode .article-body h3, html.dark-mode .article-body h4 { color: #e8e6e1; }
 html.dark-mode .article-body li { color: #c8c5be; }
@@ -148,7 +150,70 @@ html.dark-mode .moon-icon { display: none; }
 html.dark-mode .hamburger-btn { border-color: #3d3d3d; }
 html.dark-mode .hamburger-btn:hover { border-color: #cc785c; background: #2a2a2a; }
 html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
+.mobile-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 9; opacity: 0; visibility: hidden; transition: opacity 300ms ease, visibility 0s 300ms; }
+.mobile-menu-overlay.open { opacity: 1; visibility: visible; transition: opacity 300ms ease, visibility 0s; }
+@media (min-width: 768px) { .mobile-menu-overlay { display: none; } }
 @media (max-width: 767px) { .hamburger-btn { display: flex; } }
+.history-trigger { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 999; display: flex; align-items: center; justify-content: center; width: 36px; height: 60px; background: #cc785c; border: none; cursor: grab; padding: 0; border-radius: 8px 0 0 8px; box-shadow: -2px 2px 8px rgba(0,0,0,0.1); transition: background 0.15s, width 0.15s; user-select: none; }
+.history-trigger:hover { background: #b5694d; width: 40px; }
+.history-trigger:active { cursor: grabbing; }
+.history-trigger.dragging { cursor: grabbing; transition: none; background: #b5694d; }
+.history-trigger svg { color: #fff; width: 20px; height: 20px; pointer-events: none; }
+html.dark-mode .history-trigger { background: #b5694d; }
+html.dark-mode .history-trigger:hover { background: #cc785c; }
+html.dark-mode .history-trigger.dragging { background: #cc785c; }
+.history-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 300ms ease, visibility 0s 300ms; }
+.history-overlay.open { opacity: 1; visibility: visible; transition: opacity 300ms ease, visibility 0s; }
+.history-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 380px; max-width: 90vw; background: #faf9f5; z-index: 999; transform: translateX(100%); transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1); box-shadow: -4px 0 24px rgba(0,0,0,0.08); display: flex; flex-direction: column; }
+.history-drawer.open { transform: translateX(0); }
+html.dark-mode .history-drawer { background: #1a1a1a; box-shadow: -4px 0 24px rgba(0,0,0,0.3); }
+.history-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #e6dfd8; flex-shrink: 0; }
+html.dark-mode .history-drawer-header { border-bottom-color: #2d2d2d; }
+.history-drawer-title { font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 600; color: #141413; }
+html.dark-mode .history-drawer-title { color: #e8e6e1; }
+.history-drawer-actions { display: flex; align-items: center; gap: 8px; }
+.history-clear-btn { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; background: transparent; border: 1px solid #e6dfd8; color: #8e8b82; padding: 6px 12px; cursor: pointer; transition: all 0.15s; border-radius: 4px; }
+.history-clear-btn:hover { border-color: #cc785c; color: #cc785c; background: #f5f0e8; }
+html.dark-mode .history-clear-btn { border-color: #3d3d3d; color: #9e9b94; }
+html.dark-mode .history-clear-btn:hover { border-color: #cc785c; color: #cc785c; background: #2a2a2a; }
+.history-close-btn { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: transparent; border: 1px solid #e6dfd8; cursor: pointer; border-radius: 4px; color: #6c6a64; transition: all 0.15s; }
+.history-close-btn:hover { border-color: #cc785c; color: #cc785c; background: #f5f0e8; }
+html.dark-mode .history-close-btn { border-color: #3d3d3d; color: #9e9b94; }
+html.dark-mode .history-close-btn:hover { border-color: #cc785c; color: #cc785c; background: #2a2a2a; }
+.history-drawer-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
+.history-empty { text-align: center; padding: 60px 20px; color: #8e8b82; }
+.history-empty-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.6; }
+.history-empty-title { font-family: "Playfair Display", Georgia, serif; font-size: 18px; font-weight: 600; color: #8e8b82; margin-bottom: 8px; }
+.history-empty-desc { font-size: 14px; color: #a3a09a; line-height: 1.6; }
+html.dark-mode .history-empty-title { color: #9e9b94; }
+html.dark-mode .history-empty-desc { color: #7a7870; }
+.history-empty-guide { font-size: 14px; color: #cc785c; margin-top: 8px; }
+.history-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid #e6dfd8; cursor: pointer; transition: background 0.15s; border-radius: 4px; padding-left: 8px; padding-right: 8px; margin: 0 -8px; text-decoration: none; }
+.history-item:hover { background: #f5f0e8; }
+html.dark-mode .history-item { border-bottom-color: #2d2d2d; }
+html.dark-mode .history-item:hover { background: #2a2a2a; }
+.history-item-info { flex: 1; min-width: 0; }
+.history-item-title { font-size: 15px; font-weight: 500; color: #141413; margin-bottom: 4px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; word-break: break-word; }
+html.dark-mode .history-item-title { color: #e8e6e1; }
+.history-item:hover .history-item-title { color: #cc785c; }
+.history-item-time { font-family: "JetBrains Mono", monospace; font-size: 11px; color: #8e8b82; text-transform: uppercase; letter-spacing: 0.5px; }
+html.dark-mode .history-item-time { color: #7a7870; }
+.history-item-delete { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: transparent; border: none; cursor: pointer; color: #a3a09a; flex-shrink: 0; opacity: 0; transition: opacity 0.15s, color 0.15s; border-radius: 4px; }
+.history-item:hover .history-item-delete { opacity: 1; }
+.history-item-delete:hover { color: #cc785c; background: #f5f0e8; }
+html.dark-mode .history-item-delete:hover { background: #2a2a2a; }
+.history-drawer-body::-webkit-scrollbar { width: 4px; }
+.history-drawer-body::-webkit-scrollbar-track { background: transparent; }
+.history-drawer-body::-webkit-scrollbar-thumb { background: #d4cfc8; border-radius: 2px; }
+.history-drawer-body::-webkit-scrollbar-thumb:hover { background: #b5b0a8; }
+html.dark-mode .history-drawer-body::-webkit-scrollbar-thumb { background: #3d3d3d; }
+html.dark-mode .history-drawer-body::-webkit-scrollbar-thumb:hover { background: #555; }
+@media (max-width: 767px) {
+  .history-trigger { width: 32px; height: 52px; border-radius: 6px 0 0 6px; }
+  .history-trigger:hover { width: 34px; }
+  .history-trigger svg { width: 16px; height: 16px; }
+  .history-drawer { width: 85vw; }
+}
 html.dark-mode .nav-links { background: #1a1a1a; border-color: #3d3d3d; }
 html.dark-mode .nav-link { border-color: #3d3d3d; }
 </style>
@@ -172,13 +237,15 @@ html.dark-mode .nav-link { border-color: #3d3d3d; }
     </div>
   </div>
 </nav>
-<article class="article-wrap">
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div><article class="article-wrap">
   <a href="/blog/" class="article-back">&larr; 返回博客</a>
   <h1 class="article-title">第二十二篇 关于棉花娃娃</h1>
   <div class="article-meta">
     <span class="article-date">2026-06-20</span>
     <span class="article-meta-dot">&middot;</span>
     <span class="article-tag">状态小作文</span>
+    <span class="article-meta-dot">&middot;</span>
+    <span class="article-wordcount">758 字</span>
   </div>
   <div class="article-body">
     <p>关于棉花娃娃</p>
@@ -219,7 +286,7 @@ html.dark-mode .nav-link { border-color: #3d3d3d; }
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
   <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
-  <p class="deploy-time">Built: 2026-06-20 21:58</p>
+  <p class="deploy-time">Built: 2026-06-20 23:10</p>
 </footer>
 <script>
 (function() {
@@ -239,6 +306,25 @@ html.dark-mode .nav-link { border-color: #3d3d3d; }
   });
 })();
 </script>
+<button class="history-trigger" id="historyTrigger" aria-label="浏览历史" title="浏览历史">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>    <polyline points="12 6 12 12 16 14"/>  </svg>
+</button>
+<div class="history-overlay" id="historyOverlay"></div>
+<div class="history-drawer" id="historyDrawer">
+  <div class="history-drawer-header">
+    <h2 class="history-drawer-title">浏览历史</h2>
+    <div class="history-drawer-actions">
+      <button class="history-clear-btn" id="historyClearBtn">清空</button>
+      <button class="history-close-btn" id="historyCloseBtn" aria-label="关闭">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="history-drawer-body" id="historyBody"></div>
+</div>
 <script>
 (function() {
   var saved = localStorage.getItem("dark-mode");
@@ -258,21 +344,239 @@ function toggleDark() {
 function toggleMobileMenu() {
   var btn = document.getElementById("hamburgerBtn");
   var navLinks = document.querySelector(".nav-links");
+  var overlay = document.getElementById("mobileMenuOverlay");
   var isOpen = btn.classList.toggle("active");
   navLinks.classList.toggle("mobile-open", isOpen);
+  if (overlay) overlay.classList.toggle("open", isOpen);
   btn.setAttribute("aria-expanded", isOpen);
+  document.body.style.overflow = isOpen ? "hidden" : "";
 }
 document.addEventListener("click", function(e) {
   var btn = document.getElementById("hamburgerBtn");
   var navLinks = document.querySelector(".nav-links");
+  var overlay = document.getElementById("mobileMenuOverlay");
   if (btn && navLinks && navLinks.classList.contains("mobile-open")) {
     if (!btn.contains(e.target) && !navLinks.contains(e.target)) {
       btn.classList.remove("active");
       navLinks.classList.remove("mobile-open");
+      if (overlay) overlay.classList.remove("open");
       btn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
     }
   }
 });
+</script>
+<script>
+(function() {
+  var STORAGE_KEY = "blog_history";
+  var MAX_ITEMS = 50;
+  var drawer, overlay, trigger, body, clearBtn, closeBtn;
+  var isOpen = false;
+  var isDragging = false;
+  var dragStartY = 0;
+  var dragStartTop = 0;
+  var savedTop = null;
+
+  // Helpers
+  function getHistory() {
+    try {
+      var data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch(e) { return []; }
+  }
+  function saveHistory(arr) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr.slice(0, MAX_ITEMS)));
+    } catch(e) {}
+  }
+
+  function getPageInfo() {
+    var title = document.title.split(" | ")[0].trim();
+    var url = window.location.pathname + window.location.search + window.location.hash;
+    var excerpt = "";
+    // Try to get og:description or first paragraph
+    var metaDesc = document.querySelector("meta[name=\"description\"]");
+    if (metaDesc) excerpt = metaDesc.getAttribute("content") || "";
+    if (!excerpt) {
+      var firstP = document.querySelector(".article-body p, .page-body p, .blog-card-title");
+      if (firstP) excerpt = firstP.textContent.trim().substring(0, 120);
+    }
+    return { id: url, title: title, url: url, excerpt: excerpt.substring(0, 150), time: new Date().toISOString() };
+  }
+
+  // Record current page visit
+  function recordVisit() {
+    // Skip homepage
+    var path = window.location.pathname.replace(/\/$/, "") || "/";
+    if (path === "/" || path === "/index.html") return;
+    var info = getPageInfo();
+    if (!info.title) return;
+    var history = getHistory();
+    // Remove duplicate if exists
+    history = history.filter(function(item) { return item.id !== info.id; });
+    // Add to front
+    history.unshift(info);
+    saveHistory(history);
+  }
+
+  // Format time
+  function formatTime(iso) {
+    var d = new Date(iso);
+    var now = new Date();
+    var diff = now - d;
+    var min = Math.floor(diff / 60000);
+    if (min < 1) return "刚刚";
+    if (min < 60) return min + " 分钟前";
+    var hours = Math.floor(min / 60);
+    if (hours < 24) return hours + " 小时前";
+    var days = Math.floor(hours / 24);
+    if (days < 7) return days + " 天前";
+    return d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+  }
+
+  // Render history list
+  function renderHistory() {
+    if (!body) return;
+    var history = getHistory();
+    if (history.length === 0) {
+      body.innerHTML = '<div class="history-empty"><div class="history-empty-icon">&#128218;</div><div class="history-empty-title">暂无浏览历史</div><div class="history-empty-desc">浏览博客文章后，您的阅读记录会出现在这里</div><div class="history-empty-guide">&#8592; 点击左侧按钮开始阅读</div></div>';
+      return;
+    }
+    var html = "";
+    history.forEach(function(item, index) {
+      html += '<a class="history-item" href="' + item.url + '" data-index="' + index + '">';
+      html += '  <div class="history-item-info">';
+      html += '    <div class="history-item-title">' + item.title + '</div>';
+      html += '    <div class="history-item-time">' + formatTime(item.time) + '</div>';
+      html += '  </div>';
+      html += '  <button class="history-item-delete" data-index="' + index + '" onclick="event.preventDefault();event.stopPropagation();deleteHistoryItem(' + index + ')" aria-label="删除">';
+      html += '    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+      html += '  </button>';
+      html += '</a>';
+    });
+    body.innerHTML = html;
+  }
+
+  // Open/close drawer
+  function openDrawer() {
+    isOpen = true;
+    renderHistory();
+    drawer.classList.add("open");
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  window.closeHistoryDrawer = function() {
+    isOpen = false;
+    drawer.classList.remove("open");
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  };
+
+  window.deleteHistoryItem = function(index) {
+    var history = getHistory();
+    history.splice(index, 1);
+    saveHistory(history);
+    renderHistory();
+  };
+
+  window.clearAllHistory = function() {
+    if (confirm("确定要清空所有浏览历史吗？")) {
+      saveHistory([]);
+      renderHistory();
+    }
+  };
+
+  // Drag functionality
+  function initDrag() {
+    if (!trigger) return;
+    // Restore saved position
+    try {
+      savedTop = localStorage.getItem("history_trigger_top");
+      if (savedTop !== null) {
+        trigger.style.top = savedTop + "px";
+        trigger.style.transform = "none";
+      }
+    } catch(e) {}
+
+    trigger.addEventListener("pointerdown", function(e) {
+      if (e.pointerType === "touch" && Math.abs(e.clientX - trigger.getBoundingClientRect().right) > 30) return;
+      isDragging = true;
+      trigger.classList.add("dragging");
+      dragStartY = e.clientY;
+      dragStartTop = trigger.getBoundingClientRect().top;
+      trigger.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+
+    trigger.addEventListener("pointermove", function(e) {
+      if (!isDragging) return;
+      var deltaY = e.clientY - dragStartY;
+      var newTop = dragStartTop + deltaY;
+      var maxTop = window.innerHeight - trigger.offsetHeight - 10;
+      newTop = Math.max(10, Math.min(newTop, maxTop));
+      trigger.style.top = newTop + "px";
+      trigger.style.transform = "none";
+    });
+
+    trigger.addEventListener("pointerup", function(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      trigger.classList.remove("dragging");
+      trigger.releasePointerCapture(e.pointerId);
+      // Did we drag? If moved less than 5px, treat as click
+      var moved = Math.abs(e.clientY - dragStartY);
+      if (moved < 5) {
+        // It was a click, toggle drawer
+        if (isOpen) {
+          closeHistoryDrawer();
+        } else {
+          openDrawer();
+        }
+      } else {
+        // Save position
+        try { localStorage.setItem("history_trigger_top", trigger.style.top.replace("px", "")); } catch(e) {}
+      }
+    });
+
+    trigger.addEventListener("pointercancel", function() {
+      isDragging = false;
+      trigger.classList.remove("dragging");
+    });
+  }
+
+  // Init
+  function init() {
+    drawer = document.getElementById("historyDrawer");
+    overlay = document.getElementById("historyOverlay");
+    trigger = document.getElementById("historyTrigger");
+    body = document.getElementById("historyBody");
+    clearBtn = document.getElementById("historyClearBtn");
+    closeBtn = document.getElementById("historyCloseBtn");
+
+    if (!drawer || !trigger) return;
+
+    // Close button
+    if (closeBtn) closeBtn.addEventListener("click", closeHistoryDrawer);
+    // Overlay click
+    if (overlay) overlay.addEventListener("click", closeHistoryDrawer);
+    // Clear button
+    if (clearBtn) clearBtn.addEventListener("click", clearAllHistory);
+    // ESC key
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && isOpen) closeHistoryDrawer();
+    });
+
+    initDrag();
+    recordVisit();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
 </script>
 </body>
 </html>

@@ -42,11 +42,41 @@ body { background: #faf9f5; color: #141413; font-family: Inter, -apple-system, s
 .blog-pinned-section { margin-bottom: 48px; }
 .blog-pinned-label { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #cc785c; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .blog-pinned-label::before { content: ""; display: inline-block; width: 8px; height: 8px; background: #cc785c; border-radius: 50%; }
+.blog-pagination { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 32px; border-top: 1px solid #e6dfd8; flex-wrap: wrap; }
+.blog-pagination-left { display: flex; align-items: center; gap: 8px; }
+.blog-pagination-center { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.blog-pagination-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pag-btn { display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 32px; min-width: 32px; padding: 0 12px; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: #6c6a64; background: transparent; border: 1px solid #e6dfd8; cursor: pointer; transition: all 0.15s; border-radius: 4px; }
+.pag-btn:hover:not(:disabled) { border-color: #cc785c; color: #cc785c; background: #f5f0e8; }
+.pag-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.pag-btn svg { width: 14px; height: 14px; }
+.pag-info { font-family: "JetBrains Mono", monospace; font-size: 11px; color: #8e8b82; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+.pag-info strong { color: #141413; font-weight: 600; }
+.pag-select { height: 32px; padding: 0 8px; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; color: #6c6a64; background: transparent; border: 1px solid #e6dfd8; border-radius: 4px; cursor: pointer; transition: border-color 0.15s; }
+.pag-select:hover, .pag-select:focus { border-color: #cc785c; outline: none; }
+.pag-input { width: 56px; height: 32px; padding: 0 8px; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; color: #141413; background: transparent; border: 1px solid #e6dfd8; border-radius: 4px; text-align: center; transition: border-color 0.15s; }
+.pag-input:focus { border-color: #cc785c; outline: none; }
+.pag-input.invalid { border-color: #c54a4a; background: #fbeaea; }
+.pag-label { font-family: "JetBrains Mono", monospace; font-size: 11px; color: #8e8b82; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+.pag-error { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; color: #c54a4a; background: #fbeaea; border: 1px solid #e6b4b4; padding: 6px 10px; border-radius: 4px; margin-top: 8px; display: none; }
+.pag-error.show { display: inline-block; }
+.blog-cards-fade { transition: opacity 200ms ease; }
+.blog-cards-fade.fading { opacity: 0; }
+html.dark-mode .blog-pagination { border-top-color: #2d2d2d; }
+html.dark-mode .pag-btn { color: #9e9b94; border-color: #3d3d3d; }
+html.dark-mode .pag-btn:hover:not(:disabled) { border-color: #cc785c; color: #cc785c; background: #2a2a2a; }
+html.dark-mode .pag-info { color: #7a7870; }
+html.dark-mode .pag-info strong { color: #e8e6e1; }
+html.dark-mode .pag-select { color: #9e9b94; border-color: #3d3d3d; background: transparent; }
+html.dark-mode .pag-input { color: #e8e6e1; border-color: #3d3d3d; background: transparent; }
+html.dark-mode .pag-input.invalid { border-color: #c54a4a; background: #3a1f1f; }
+html.dark-mode .pag-label { color: #7a7870; }
+html.dark-mode .pag-error { color: #f5a4a4; background: #3a1f1f; border-color: #6a3030; }
 @keyframes page-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
 .nav { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 .blog-page-title { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
-@media (max-width: 767px) { .nav { padding: 16px 20px; position: sticky; top: 0; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: #faf9f5; border-bottom: 1px solid #e6dfd8; flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #e6dfd8; width: 100%; } .nav-link:last-child { border-bottom: none; } .blog-page { padding: 32px 20px; } .blog-page-title { font-size: 28px; } .blog-cards { grid-template-columns: 1fr; } .blog-date-heading { font-size: 22px; } }
+@media (max-width: 767px) { .nav { padding: 16px 20px; position: sticky; top: 0; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: #faf9f5; border-bottom: 1px solid #e6dfd8; flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #e6dfd8; width: 100%; } .nav-link:last-child { border-bottom: none; } .blog-page { padding: 32px 20px; } .blog-page-title { font-size: 28px; } .blog-cards { grid-template-columns: 1fr; } .blog-date-heading { font-size: 22px; } .blog-pagination { flex-direction: column; align-items: stretch; gap: 12px; } .blog-pagination-left, .blog-pagination-center, .blog-pagination-right { justify-content: center; } }
 html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
 html.dark-mode body { background: #1a1a1a; color: #e8e6e1; }
 html.dark-mode .nav { background: #1a1a1a; border-bottom-color: #2d2d2d; }
@@ -221,346 +251,30 @@ html.dark-mode .nav-link { border-color: #3d3d3d; }
 </nav>
 <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div><div class="blog-page">
   <h1 class="blog-page-title">博客</h1>
-  <div class="blog-pinned-section">
-    <div class="blog-pinned-label">置顶</div>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-19/announcement/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both;">
-        <div class="blog-card-title">关于这里</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#6b8e5e;border-color:#6b8e5e33">公告</span>
-          </div>
-          <span class="blog-card-words">331 字</span>
-        </div>
-      </a>
-      <a href="/posts/2026-06-12/posts18/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 180ms both;">
-        <div class="blog-card-title">第十八篇 未曾停歇的乐曲 其二</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">947 字</span>
-        </div>
-      </a>
+  <div id="blogList" class="blog-cards-fade"></div>
+  <div class="blog-pagination">
+    <div class="blog-pagination-left">
+      <button class="pag-btn" id="pagPrevBtn" aria-label="上一页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>上一页</span></button>
+      <button class="pag-btn" id="pagNextBtn" aria-label="下一页"><span>下一页</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+    <div class="blog-pagination-center">
+      <span class="pag-info">第 <strong id="pagCurrent">1</strong> 页，共 <strong id="pagTotal">1</strong> 页</span>
+    </div>
+    <div class="blog-pagination-right">
+      <span class="pag-label">每页</span>
+      <select class="pag-select" id="pagSizeSelect"><option value="5">5 篇</option><option value="10" selected>10 篇</option><option value="20">20 篇</option><option value="50">50 篇</option></select>
+      <span class="pag-label">跳至</span>
+      <input type="text" inputmode="numeric" class="pag-input" id="pagJumpInput" maxlength="4" />
+      <button class="pag-btn" id="pagJumpBtn">跳转</button>
     </div>
   </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-20<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-20/posts22/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 240ms both;">
-        <div class="blog-card-title">第二十二篇 关于棉花娃娃</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">783 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-19<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-19/posts21/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms both;">
-        <div class="blog-card-title">第二十一篇 关于称呼混乱</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">835 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-14<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-14/posts20/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 360ms both;">
-        <div class="blog-card-title">第二十篇 敏感的心</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">741 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-13<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-13/posts19/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 420ms both;">
-        <div class="blog-card-title">第十九篇 做事的核心准则</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">852 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-10<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-10/posts17/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 480ms both;">
-        <div class="blog-card-title">第十七篇 本心</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">662 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-09<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-09/posts16/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 540ms both;">
-        <div class="blog-card-title">第十六篇 无题</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">920 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-07<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-07/posts15/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 600ms both;">
-        <div class="blog-card-title">第十五篇 关于完美主义者</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">913 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-06<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-06/posts14/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 660ms both;">
-        <div class="blog-card-title">第十四篇 关于跟别人相处中的画个人画像</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">886 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-05<span class="blog-date-count">2</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-05/DLC02/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 720ms both;">
-        <div class="blog-card-title">第二人生 其二</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
-          </div>
-          <span class="blog-card-words">1599 字</span>
-        </div>
-      </a>
-      <a href="/posts/2026-06-05/posts13/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 780ms both;">
-        <div class="blog-card-title">第十三篇 第二人生</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">754 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-04<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-04/posts12/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 840ms both;">
-        <div class="blog-card-title">第十二篇 这里是月子</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">755 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-03<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-03/DLC01/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 900ms both;">
-        <div class="blog-card-title">为什么说我是内向的，但是好像一点都不内向</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
-          </div>
-          <span class="blog-card-words">1413 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-02<span class="blog-date-count">2</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-02/posts11/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 960ms both;">
-        <div class="blog-card-title">第十一篇 我为什么需要自习</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">800 字</span>
-        </div>
-      </a>
-      <a href="/posts/2026-06-02/posts10/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1020ms both;">
-        <div class="blog-card-title">第十篇 无题（杂项）</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">746 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-06-01<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-06-01/posts09/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1080ms both;">
-        <div class="blog-card-title">第九篇 关于欲望减速</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">668 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-31<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-31/posts08/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1140ms both;">
-        <div class="blog-card-title">第八篇 为什么我会加一个喵</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">898 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-30<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-30/posts07/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1200ms both;">
-        <div class="blog-card-title">第七篇 我与月见草</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">840 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-29<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-29/posts06/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1260ms both;">
-        <div class="blog-card-title">第六篇 关于我为什么不再掏心掏肺帮别人 其二</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">535 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-28<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-28/posts05/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1320ms both;">
-        <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">904 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-27<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-27/posts04/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1380ms both;">
-        <div class="blog-card-title">第四篇 未曾停歇的乐曲</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">651 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-26<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-26/posts03/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1440ms both;">
-        <div class="blog-card-title">第三篇 亚公顶与她</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">889 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-25<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-25/posts02/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1500ms both;">
-        <div class="blog-card-title">第二篇 朋友</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">914 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="blog-date-group">
-    <h2 class="blog-date-heading">2026-05-24<span class="blog-date-count">1</span></h2>
-    <div class="blog-cards">
-      <a href="/posts/2026-05-24/posts01/" class="blog-card" style="animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1560ms both;">
-        <div class="blog-card-title">第一篇 戒备心与无我</div>
-        <div class="blog-card-footer">
-          <div class="blog-card-tags">
-            <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-          </div>
-          <span class="blog-card-words">666 字</span>
-        </div>
-      </a>
-    </div>
-  </div>
+  <div class="pag-error" id="pagError"></div>
+  <p class="pag-info" id="pagRange" style="margin-top:12px;text-align:center;"></p>
 </div>
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
   <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
-  <p class="deploy-time">Built: 2026-06-20 23:10</p>
+  <p class="deploy-time">Built: 2026-06-20 23:38</p>
 </footer>
 <button class="history-trigger" id="historyTrigger" aria-label="浏览历史" title="浏览历史">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -832,6 +546,152 @@ document.addEventListener("click", function(e) {
   } else {
     init();
   }
+})();
+</script>
+<script>
+(function() {
+  var ALL_POSTS = [{"path":"posts/2026-06-19/announcement/","title":"关于这里","words":"331 字","tags":["公告"],"date":"2026-06-19","pinned":true},{"path":"posts/2026-06-12/posts18/","title":"第十八篇 未曾停歇的乐曲 其二","words":"947 字","tags":["状态小作文"],"date":"2026-06-12","pinned":true},{"path":"posts/2026-06-20/posts22/","title":"第二十二篇 关于棉花娃娃","words":"783 字","tags":["状态小作文"],"date":"2026-06-20","pinned":false},{"path":"posts/2026-06-19/posts21/","title":"第二十一篇 关于称呼混乱","words":"835 字","tags":["状态小作文"],"date":"2026-06-19","pinned":false},{"path":"posts/2026-06-14/posts20/","title":"第二十篇 敏感的心","words":"741 字","tags":["状态小作文"],"date":"2026-06-14","pinned":false},{"path":"posts/2026-06-13/posts19/","title":"第十九篇 做事的核心准则","words":"852 字","tags":["状态小作文"],"date":"2026-06-13","pinned":false},{"path":"posts/2026-06-10/posts17/","title":"第十七篇 本心","words":"662 字","tags":["状态小作文"],"date":"2026-06-10","pinned":false},{"path":"posts/2026-06-09/posts16/","title":"第十六篇 无题","words":"920 字","tags":["状态小作文"],"date":"2026-06-09","pinned":false},{"path":"posts/2026-06-07/posts15/","title":"第十五篇 关于完美主义者","words":"913 字","tags":["状态小作文"],"date":"2026-06-07","pinned":false},{"path":"posts/2026-06-06/posts14/","title":"第十四篇 关于跟别人相处中的画个人画像","words":"886 字","tags":["状态小作文"],"date":"2026-06-06","pinned":false},{"path":"posts/2026-06-05/DLC02/","title":"第二人生 其二","words":"1599 字","tags":["拓展内容"],"date":"2026-06-05","pinned":false},{"path":"posts/2026-06-05/posts13/","title":"第十三篇 第二人生","words":"754 字","tags":["状态小作文"],"date":"2026-06-05","pinned":false},{"path":"posts/2026-06-04/posts12/","title":"第十二篇 这里是月子","words":"755 字","tags":["状态小作文"],"date":"2026-06-04","pinned":false},{"path":"posts/2026-06-03/DLC01/","title":"为什么说我是内向的，但是好像一点都不内向","words":"1413 字","tags":["拓展内容"],"date":"2026-06-03","pinned":false},{"path":"posts/2026-06-02/posts11/","title":"第十一篇 我为什么需要自习","words":"800 字","tags":["状态小作文"],"date":"2026-06-02","pinned":false},{"path":"posts/2026-06-02/posts10/","title":"第十篇 无题（杂项）","words":"746 字","tags":["状态小作文"],"date":"2026-06-02","pinned":false},{"path":"posts/2026-06-01/posts09/","title":"第九篇 关于欲望减速","words":"668 字","tags":["状态小作文"],"date":"2026-06-01","pinned":false},{"path":"posts/2026-05-31/posts08/","title":"第八篇 为什么我会加一个喵","words":"898 字","tags":["状态小作文"],"date":"2026-05-31","pinned":false},{"path":"posts/2026-05-30/posts07/","title":"第七篇 我与月见草","words":"840 字","tags":["状态小作文"],"date":"2026-05-30","pinned":false},{"path":"posts/2026-05-29/posts06/","title":"第六篇 关于我为什么不再掏心掏肺帮别人 其二","words":"535 字","tags":["状态小作文"],"date":"2026-05-29","pinned":false},{"path":"posts/2026-05-28/posts05/","title":"第五篇 关于我为什么不再掏心掏肺帮别人 其一","words":"904 字","tags":["状态小作文"],"date":"2026-05-28","pinned":false},{"path":"posts/2026-05-27/posts04/","title":"第四篇 未曾停歇的乐曲","words":"651 字","tags":["状态小作文"],"date":"2026-05-27","pinned":false},{"path":"posts/2026-05-26/posts03/","title":"第三篇 亚公顶与她","words":"889 字","tags":["状态小作文"],"date":"2026-05-26","pinned":false},{"path":"posts/2026-05-25/posts02/","title":"第二篇 朋友","words":"914 字","tags":["状态小作文"],"date":"2026-05-25","pinned":false},{"path":"posts/2026-05-24/posts01/","title":"第一篇 戒备心与无我","words":"666 字","tags":["状态小作文"],"date":"2026-05-24","pinned":false}];
+  if (!ALL_POSTS || ALL_POSTS.length === 0) {
+    document.getElementById("blogList").innerHTML = '<p style="padding:40px 0;text-align:center;color:#8e8b82;font-family:Inter,sans-serif;">暂无文章</p>';
+    return;
+  }
+  var STORAGE_PAGESIZE = "blog_pageSize";
+  var savedSize = parseInt(localStorage.getItem(STORAGE_PAGESIZE), 10);
+  var validSizes = [5, 10, 20, 50];
+  var defaultSize = validSizes.indexOf(savedSize) >= 0 ? savedSize : 10;
+  var state = { page: 1, pageSize: defaultSize };
+  var listEl = document.getElementById("blogList");
+  var prevBtn = document.getElementById("pagPrevBtn");
+  var nextBtn = document.getElementById("pagNextBtn");
+  var sizeSelect = document.getElementById("pagSizeSelect");
+  var jumpInput = document.getElementById("pagJumpInput");
+  var jumpBtn = document.getElementById("pagJumpBtn");
+  var currentEl = document.getElementById("pagCurrent");
+  var totalEl = document.getElementById("pagTotal");
+  var rangeEl = document.getElementById("pagRange");
+  var errorEl = document.getElementById("pagError");
+
+  function totalPages() { return Math.max(1, Math.ceil(ALL_POSTS.length / state.pageSize)); }
+
+  function esc(s) { return String(s||"").replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]}); }
+
+  function tagColor(name) {
+    var palette = ["#cc785c","#4a90a4","#6b8e5e","#8b6bb5","#c4915e","#5b8fa8","#a36b7c","#7a8b5e","#8e6ba8","#5e8b8b","#b07a4a","#6a7fb5","#8b5e6b","#5e8b6a","#9b7b5e","#5e6b8b","#8b8b5e","#7b5e8b","#5e8b7b","#8b5e5e"];
+    var hash = 0, t = String(name||"");
+    for (var i = 0; i < t.length; i++) hash = t.charCodeAt(i) + ((hash << 5) - hash);
+    return palette[Math.abs(hash) % palette.length];
+  }
+
+  function renderCard(post) {
+    var tagsHtml = "";
+    if (post.tags && post.tags.length > 0) {
+      post.tags.forEach(function(tag) {
+        var c = tagColor(tag);
+        tagsHtml += '<span class="blog-card-tag" style="color:' + c + ';border-color:' + c + '33">' + esc(tag) + '</span>';
+      });
+    } else {
+      tagsHtml = '<span class="blog-card-tag-empty">无标签</span>';
+    }
+    return '<a href="/' + esc(post.path) + '" class="blog-card">' +
+      '<div class="blog-card-title">' + esc(post.title) + '</div>' +
+      '<div class="blog-card-footer">' +
+        '<div class="blog-card-tags">' + tagsHtml + '</div>' +
+        '<span class="blog-card-words">' + esc(post.words) + '</span>' +
+      '</div>' +
+    '</a>';
+  }
+
+  var dateHeadingStyle = "grid-column:1/-1;font-family:Playfair Display,Georgia,serif;font-size:20px;font-weight:600;color:#141413;margin:8px 0 4px;padding-bottom:8px;border-bottom:1px solid #e6dfd8;";
+  var pinnedLabelStyle = "grid-column:1/-1;font-family:JetBrains Mono,monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#cc785c;margin-bottom:-8px;display:flex;align-items:center;gap:8px;";
+  var pinnedDot = '<span style="display:inline-block;width:8px;height:8px;background:#cc785c;border-radius:50%;"></span>';
+
+  function renderPage() {
+    var tp = totalPages();
+    if (state.page > tp) state.page = tp;
+    var start = (state.page - 1) * state.pageSize;
+    var end = Math.min(start + state.pageSize, ALL_POSTS.length);
+    var pagePosts = ALL_POSTS.slice(start, end);
+    var html = "";
+    var hasPinned = pagePosts.some(function(p) { return p.pinned; });
+    var curDate = null;
+    pagePosts.forEach(function(post) {
+      if (hasPinned && post.pinned) {
+        if (curDate !== "__pinned__") {
+          html += '<div style="' + pinnedLabelStyle + '">' + pinnedDot + '置顶</div>';
+          curDate = "__pinned__";
+        }
+      } else if (!post.pinned) {
+        if (curDate === "__pinned__") curDate = null;
+        if (post.date !== curDate) {
+          html += '<div style="' + dateHeadingStyle + '">' + esc(post.date) + '</div>';
+          curDate = post.date;
+        }
+      }
+      html += renderCard(post);
+    });
+
+    var gridHtml = '<div class="blog-cards">' + html + '</div>';
+    listEl.innerHTML = gridHtml;
+    listEl.classList.remove("fading");
+
+    currentEl.textContent = state.page;
+    totalEl.textContent = tp;
+    prevBtn.disabled = state.page <= 1;
+    nextBtn.disabled = state.page >= tp;
+    rangeEl.textContent = "显示 " + (start + 1) + "-" + end + " 条，共 " + ALL_POSTS.length + " 条";
+    jumpInput.value = state.page;
+    jumpInput.classList.remove("invalid");
+    errorEl.classList.remove("show");
+  }
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.add("show");
+    jumpInput.classList.add("invalid");
+    clearTimeout(errorEl._t);
+    errorEl._t = setTimeout(function() { errorEl.classList.remove("show"); }, 2500);
+  }
+
+  function changePage(newPage) {
+    var tp = totalPages();
+    if (newPage < 1 || newPage > tp) return;
+    listEl.classList.add("fading");
+    setTimeout(function() { state.page = newPage; renderPage(); }, 180);
+  }
+
+  prevBtn.addEventListener("click", function() { changePage(state.page - 1); });
+  nextBtn.addEventListener("click", function() { changePage(state.page + 1); });
+
+  sizeSelect.addEventListener("change", function() {
+    state.pageSize = parseInt(sizeSelect.value, 10) || 10;
+    state.page = 1;
+    localStorage.setItem(STORAGE_PAGESIZE, state.pageSize);
+    listEl.classList.add("fading");
+    setTimeout(renderPage, 180);
+  });
+
+  function doJump() {
+    var raw = jumpInput.value.trim();
+    if (!/^\d+$/.test(raw)) { showError("没有该页面"); return; }
+    var n = parseInt(raw, 10);
+    var tp = totalPages();
+    if (n < 1 || n > tp) { showError("没有该页面"); return; }
+    changePage(n);
+  }
+
+  jumpBtn.addEventListener("click", doJump);
+  jumpInput.addEventListener("keydown", function(e) { if (e.key === "Enter") doJump(); });
+  jumpInput.addEventListener("input", function() { jumpInput.classList.remove("invalid"); errorEl.classList.remove("show"); });
+
+  document.addEventListener("keydown", function(e) {
+    var tag = e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    if (e.key === "ArrowLeft" && state.page > 1) changePage(state.page - 1);
+    if (e.key === "ArrowRight" && state.page < totalPages()) changePage(state.page + 1);
+  });
+  if (sizeSelect) sizeSelect.value = defaultSize;
+
+  renderPage();
 })();
 </script>
 </body>

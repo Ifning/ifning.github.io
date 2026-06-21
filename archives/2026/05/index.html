@@ -67,6 +67,607 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- Theme Configuration Panel -->
+<script>
+(function() {
+  'use strict';
+
+  // ================================================================
+  // 1. THEME DEFINITIONS
+  // Each theme defines color overrides for light and dark modes.
+  // Keys map to CSS custom properties on :root.
+  // ================================================================
+
+  var THEMES = {
+    default: {
+      name: '\u9ED8\u8BA4', // 默认
+      label: 'Default',
+      swatches: ['#cc785c', '#141413', '#faf9f5'],
+      light: {
+        '--body-bg-color': '#faf9f5',
+        '--content-bg-color': '#faf9f5',
+        '--card-bg-color': '#efe9de',
+        '--text-color': '#141413',
+        '--link-color': '#141413',
+        '--link-hover-color': '#cc785c',
+        '--btn-default-bg': '#faf9f5',
+        '--btn-default-color': '#141413',
+        '--btn-default-border-color': '#e6dfd8',
+        '--btn-default-hover-bg': '#141413',
+        '--btn-default-hover-color': '#faf9f5',
+        '--btn-default-hover-border-color': '#141413',
+        '--selection-bg': '#cc785c',
+        '--selection-color': '#ffffff',
+        '--blockquote-color': '#6c6a64',
+        '--brand-color': '#141413',
+        '--brand-hover-color': '#cc785c',
+        '--theme-color': '#222222',
+        '--menu-item-bg-color': '#f5f5f5',
+        '--table-row-odd-bg-color': '#faf9f5',
+        '--table-row-hover-bg-color': '#efe9de',
+        '--highlight-background': '#f5f0e8',
+        '--highlight-foreground': '#141413',
+        '--highlight-gutter-background': '#efe9de',
+        '--highlight-gutter-foreground': '#6c6a64'
+      },
+      dark: {
+        '--body-bg-color': '#1a1a18',
+        '--content-bg-color': '#1a1a18',
+        '--card-bg-color': '#2a2a27',
+        '--text-color': '#e8e4de',
+        '--link-color': '#e8e4de',
+        '--link-hover-color': '#cc785c',
+        '--btn-default-bg': '#2a2a27',
+        '--btn-default-color': '#e8e4de',
+        '--btn-default-border-color': '#3d3d3a',
+        '--btn-default-hover-bg': '#cc785c',
+        '--btn-default-hover-color': '#ffffff',
+        '--btn-default-hover-border-color': '#cc785c',
+        '--selection-bg': '#cc785c',
+        '--selection-color': '#ffffff',
+        '--blockquote-color': '#8e8b82',
+        '--brand-color': '#e8e4de',
+        '--brand-hover-color': '#cc785c',
+        '--theme-color': '#222222',
+        '--menu-item-bg-color': '#2a2a27',
+        '--table-row-odd-bg-color': '#1a1a18',
+        '--table-row-hover-bg-color': '#2a2a27',
+        '--highlight-background': '#2a2a27',
+        '--highlight-foreground': '#e8e4de',
+        '--highlight-gutter-background': '#222220',
+        '--highlight-gutter-foreground': '#8e8b82'
+      }
+    },
+    sakura: {
+      name: '\u6A31\u82B1\u7C89', // 樱花粉
+      label: 'Sakura',
+      swatches: ['#e8a0b4', '#3d2a30', '#fdf6f7'],
+      light: {
+        '--body-bg-color': '#fdf6f7',
+        '--content-bg-color': '#fdf6f7',
+        '--card-bg-color': '#f7e8ec',
+        '--text-color': '#3d2a30',
+        '--link-color': '#3d2a30',
+        '--link-hover-color': '#e07a95',
+        '--btn-default-bg': '#fdf6f7',
+        '--btn-default-color': '#3d2a30',
+        '--btn-default-border-color': '#e8c8d0',
+        '--btn-default-hover-bg': '#d46a86',
+        '--btn-default-hover-color': '#ffffff',
+        '--btn-default-hover-border-color': '#d46a86',
+        '--selection-bg': '#e8a0b4',
+        '--selection-color': '#ffffff',
+        '--blockquote-color': '#b08a92',
+        '--brand-color': '#3d2a30',
+        '--brand-hover-color': '#e07a95',
+        '--theme-color': '#3d2a30',
+        '--menu-item-bg-color': '#f7e8ec',
+        '--table-row-odd-bg-color': '#fdf6f7',
+        '--table-row-hover-bg-color': '#f7e8ec',
+        '--highlight-background': '#f7e8ec',
+        '--highlight-foreground': '#3d2a30',
+        '--highlight-gutter-background': '#f0dce2',
+        '--highlight-gutter-foreground': '#b08a92'
+      },
+      dark: {
+        '--body-bg-color': '#2a1d22',
+        '--content-bg-color': '#2a1d22',
+        '--card-bg-color': '#3d2830',
+        '--text-color': '#f0e0e4',
+        '--link-color': '#f0e0e4',
+        '--link-hover-color': '#e8a0b4',
+        '--btn-default-bg': '#3d2830',
+        '--btn-default-color': '#f0e0e4',
+        '--btn-default-border-color': '#5a3d46',
+        '--btn-default-hover-bg': '#d46a86',
+        '--btn-default-hover-color': '#ffffff',
+        '--btn-default-hover-border-color': '#d46a86',
+        '--selection-bg': '#e8a0b4',
+        '--selection-color': '#1a1a18',
+        '--blockquote-color': '#a0808a',
+        '--brand-color': '#f0e0e4',
+        '--brand-hover-color': '#e8a0b4',
+        '--theme-color': '#3d2a30',
+        '--menu-item-bg-color': '#3d2830',
+        '--table-row-odd-bg-color': '#2a1d22',
+        '--table-row-hover-bg-color': '#3d2830',
+        '--highlight-background': '#3d2830',
+        '--highlight-foreground': '#f0e0e4',
+        '--highlight-gutter-background': '#2a1d22',
+        '--highlight-gutter-foreground': '#a0808a'
+      }
+    },
+    forest: {
+      name: '\u68EE\u6797\u7EFF', // 森林绿
+      label: 'Forest',
+      swatches: ['#5b9279', '#1a2e26', '#f4f8f5'],
+      light: {
+        '--body-bg-color': '#f4f8f5',
+        '--content-bg-color': '#f4f8f5',
+        '--card-bg-color': '#e4eee8',
+        '--text-color': '#1a2e26',
+        '--link-color': '#1a2e26',
+        '--link-hover-color': '#3b8262',
+        '--btn-default-bg': '#f4f8f5',
+        '--btn-default-color': '#1a2e26',
+        '--btn-default-border-color': '#bdd0c4',
+        '--btn-default-hover-bg': '#3b8262',
+        '--btn-default-hover-color': '#ffffff',
+        '--btn-default-hover-border-color': '#3b8262',
+        '--selection-bg': '#5b9279',
+        '--selection-color': '#ffffff',
+        '--blockquote-color': '#6a8a7a',
+        '--brand-color': '#1a2e26',
+        '--brand-hover-color': '#3b8262',
+        '--theme-color': '#1a2e26',
+        '--menu-item-bg-color': '#e4eee8',
+        '--table-row-odd-bg-color': '#f4f8f5',
+        '--table-row-hover-bg-color': '#e4eee8',
+        '--highlight-background': '#e4eee8',
+        '--highlight-foreground': '#1a2e26',
+        '--highlight-gutter-background': '#d4e2da',
+        '--highlight-gutter-foreground': '#6a8a7a'
+      },
+      dark: {
+        '--body-bg-color': '#141f1a',
+        '--content-bg-color': '#141f1a',
+        '--card-bg-color': '#1e3028',
+        '--text-color': '#dce8e0',
+        '--link-color': '#dce8e0',
+        '--link-hover-color': '#5b9279',
+        '--btn-default-bg': '#1e3028',
+        '--btn-default-color': '#dce8e0',
+        '--btn-default-border-color': '#2d4a3c',
+        '--btn-default-hover-bg': '#3b8262',
+        '--btn-default-hover-color': '#ffffff',
+        '--btn-default-hover-border-color': '#3b8262',
+        '--selection-bg': '#5b9279',
+        '--selection-color': '#1a1a18',
+        '--blockquote-color': '#6a8a7a',
+        '--brand-color': '#dce8e0',
+        '--brand-hover-color': '#5b9279',
+        '--theme-color': '#1a2e26',
+        '--menu-item-bg-color': '#1e3028',
+        '--table-row-odd-bg-color': '#141f1a',
+        '--table-row-hover-bg-color': '#1e3028',
+        '--highlight-background': '#1e3028',
+        '--highlight-foreground': '#dce8e0',
+        '--highlight-gutter-background': '#141f1a',
+        '--highlight-gutter-foreground': '#6a8a7a'
+      }
+    },
+    ocean: {
+      name: '\u6D77\u6D0B\u84DD', // 海洋蓝
+      label: 'Ocean',
+      swatches: ['#5d8fa8', '#1a2a36', '#f2f6f9'],
+      light: {
+        '--body-bg-color': '#f2f6f9',
+        '--content-bg-color': '#f2f6f9',
+        '--card-bg-color': '#e0eaee',
+        '--text-color': '#1a2a36',
+        '--link-color': '#1a2a36',
+        '--link-hover-color': '#3d7a9a',
+        '--btn-default-bg': '#f2f6f9',
+        '--btn-default-color': '#1a2a36',
+        '--btn-default-border-color': '#b8ccd6',
+        '--btn-default-hover-bg': '#3d7a9a',
+        '--btn-default-hover-color': '#ffffff',
+        '--btn-default-hover-border-color': '#3d7a9a',
+        '--selection-bg': '#5d8fa8',
+        '--selection-color': '#ffffff',
+        '--blockquote-color': '#5a7a8a',
+        '--brand-color': '#1a2a36',
+        '--brand-hover-color': '#3d7a9a',
+        '--theme-color': '#1a2a36',
+        '--menu-item-bg-color': '#e0eaee',
+        '--table-row-odd-bg-color': '#f2f6f9',
+        '--table-row-hover-bg-color': '#e0eaee',
+        '--highlight-background': '#e0eaee',
+        '--highlight-foreground': '#1a2a36',
+        '--highlight-gutter-background': '#d0dee4',
+        '--highlight-gutter-foreground': '#5a7a8a'
+      },
+      dark: {
+        '--body-bg-color': '#121e26',
+        '--content-bg-color': '#121e26',
+        '--card-bg-color': '#1a2e3a',
+        '--text-color': '#d8e4ec',
+        '--link-color': '#d8e4ec',
+        '--link-hover-color': '#5d8fa8',
+        '--btn-default-bg': '#1a2e3a',
+        '--btn-default-color': '#d8e4ec',
+        '--btn-default-border-color': '#2a4a58',
+        '--btn-default-hover-bg': '#3d7a9a',
+        '--btn-default-hover-color': '#ffffff',
+        '--btn-default-hover-border-color': '#3d7a9a',
+        '--selection-bg': '#5d8fa8',
+        '--selection-color': '#1a1a18',
+        '--blockquote-color': '#5a8a9a',
+        '--brand-color': '#d8e4ec',
+        '--brand-hover-color': '#5d8fa8',
+        '--theme-color': '#1a2e3a',
+        '--menu-item-bg-color': '#1a2e3a',
+        '--table-row-odd-bg-color': '#121e26',
+        '--table-row-hover-bg-color': '#1a2e3a',
+        '--highlight-background': '#1a2e3a',
+        '--highlight-foreground': '#d8e4ec',
+        '--highlight-gutter-background': '#121e26',
+        '--highlight-gutter-foreground': '#5a8a9a'
+      }
+    }
+  };
+
+  // ================================================================
+  // 2. STATE
+  // ================================================================
+
+  var STORAGE_KEY = 'page2-theme-config';
+  var currentTheme = 'default';   // theme key
+  var currentMode = 'light';      // 'light' | 'dark'
+  var isPanelOpen = false;
+
+  // ================================================================
+  // 3. DOM REFS (populated on init)
+  // ================================================================
+
+  var rootEl;
+  var btnEl;
+  var panelEl;
+  var backdropEl;
+  var modeOptions;
+  var schemeCards;
+
+  // ================================================================
+  // 4. SVG ICON (palette icon for the toggle button)
+  // ================================================================
+
+  var PALETTE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 1 7 7c0 1.5-.8 2.5-2 3-1.2.5-2 .5-2 2 0 .6.2 1 .6 1.4.4.4.4 1 0 1.4-.4.3-.8.5-1.3.6"/><circle cx="8" cy="9" r="1.2"/><circle cx="14" cy="7" r="1.2"/><circle cx="11" cy="16" r="1"/></svg>';
+
+  // ================================================================
+  // 5. APPLY THEME
+  // Sets CSS custom properties on :root based on selected theme + mode
+  // ================================================================
+
+  function applyTheme() {
+    var theme = THEMES[currentTheme];
+    if (!theme) return;
+
+    var colors = theme[currentMode];
+    if (!colors) return;
+
+    // Set CSS variables on root
+    Object.keys(colors).forEach(function(key) {
+      rootEl.style.setProperty(key, colors[key]);
+    });
+
+    // Set color-scheme for native UI
+    rootEl.style.setProperty('color-scheme', currentMode === 'dark' ? 'dark' : 'light');
+
+    // Update image opacity for dark mode
+    var images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+      if (currentMode === 'dark') {
+        img.style.setProperty('opacity', '0.75', 'important');
+      } else {
+        img.style.removeProperty('opacity');
+      }
+    });
+  }
+
+  // ================================================================
+  // 6. PERSISTENCE
+  // ================================================================
+
+  function saveConfig() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        theme: currentTheme,
+        mode: currentMode
+      }));
+    } catch (e) {
+      // localStorage unavailable — silently ignore
+    }
+  }
+
+  function loadConfig() {
+    try {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        var config = JSON.parse(saved);
+        if (config.theme && THEMES[config.theme]) {
+          currentTheme = config.theme;
+        }
+        if (config.mode === 'light' || config.mode === 'dark') {
+          currentMode = config.mode;
+        }
+      }
+    } catch (e) {
+      // Corrupted data — reset
+    }
+  }
+
+  // ================================================================
+  // 7. PANEL UI UPDATE
+  // ================================================================
+
+  function updatePanelUI() {
+    // Update mode buttons
+    modeOptions.forEach(function(btn) {
+      btn.classList.toggle('theme-mode-option--active', btn.dataset.mode === currentMode);
+    });
+
+    // Update scheme cards
+    schemeCards.forEach(function(card) {
+      card.classList.toggle('theme-scheme-card--active', card.dataset.theme === currentTheme);
+    });
+  }
+
+  // ================================================================
+  // 8. PANEL OPEN / CLOSE
+  // ================================================================
+
+  function openPanel() {
+    isPanelOpen = true;
+    panelEl.classList.add('theme-panel--open');
+    backdropEl.classList.add('theme-panel-backdrop--visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePanel() {
+    isPanelOpen = false;
+    panelEl.classList.remove('theme-panel--open');
+    backdropEl.classList.remove('theme-panel-backdrop--visible');
+    document.body.style.overflow = '';
+  }
+
+  function togglePanel(e) {
+    e.stopPropagation();
+    if (isPanelOpen) {
+      closePanel();
+    } else {
+      openPanel();
+    }
+  }
+
+  // ================================================================
+  // 9. SELECT HANDLERS
+  // ================================================================
+
+  function selectMode(mode) {
+    if (mode === currentMode) return;
+    currentMode = mode;
+    applyTheme();
+    saveConfig();
+    updatePanelUI();
+  }
+
+  function selectScheme(schemeKey) {
+    if (schemeKey === currentTheme) return;
+    currentTheme = schemeKey;
+    applyTheme();
+    saveConfig();
+    updatePanelUI();
+  }
+
+  // ================================================================
+  // 10. PUBLIC API
+  // Expose getter so other modules can read current config.
+  // ================================================================
+
+  function getConfig() {
+    return {
+      theme: currentTheme,
+      mode: currentMode,
+      themeName: THEMES[currentTheme] ? THEMES[currentTheme].name : currentTheme
+    };
+  }
+
+  // Attach to window for global access
+  window.__ThemeConfig = {
+    getConfig: getConfig
+  };
+
+  // ================================================================
+  // 11. BUILD DOM
+  // Creates all elements and injects them into the page.
+  // ================================================================
+
+  function buildButton() {
+    btnEl = document.createElement('button');
+    btnEl.className = 'theme-toggle-btn';
+    btnEl.setAttribute('aria-label', 'Toggle theme panel');
+    btnEl.setAttribute('title', '\u914D\u8272\u8BBE\u7F6E'); // 配色设置
+    btnEl.innerHTML = PALETTE_SVG;
+    btnEl.addEventListener('click', togglePanel);
+    return btnEl;
+  }
+
+  function buildPanelHTML() {
+    var html = '';
+
+    // Header
+    html += '<div class="theme-panel-header">\u914D\u8272\u8BBE\u7F6E</div>';
+
+    // Dark/Light mode section
+    html += '<div class="theme-panel-section">';
+    html += '  <div class="theme-panel-label">\u663E\u793A\u6A21\u5F0F</div>'; // 显示模式
+    html += '  <div class="theme-mode-toggle">';
+    html += '    <button class="theme-mode-option" data-mode="light">\u6D45\u8272</button>'; // 浅色
+    html += '    <button class="theme-mode-option" data-mode="dark">\u6DF1\u8272</button>'; // 深色
+    html += '  </div>';
+    html += '</div>';
+
+    // Color scheme section
+    html += '<div class="theme-panel-section">';
+    html += '  <div class="theme-panel-label">\u914D\u8272\u4E3B\u9898</div>'; // 配色主题
+    html += '  <div class="theme-scheme-grid">';
+
+    var themeKeys = Object.keys(THEMES);
+    themeKeys.forEach(function(key) {
+      var t = THEMES[key];
+      html += '<button class="theme-scheme-card" data-theme="' + key + '">';
+      html += '  <span class="theme-scheme-swatches">';
+      t.swatches.forEach(function(color) {
+        html += '    <span class="theme-scheme-swatch" style="background:' + color + '"></span>';
+      });
+      html += '  </span>';
+      html += '  <span class="theme-scheme-name">' + t.name + '</span>';
+      html += '</button>';
+    });
+
+    html += '  </div>';
+    html += '</div>';
+
+    return html;
+  }
+
+  function buildPanel() {
+    panelEl = document.createElement('div');
+    panelEl.className = 'theme-panel';
+    panelEl.innerHTML = buildPanelHTML();
+    return panelEl;
+  }
+
+  function buildBackdrop() {
+    backdropEl = document.createElement('div');
+    backdropEl.className = 'theme-panel-backdrop';
+    backdropEl.addEventListener('click', closePanel);
+    return backdropEl;
+  }
+
+  function injectButton() {
+    // Find the main navigation area in the header
+    var nav = document.querySelector('.main-nav');
+    if (nav) {
+      nav.appendChild(buildButton());
+    } else {
+      // Fallback: inject into header-inner
+      var header = document.querySelector('.header-inner');
+      if (header) {
+        header.appendChild(buildButton());
+      } else {
+        // Last resort: prepend to body
+        document.body.insertBefore(buildButton(), document.body.firstChild);
+      }
+    }
+  }
+
+  function injectPanel() {
+    document.body.appendChild(buildBackdrop());
+    document.body.appendChild(buildPanel());
+  }
+
+  function cacheDOMElements() {
+    modeOptions = panelEl.querySelectorAll('.theme-mode-option');
+    schemeCards = panelEl.querySelectorAll('.theme-scheme-card');
+  }
+
+  function attachEventListeners() {
+    // Mode toggle
+    modeOptions.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        selectMode(btn.dataset.mode);
+      });
+    });
+
+    // Scheme select
+    schemeCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        selectScheme(card.dataset.theme);
+      });
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isPanelOpen) {
+        closePanel();
+      }
+    });
+
+    // Re-attach button if page changes (for PJAX compatibility)
+    document.addEventListener('pjax:success', function() {
+      // The old DOM elements are gone; we need to re-inject
+      // This is handled by checking on page:loaded
+    });
+  }
+
+  // ================================================================
+  // 12. INIT
+  // ================================================================
+
+  function init() {
+    // Only run once
+    if (window.__ThemeConfig && window.__ThemeConfig._inited) return;
+
+    rootEl = document.documentElement;
+
+    // Load saved preferences
+    loadConfig();
+
+    // Build DOM
+    injectButton();
+    injectPanel();
+
+    // Cache DOM refs after injection
+    cacheDOMElements();
+
+    // Apply saved theme
+    applyTheme();
+    updatePanelUI();
+
+    // Attach events
+    attachEventListeners();
+
+    window.__ThemeConfig._inited = true;
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Re-run on PJAX navigation (new page loaded)
+  document.addEventListener('pjax:success', function() {
+    // Re-init state for new page
+    setTimeout(function() {
+      // The panel HTML is injected into body, which survives PJAX.
+      // But button in header may be gone — check and re-inject if needed.
+      if (!document.querySelector('.theme-toggle-btn')) {
+        injectButton();
+      }
+      // Re-cache DOM refs
+      cacheDOMElements();
+      attachEventListeners();
+      applyTheme();
+      updatePanelUI();
+    }, 100);
+  });
+
+})();
+</script>
+
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>

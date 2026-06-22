@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第九篇 关于欲望减速 | 月见花园</title>
+<title>更新日志 | 月见花园</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg-body: #faf9f5;
@@ -59,65 +59,75 @@ html.dark-mode {
   --heat-l4: #cc785c;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-.reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--accent); z-index: 100; transition: width 80ms linear; }
-body { background: var(--bg-body); color: var(--text-primary); font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1.7; }
-.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid var(--border-hairline); position: sticky; top: 0; z-index: 10; background: var(--bg-nav); }
+body { background: var(--bg-body); color: var(--text-primary); font-family: Inter, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 48px; border-bottom: 1px solid var(--border-hairline); position: sticky; top: 0; z-index: 10; background: var(--bg-nav); width: 100%; flex-shrink: 0; }
 .nav-brand { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.3px; }
 .nav-right { display: flex; align-items: center; gap: 24px; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-actions { display: flex; align-items: center; gap: 8px; }
 .nav-link { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
 .nav-link:hover { color: var(--accent); }
-.article-wrap { width: 75%; max-width: 1200px; margin: 0 auto; padding: 80px 48px 120px; }
-@keyframes article-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-@media (prefers-reduced-motion: reduce) { .article-enter { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
-.article-back { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted-soft); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 48px; transition: color 0.15s, gap 0.15s cubic-bezier(0.22, 1, 0.36, 1); }
-.article-back:hover { color: var(--accent); gap: 10px; }
-.article-title { font-family: "Playfair Display", Georgia, serif; font-size: 48px; font-weight: 400; line-height: 1.1; letter-spacing: -1px; color: var(--text-primary); margin-bottom: 16px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
-.article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid #e6dfd8; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
-.article-date { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.1px; color: #8e8b82; }
-.article-tag { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); background: var(--bg-surface); padding: 3px 10px; text-decoration: none; transition: background 0.15s; }
-.article-tag:hover { background: var(--bg-surface-hover); }
-.article-meta-dot { color: var(--border-hairline); font-size: 14px; }
-.article-wordcount { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500; color: var(--text-muted-soft); text-transform: uppercase; letter-spacing: 0.8px; margin-left: 4px; }
-.article-body { animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
-.article-body p { font-size: 17px; line-height: 1.75; color: var(--text-body); margin-bottom: 24px; }
-.article-body h2 { font-family: "Playfair Display", Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.5px; color: var(--text-primary); margin: 56px 0 20px; line-height: 1.2; }
-.article-body h3 { font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -0.3px; color: var(--text-primary); margin: 40px 0 16px; line-height: 1.3; }
-.article-body h4 { font-family: Inter, sans-serif; font-size: 18px; font-weight: 600; color: var(--text-primary); margin: 32px 0 12px; }
-.article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(204, 120, 92, 0.3); transition: text-decoration-color 0.15s; }
-.article-body a:hover { text-decoration-color: rgba(204, 120, 92, 1); }
-.article-body ul, .article-body ol { margin: 0 0 24px 24px; }
-.article-body li { font-size: 17px; line-height: 1.75; color: var(--text-body); margin-bottom: 8px; }
-.article-body blockquote { border-left: 3px solid var(--accent); padding: 12px 24px; margin: 24px 0; background: var(--bg-surface); font-size: 16px; line-height: 1.7; color: var(--text-secondary); }
-.article-body blockquote p:last-child { margin-bottom: 0; }
-.article-body pre { background: var(--bg-code); border: 1px solid var(--border-hairline); padding: 20px 24px; margin: 24px 0; overflow-x: auto; border-radius: 2px; }
-.article-body code { font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.6; color: var(--text-primary); }
-.article-body p code, .article-body li code { background: var(--bg-code); padding: 2px 6px; border-radius: 2px; font-size: 14px; }
-.article-body img { max-width: 100%; height: auto; margin: 32px 0; display: block; }
-.article-body hr { border: none; height: 1px; background: var(--border-hairline); margin: 48px 0; }
-.article-body strong { font-weight: 600; color: var(--text-primary); }
-.article-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
-.article-body th { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.1px; color: var(--text-muted-soft); text-align: left; padding: 12px 16px; border-bottom: 2px solid var(--border-hairline); }
-.article-body td { padding: 12px 16px; border-bottom: 1px solid var(--border-hairline); color: var(--text-body); }
-.article-nav { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border-hairline); display: flex; justify-content: space-between; gap: 32px; animation: article-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 180ms both; }
-.article-nav-item { flex: 1; }
-.article-nav-item.next { text-align: right; }
-.article-nav-label { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted-soft); margin-bottom: 6px; }
-.article-nav-title { font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.3; }
-.article-nav-title a { color: var(--text-primary); text-decoration: none; transition: color 0.15s; }
-.article-nav-title a:hover { color: var(--accent); }
-.footer { padding: 40px 48px; text-align: center; border-top: 1px solid var(--border-hairline); }
+.nav-link-active { color: var(--accent); }
+.changelog-page { max-width: 860px; margin: 0 auto; padding: 64px 48px; flex: 1; width: 100%; }
+.changelog-page-title { font-family: "Playfair Display", Georgia, serif; font-size: 40px; font-weight: 400; letter-spacing: -0.8px; color: var(--text-primary); margin-bottom: 12px; }
+.changelog-page-subtitle { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--text-muted-soft); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 40px; }
+.changelog-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border-hairline); }
+.changelog-filter-btn { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; padding: 6px 14px; background: transparent; border: 1px solid var(--border-hairline); color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+.changelog-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.changelog-filter-btn--active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.changelog-filter-btn--active:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+.changelog-search { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.changelog-search-input { font-family: "JetBrains Mono", monospace; font-size: 11px; padding: 6px 12px; background: transparent; border: 1px solid var(--border-hairline); color: var(--text-primary); width: 180px; transition: border-color 0.15s; outline: none; }
+.changelog-search-input:focus { border-color: var(--accent); }
+.changelog-search-input::placeholder { color: var(--text-muted-pale); }
+.changelog-timeline { position: relative; }
+.changelog-timeline::before { content: ""; position: absolute; left: 23px; top: 0; bottom: 0; width: 1px; background: var(--border-hairline); }
+.changelog-entry { position: relative; padding-left: 60px; margin-bottom: 40px; display: none; }
+.changelog-entry--visible { display: block; }
+.changelog-entry-dot { position: absolute; left: 16px; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--accent); background: var(--bg-body); z-index: 1; }
+.changelog-entry-dot--feature { border-color: #22c55e; }
+.changelog-entry-dot--bugfix { border-color: #f59e0b; }
+.changelog-entry-dot--improvement { border-color: #3b82f6; }
+.changelog-entry-dot--breaking { border-color: #ef4444; }
+.changelog-entry-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.changelog-entry-version { font-family: "Playfair Display", Georgia, serif; font-size: 22px; font-weight: 600; color: var(--text-primary); }
+.changelog-entry-date { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--text-muted-soft); text-transform: uppercase; letter-spacing: 1px; }
+.changelog-entry-badge { font-family: "JetBrains Mono", monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 2px 8px; border-radius: 2px; color: #fff; }
+.changelog-entry-badge--feature { background: #22c55e; }
+.changelog-entry-badge--bugfix { background: #f59e0b; }
+.changelog-entry-badge--improvement { background: #3b82f6; }
+.changelog-entry-badge--breaking { background: #ef4444; }
+.changelog-entry-items { margin-top: 8px; }
+.changelog-entry-item { font-size: 15px; line-height: 1.6; color: var(--text-body); padding: 4px 0; }
+.changelog-entry-item::before { content: "\2014"; margin-right: 8px; color: var(--text-muted-soft); }
+.changelog-empty { text-align: center; padding: 80px 20px; color: var(--text-muted-soft); }
+.changelog-empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.4; }
+.changelog-empty-title { font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+.changelog-empty-desc { font-size: 14px; color: var(--text-muted-pale); }
+.footer { padding: 24px 48px; text-align: center; border-top: 1px solid var(--border-hairline); flex-shrink: 0; }
 .footer-text { font-family: "JetBrains Mono", monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1.1px; color: var(--text-muted-soft); }
 .footer-text a { color: var(--text-muted); text-decoration: none; }
 .footer-text a:hover { color: var(--accent); }
 .deploy-time { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted-pale); margin-top: 6px; }
 .footer-stats { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted-pale); margin-top: 6px; }
-.back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-hairline); background: var(--bg-body); color: var(--text-muted); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 90; opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.15s, color 0.15s, background 0.15s; }
-.back-to-top:hover { border-color: var(--accent); color: var(--accent); background: var(--bg-surface); transform: translateY(0) scale(1.05); }
-.back-to-top--show { opacity: 1; pointer-events: all; transform: translateY(0); }
-.back-to-top svg { width: 20px; height: 20px; }
-@media (max-width: 767px) { .nav { padding: 16px 20px; position: sticky; top: 0; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-nav); border-bottom: 1px solid var(--border-hairline); flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid var(--border-hairline); width: 100%; } .nav-link:last-child { border-bottom: none; } .article-wrap { width: 92%; padding: 48px 20px 80px; } .article-title { font-size: 32px; } .article-body h2 { font-size: 26px; } .article-body h3 { font-size: 20px; } .article-body p, .article-body li { font-size: 16px; } .article-nav { flex-direction: column; gap: 24px; } .article-nav-item.next { text-align: left; }}
+@keyframes page-enter { from { opacity: 0; transform: translateY(8px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+.nav { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.changelog-page-title { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
+.changelog-filters { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+@media (max-width: 767px) {
+  .nav { padding: 16px 20px; position: sticky; top: 0; }
+  .nav-right { position: static; order: 2; }
+  .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-nav); border-bottom: 1px solid var(--border-hairline); flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; }
+  .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; }
+  .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid var(--border-hairline); width: 100%; }
+  .nav-link:last-child { border-bottom: none; }
+  .changelog-page { padding: 32px 20px; }
+  .changelog-page-title { font-size: 28px; }
+  .changelog-search { margin-left: 0; width: 100%; }
+  .changelog-search-input { width: 100%; }
+  .changelog-filters { flex-direction: column; }
+}
 html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
 .dark-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border-hairline); background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .dark-toggle:hover { border-color: var(--accent); background: var(--bg-surface); }
@@ -244,16 +254,15 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
 </style>
 </head>
 <body>
-<div class="reading-progress" id="readingProgress"></div>
 <nav class="nav">
   <a href="/" class="nav-brand">月见花园</a>
   <div class="nav-right">
     <div class="nav-links">
       <a href="/" class="nav-link">首页</a>
-      <a href="/blog/" class="nav-link nav-link-active">博客</a>
+      <a href="/blog/" class="nav-link">博客</a>
       <a href="/about/" class="nav-link">关于</a>
       <a href="/tags/" class="nav-link">标签</a>
-      <a href="/changelog/" class="nav-link">日志</a>
+      <a href="/changelog/" class="nav-link nav-link-active">日志</a>
       <a href="/calendar/" class="nav-link">日历</a>
       <a href="/archives/" class="nav-link">归档</a>
     </div>
@@ -263,76 +272,114 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
     </div>
   </div>
 </nav>
-<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div><article class="article-wrap">
-  <a href="/blog/" class="article-back">&larr; 返回博客</a>
-  <h1 class="article-title">第九篇 关于欲望减速</h1>
-  <div class="article-meta">
-    <span class="article-date">2026-06-01</span>
-    <span class="article-meta-dot">&middot;</span>
-    <span class="article-tag">状态小作文</span>
-    <span class="article-meta-dot">&middot;</span>
-    <span class="article-wordcount">655 字</span>
-  </div>
-  <div class="article-body">
-    <p>关于欲望减速</p>
-<p>今天讲的内容neta了霍青娥的《欲望加速》</p>
-<p>今天的语气大概率不会跟前几天一样，原因下面也有写到</p>
-<p>什么是欲望减速呢？目前我在写这篇的状态就是这样的，这个名字我我自己随意取的。简单来说就是表现为什么都不想干，想要干的事情被自己指责不能干，剩下的就是不想干的事情，所以不会去做，这就导致了自己毫无任何动力</p>
-<p>偏题了，这样讲就偏理论派了，直接讲我现在的状态貌似更容易说明</p>
-<p>“欲望减速”，在我身上表现的就是对绝大多数事物失去了动力，感觉干什么都不起兴趣，想要刷视频会被让自己有负罪感，目前也比较难学下去，所以这条路也走不通，一来二去就导致你什么事都不想做，也就是没有欲望去做其他事</p>
-<p>这种情况一个月都会来两三天甚至三四天，很难受，一般来讲这个时候就会有想要做出极端行为的念头，不过大多只是自己想想，并不会，也没有条件去做。我自己认为出现的原因是高压力导致的，因为上学期并没有这种情况，这学期反而出现的愈加频繁。这个点其实能讲到的很多，可以讲我平时获取多巴胺的形式</p>
-<p>很意外，今天写不下去，不知道要写什么</p>
-<p>遇到这种情况一般都是睡一觉就会好起来，这样也好，哪一天睡一觉后发现还是这种状态才是出大问题</p>
-<p>补充：今天这篇不像之前几篇一样有着较为明显的情绪，一方面今天写不太下去，另一方面自己现在的状态是没什么情绪的，比较平淡的那种，如果这个时候还用前几篇的语气感觉有点太过奇怪了</p>
-<p>其实状态只能写1000字这一点让我有点伤心，因为有时候我是真的很想多讲一点的，但是每次都得克制住去写，有时候想给大家分享一点也没条件</p>
-<p>我自己试过，状态的评论区我自己留言你们是看不到的，所以也行不通。有时候会多写一点，想看可以在评论区留言，会把多写的那些发给你</p>
-<p>这是第八篇，睡觉去了</p>
-
-  </div>
-  <nav class="article-nav">
-    <div class="article-nav-item">
-      <div class="article-nav-label">上一篇</div>
-      <div class="article-nav-title"><a href="/posts/2026-06-02/posts10/">第十篇 无题（杂项）</a></div>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div><div class="changelog-page">
+  <h1 class="changelog-page-title">更新日志</h1>
+  <p class="changelog-page-subtitle">网站变更记录</p>
+  <div class="changelog-filters">
+    <button class="changelog-filter-btn changelog-filter-btn--active" data-filter="all">全部</button>
+    <button class="changelog-filter-btn" data-filter="feature">新功能</button>
+    <button class="changelog-filter-btn" data-filter="improvement">改进</button>
+    <button class="changelog-filter-btn" data-filter="bugfix">修复</button>
+    <button class="changelog-filter-btn" data-filter="breaking">重大变更</button>
+    <div class="changelog-search">
+      <input class="changelog-search-input" id="changelogSearch" placeholder="搜索...">
     </div>
-    <div class="article-nav-item next">
-      <div class="article-nav-label">下一篇</div>
-      <div class="article-nav-title"><a href="/posts/2026-05-31/posts08/">第八篇 为什么我会加一个喵</a></div>
+  </div>
+  <div class="changelog-timeline" id="changelogTimeline">
+    <div class="changelog-entry changelog-entry--visible" data-categories="feature">
+      <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
+      <div class="changelog-entry-header">
+        <span class="changelog-entry-version">v2.6</span>
+        <span class="changelog-entry-date">2026-06-22</span>
+        <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
+      </div>
+      <div class="changelog-entry-items">
+        <div class="changelog-entry-item">新增更新日志页面，支持按类别筛选和关键词搜索</div>
+        <div class="changelog-entry-item">新增「日志」导航链接到所有页面</div>
+        <div class="changelog-entry-item">时间线布局展示版本变更历史</div>
+      </div>
     </div>
-  </nav>
-</article>
+    <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
+      <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
+      <div class="changelog-entry-header">
+        <span class="changelog-entry-version">v2.5</span>
+        <span class="changelog-entry-date">2026-06-22</span>
+        <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
+      </div>
+      <div class="changelog-entry-items">
+        <div class="changelog-entry-item">配色设置面板新增丰富交互动画：背景淡入、面板弹性弹出、内容序列动画</div>
+        <div class="changelog-entry-item">配色面板新增「标签动画」和「面板动画」独立开关</div>
+        <div class="changelog-entry-item">标签云标签徽章添加漂浮/呼吸/颜色渐变微动效</div>
+        <div class="changelog-entry-item">文章页面新增圆形回到顶部按钮</div>
+        <div class="changelog-entry-item">移动端全面响应式适配：面板底部抽屉样式、safe-area、圆角</div>
+      </div>
+    </div>
+    <div class="changelog-entry changelog-entry--visible" data-categories="feature">
+      <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
+      <div class="changelog-entry-header">
+        <span class="changelog-entry-version">v2.4</span>
+        <span class="changelog-entry-date">2026-06-22</span>
+        <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
+      </div>
+      <div class="changelog-entry-items">
+        <div class="changelog-entry-item">日历页面新增年度写作目标展示区域（30/90/180篇分段目标）</div>
+        <div class="changelog-entry-item">新增累计字数里程碑系统（10w~100w字）</div>
+        <div class="changelog-entry-item">文章信息区域新增「开始天数」卡片（从首篇文章至今的完整时间跨度）</div>
+      </div>
+    </div>
+    <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
+      <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
+      <div class="changelog-entry-header">
+        <span class="changelog-entry-version">v2.3</span>
+        <span class="changelog-entry-date">2026-06-22</span>
+        <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
+      </div>
+      <div class="changelog-entry-items">
+        <div class="changelog-entry-item">全面重构 CSS 色彩系统为自定义属性（CSS Variables）体系</div>
+        <div class="changelog-entry-item">新增三套配色主题：暖陶（Clay）、钴蓝白（Coinbase）、墨色终端（OpenCode）</div>
+        <div class="changelog-entry-item">保留默认主题</div>
+        <div class="changelog-entry-item">所有页面支持通过配色面板实时切换主题</div>
+      </div>
+    </div>
+    <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
+      <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
+      <div class="changelog-entry-header">
+        <span class="changelog-entry-version">v2.2</span>
+        <span class="changelog-entry-date">2026-06-21</span>
+        <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
+      </div>
+      <div class="changelog-entry-items">
+        <div class="changelog-entry-item">配色面板从日/月图标改为调色板图标，弹出完整配色设置面板</div>
+        <div class="changelog-entry-item">支持浅色/深色模式独立切换</div>
+        <div class="changelog-entry-item">支持 4 套配色主题实时切换</div>
+      </div>
+    </div>
+    <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
+      <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
+      <div class="changelog-entry-header">
+        <span class="changelog-entry-version">v2.1</span>
+        <span class="changelog-entry-date">2026-06-18</span>
+        <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
+      </div>
+      <div class="changelog-entry-items">
+        <div class="changelog-entry-item">新建博客系统，采用 Hexo + NexT 技术栈</div>
+        <div class="changelog-entry-item">自定义 landing.js 构建所有页面（首页/博客/文章/关于/标签/归档/日历）</div>
+        <div class="changelog-entry-item">实现暗色模式切换、阅读进度条、浏览历史侧边栏</div>
+        <div class="changelog-entry-item">创建日历页面含 GitHub 风格热力图</div>
+      </div>
+    </div>
+  </div>
+  <div class="changelog-empty" id="changelogEmpty" style="display:none">
+    <div class="changelog-empty-icon">&#128220;</div>
+    <div class="changelog-empty-title">没有匹配的记录</div>
+    <div class="changelog-empty-desc">尝试更换筛选条件或搜索关键词</div>
+  </div>
+</div>
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
   <p class="footer-stats">共 25 篇文章 &middot; 21489 字</p>
   <p class="deploy-time">Built: 2026-06-22 20:27</p>
 </footer>
-<button class="back-to-top" id="backToTopBtn" aria-label="回到顶部">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</button>
-<script>
-(function() {
-  var bar = document.getElementById("readingProgress");
-  var btt = document.getElementById("backToTopBtn");
-  if (!bar && !btt) return;
-  var ticking = false;
-  window.addEventListener("scroll", function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        var scrollTop = window.scrollY || document.documentElement.scrollTop;
-        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        if (bar) bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + "%" : "0%";
-        if (btt) btt.classList.toggle("back-to-top--show", scrollTop > 400);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-  if (btt) {
-    btt.addEventListener("click", function() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-})();
-</script>
 <button class="history-trigger" id="historyTrigger" aria-label="浏览历史" title="浏览历史">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="10"/>    <polyline points="12 6 12 12 16 14"/>  </svg>
@@ -352,6 +399,45 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
   </div>
   <div class="history-drawer-body" id="historyBody"></div>
 </div>
+<script>
+(function() {
+  var entries = document.querySelectorAll(".changelog-entry");
+  var filterBtns = document.querySelectorAll(".changelog-filter-btn");
+  var searchInput = document.getElementById("changelogSearch");
+  var emptyState = document.getElementById("changelogEmpty");
+  var activeFilter = "all";
+  var query = "";
+
+  function applyFilters() {
+    var visibleCount = 0;
+    entries.forEach(function(e) {
+      var cats = (e.getAttribute("data-categories") || "").split(" ");
+      var text = (e.textContent || "").toLowerCase();
+      var matchCat = activeFilter === "all" || cats.indexOf(activeFilter) >= 0;
+      var matchSearch = !query || text.indexOf(query.toLowerCase()) >= 0;
+      if (matchCat && matchSearch) { e.classList.add("changelog-entry--visible"); visibleCount++; }
+      else { e.classList.remove("changelog-entry--visible"); }
+    });
+    emptyState.style.display = visibleCount === 0 ? "" : "none";
+  }
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      filterBtns.forEach(function(b) { b.classList.remove("changelog-filter-btn--active"); });
+      btn.classList.add("changelog-filter-btn--active");
+      activeFilter = btn.getAttribute("data-filter");
+      applyFilters();
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener("input", function() {
+      query = searchInput.value;
+      applyFilters();
+    });
+  }
+})();
+</script>
 <script>
 var T = {
   "default":{L:{"--bg-body":"#faf9f5","--bg-nav":"#faf9f5","--bg-card":"#ffffff","--bg-surface":"#f5f0e8","--bg-surface-hover":"#efe9de","--bg-code":"#f5f0e8","--text-primary":"#141413","--text-body":"#2d2d2a","--text-secondary":"#3d3d3a","--text-muted":"#6c6a64","--text-muted-soft":"#8e8b82","--text-muted-pale":"#a3a09a","--border-hairline":"#e6dfd8","--border-strong":"#141413","--accent":"#cc785c","--accent-hover":"#a9583e","--overlay":"rgba(0,0,0,0.35)","--heat-l0":"#ebedf0","--heat-l1":"#fce4d6","--heat-l2":"#f5b999","--heat-l3":"#e8906b","--heat-l4":"#cc785c"},D:{"--bg-body":"#1a1a1a","--bg-nav":"#1a1a1a","--bg-card":"#242424","--bg-surface":"#2a2a2a","--bg-surface-hover":"#333333","--bg-code":"#2a2a2a","--text-primary":"#e8e6e1","--text-body":"#c8c5be","--text-secondary":"#b8b5ae","--text-muted":"#9e9b94","--text-muted-soft":"#7a7870","--text-muted-pale":"#7a7870","--border-hairline":"#2d2d2d","--border-strong":"#3d3d3d","--accent":"#cc785c","--accent-hover":"#b5694d","--overlay":"rgba(0,0,0,0.5)","--heat-l0":"#2d2d2d","--heat-l1":"#5c3a28","--heat-l2":"#8a5030","--heat-l3":"#b56a3c","--heat-l4":"#cc785c"},name:"默认",swatches:["#cc785c","#141413","#faf9f5"]},

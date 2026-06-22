@@ -122,14 +122,39 @@ html.transitioning, html.transitioning *, html.transitioning *::before, html.tra
 .dark-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border-hairline); background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .dark-toggle:hover { border-color: var(--accent); background: var(--bg-surface); }
 .dark-toggle svg { color: var(--text-muted); }
-.theme-panel-backdrop { position: fixed; inset: 0; background: var(--overlay); z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+.theme-panel-backdrop { position: fixed; inset: 0; background: var(--overlay); z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
 .theme-panel-backdrop.show { opacity: 1; pointer-events: all; }
-.theme-panel { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.92); width: 340px; max-width: calc(100vw - 32px); background: var(--bg-body); border: 2px solid var(--border-strong); z-index: 9999; opacity: 0; pointer-events: none; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); padding: 24px; }
+.theme-panel-backdrop.closing { opacity: 0; pointer-events: none; }
+.theme-panel { position: fixed; top: 50%; left: 50%; width: 340px; max-width: calc(100vw - 32px); max-height: calc(100vh - 60px); overflow-y: auto; background: var(--bg-body); border: 2px solid var(--border-strong); z-index: 9999; padding: 24px; opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 24px)) scale(0.94); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
 .theme-panel.show { opacity: 1; pointer-events: all; transform: translate(-50%, -50%) scale(1); }
-.theme-panel-header { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted-soft); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-hairline); }
-.theme-panel-section { margin-bottom: 20px; }
+.theme-panel.closing { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 16px)) scale(0.96); transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.5, 0, 0.75, 0); }
+.theme-panel-section { margin-bottom: 20px; opacity: 0; transform: translateY(8px); }
+.theme-panel.show .theme-panel-section { animation: panelItemIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.theme-panel-header { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted-soft); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-hairline); opacity: 0; transform: translateY(8px); }
+.theme-panel.show .theme-panel-header { animation: panelItemIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards; }
+.theme-panel.show .theme-panel-section:nth-child(2) { animation-delay: 0.12s; }
+.theme-panel.show .theme-panel-section:nth-child(3) { animation-delay: 0.19s; }
+.theme-panel.show .theme-panel-section:nth-child(4) { animation-delay: 0.26s; }
+.theme-panel.show .theme-panel-section:nth-child(5) { animation-delay: 0.33s; }
+.theme-panel.closing .theme-panel-section,
+.theme-panel.closing .theme-panel-header { animation: panelItemOut 0.15s ease forwards; }
+@keyframes panelItemIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes panelItemOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(6px); } }
 .theme-panel-section:last-child { margin-bottom: 0; }
 .theme-panel-label { font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; color: var(--text-muted-soft); margin-bottom: 10px; }
+@media (min-width: 768px) { html[data-panel-anim="off"] .theme-panel,
+html[data-panel-anim="off"] .theme-panel-backdrop { transition: opacity 0.1s ease; }
+html[data-panel-anim="off"] .theme-panel { transform: translate(-50%, -50%) scale(1); }
+html[data-panel-anim="off"] .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel-header,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-header { opacity: 1; transform: none; animation: none !important; } }
+@media (max-width: 767px) { html[data-panel-anim="off"] .theme-panel { transform: translateY(0) scale(1); }
+html[data-panel-anim="off"] .theme-panel.closing { transform: translateY(0) scale(1); }
+html[data-panel-anim="off"] .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel-header,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-header { opacity: 1; transform: none; animation: none !important; } }
 .theme-mode-toggle { display: flex; border: 1px solid var(--border-hairline); overflow: hidden; }
 .theme-mode-option { flex: 1; font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px; text-align: center; cursor: pointer; background: transparent; color: var(--text-primary); border: none; transition: all 0.12s ease; }
 .theme-mode-option:hover { background: var(--bg-surface); }
@@ -141,6 +166,14 @@ html.transitioning, html.transitioning *, html.transitioning *::before, html.tra
 .theme-scheme-swatches { display: flex; gap: 3px; flex-shrink: 0; }
 .theme-scheme-swatch { width: 14px; height: 14px; border: 1px solid rgba(0,0,0,0.1); }
 .theme-scheme-name { font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-primary); line-height: 1.2; }
+.theme-toggle-row { display: flex; align-items: center; justify-content: space-between; }
+.theme-toggle-row .theme-panel-label { margin-bottom: 0; }
+.theme-toggle-switch { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+.theme-toggle-switch input { opacity: 0; width: 0; height: 0; }
+.theme-toggle-switch .tslider { position: absolute; inset: 0; cursor: pointer; background: var(--bg-surface); border: 1px solid var(--border-hairline); transition: all 0.2s ease; border-radius: 11px; }
+.theme-toggle-switch .tslider::before { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; background: var(--text-muted-soft); border-radius: 50%; transition: all 0.2s ease; }
+.theme-toggle-switch input:checked + .tslider { background: var(--accent); border-color: var(--accent); }
+.theme-toggle-switch input:checked + .tslider::before { transform: translateX(18px); background: #fff; }
 .hamburger-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border-hairline); background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .hamburger-btn:hover { border-color: var(--accent); background: var(--bg-surface); }
 .hamburger-icon, .close-icon { color: var(--text-muted); }
@@ -151,8 +184,9 @@ html.transitioning, html.transitioning *, html.transitioning *::before, html.tra
 .mobile-menu-overlay.open { opacity: 1; visibility: visible; transition: opacity 300ms ease, visibility 0s; }
 @media (min-width: 768px) { .mobile-menu-overlay { display: none; } }
 @media (max-width: 767px) { .hamburger-btn { display: flex; } }
-@media (max-width: 767px) { .theme-panel { width: calc(100vw - 32px); padding: 20px; top: auto; bottom: 16px; left: 16px; right: 16px; transform: translateY(20px); max-width: none; }
-  .theme-panel.show { transform: translateY(0); } }
+@media (max-width: 767px) { .theme-panel { width: calc(100vw - 32px); padding: 20px; top: auto; bottom: max(16px, env(safe-area-inset-bottom, 16px)); left: 16px; right: 16px; border-radius: 12px 12px 0 0; max-height: calc(100vh - 80px); transform: translateY(24px) scale(1); max-width: none; }
+  .theme-panel.show { transform: translateY(0) scale(1); }
+  .theme-panel.closing { transform: translateY(24px) scale(1); } }
 .hamburger-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .hamburger-btn:hover { border-color: #cc785c; background: #f5f0e8; }
 .hamburger-icon, .close-icon { color: #6c6a64; }
@@ -219,6 +253,7 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
       <a href="/blog/" class="nav-link nav-link-active">博客</a>
       <a href="/about/" class="nav-link">关于</a>
       <a href="/tags/" class="nav-link">标签</a>
+      <a href="/changelog/" class="nav-link">日志</a>
       <a href="/calendar/" class="nav-link">日历</a>
       <a href="/archives/" class="nav-link">归档</a>
     </div>
@@ -265,8 +300,8 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
 </article>
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
-  <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
-  <p class="deploy-time">Built: 2026-06-21 22:06</p>
+  <p class="footer-stats">共 25 篇文章 &middot; 21489 字</p>
+  <p class="deploy-time">Built: 2026-06-22 20:27</p>
 </footer>
 <button class="back-to-top" id="backToTopBtn" aria-label="回到顶部">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -324,6 +359,8 @@ var T = {
 };
 
 var CURRENT_THEME = "default";
+var tagAnimEnabled = true;
+var panelAnimEnabled = true;
 var panelOpen = false;
 
 (function() {
@@ -337,6 +374,12 @@ var panelOpen = false;
   if (dark) document.documentElement.classList.add("dark-mode");
   // Color theme
   if (theme && T[theme]) { CURRENT_THEME = theme; applyTheme(); }
+  // Tag animation toggle
+  tagAnimEnabled = (cfg ? cfg.tagAnim !== false : true);
+  if (!tagAnimEnabled) document.documentElement.setAttribute("data-tag-anim", "off");
+  // Panel animation toggle
+  panelAnimEnabled = (cfg ? cfg.panelAnim !== false : true);
+  if (!panelAnimEnabled) document.documentElement.setAttribute("data-panel-anim", "off");
 })();
 
 function applyTheme() {
@@ -361,7 +404,9 @@ function saveThemeConfig() {
   try {
     localStorage.setItem("page2-theme", JSON.stringify({
       theme: CURRENT_THEME,
-      dark: document.documentElement.classList.contains("dark-mode")
+      dark: document.documentElement.classList.contains("dark-mode"),
+      tagAnim: tagAnimEnabled,
+      panelAnim: panelAnimEnabled
     }));
   } catch(e) {}
 }
@@ -406,6 +451,24 @@ function buildPanelHTML() {
     h += '</button>';
   });
   h += '</div></div>';
+  h += '<div class="theme-panel-section">';
+  h += '  <div class="theme-toggle-row">';
+  h += '    <div class="theme-panel-label">标签动画</div>';
+  h += '    <label class="theme-toggle-switch">';
+  h += '      <input type="checkbox" id="tagAnimToggle">';
+  h += '      <span class="tslider"></span>';
+  h += '    </label>';
+  h += '  </div>';
+  h += '</div>';
+  h += '<div class="theme-panel-section">';
+  h += '  <div class="theme-toggle-row">';
+  h += '    <div class="theme-panel-label">面板动画</div>';
+  h += '    <label class="theme-toggle-switch">';
+  h += '      <input type="checkbox" id="panelAnimToggle">';
+  h += '      <span class="tslider"></span>';
+  h += '    </label>';
+  h += '  </div>';
+  h += '</div>';
   return h;
 }
 
@@ -431,21 +494,54 @@ function injectPanel() {
   panel.querySelectorAll(".theme-scheme-card").forEach(function(card) {
     card.addEventListener("click", function() { selectTheme(card.dataset.theme); });
   });
+  // Tag animation toggle
+  var animToggle = panel.querySelector("#tagAnimToggle");
+  if (animToggle) {
+    animToggle.checked = tagAnimEnabled;
+    animToggle.addEventListener("change", function() {
+      tagAnimEnabled = animToggle.checked;
+      if (tagAnimEnabled) { document.documentElement.removeAttribute("data-tag-anim"); }
+      else { document.documentElement.setAttribute("data-tag-anim", "off"); }
+      saveThemeConfig();
+    });
+  }
+  // Panel animation toggle
+  var panelAnimToggle = panel.querySelector("#panelAnimToggle");
+  if (panelAnimToggle) {
+    panelAnimToggle.checked = panelAnimEnabled;
+    panelAnimToggle.addEventListener("change", function() {
+      panelAnimEnabled = panelAnimToggle.checked;
+      if (panelAnimEnabled) { document.documentElement.removeAttribute("data-panel-anim"); }
+      else { document.documentElement.setAttribute("data-panel-anim", "off"); }
+      saveThemeConfig();
+    });
+  }
 }
 
 function openPanel() {
   panelOpen = true;
-  document.getElementById("themePanel").classList.add("show");
-  document.getElementById("themeBackdrop").classList.add("show");
+  var panel = document.getElementById("themePanel");
+  var backdrop = document.getElementById("themeBackdrop");
+  panel.classList.remove("closing");
+  backdrop.classList.remove("closing");
+  panel.classList.add("show");
+  backdrop.classList.add("show");
   document.body.style.overflow = "hidden";
   updatePanelUI();
 }
 
 function closePanel() {
   panelOpen = false;
-  document.getElementById("themePanel").classList.remove("show");
-  document.getElementById("themeBackdrop").classList.remove("show");
-  document.body.style.overflow = "";
+  var panel = document.getElementById("themePanel");
+  var backdrop = document.getElementById("themeBackdrop");
+  panel.classList.add("closing");
+  backdrop.classList.add("closing");
+  // Wait for close animation then remove show
+  setTimeout(function() {
+    panel.classList.remove("show", "closing");
+    backdrop.classList.remove("show", "closing");
+    document.body.style.overflow = "";
+  }, 250);
 }
 
 function updatePanelUI() {
@@ -458,6 +554,10 @@ function updatePanelUI() {
   panel.querySelectorAll(".theme-scheme-card").forEach(function(card) {
     card.classList.toggle("active", card.dataset.theme === CURRENT_THEME);
   });
+  var animToggle = panel.querySelector("#tagAnimToggle");
+  if (animToggle) animToggle.checked = tagAnimEnabled;
+  var panelAnimToggle = panel.querySelector("#panelAnimToggle");
+  if (panelAnimToggle) panelAnimToggle.checked = panelAnimEnabled;
 }
 
 window.__ThemeConfig = { getConfig: function() { return { theme: CURRENT_THEME, dark: document.documentElement.classList.contains("dark-mode"), name: T[CURRENT_THEME] ? T[CURRENT_THEME].name : "" }; } };

@@ -71,9 +71,9 @@ body { background: var(--bg-body); color: var(--text-primary); font-family: Inte
 .tags-page { max-width: 960px; margin: 0 auto; padding: 64px 48px; }
 .tags-page-title { font-family: "Playfair Display", Georgia, serif; font-size: 40px; font-weight: 400; letter-spacing: -0.8px; color: var(--text-primary); margin-bottom: 32px; }
 .tags-selector { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid var(--border-hairline); }
-.tags-pill { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; padding: 8px 16px; background: transparent; border: 1px solid var(--border-hairline); color: var(--text-muted); cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.tags-pill { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; padding: 8px 16px; background: transparent; border: 1px solid var(--border-hairline); color: var(--text-muted); cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; animation: tagFloat 3s ease-in-out infinite; }
 .tags-pill:hover { border-color: var(--tag-color, var(--accent)); color: var(--tag-color, var(--accent)); }
-.tags-pill-active { background: var(--tag-color, var(--accent)); border-color: var(--tag-color, var(--accent)); color: #fff; }
+.tags-pill-active { background: var(--tag-color, var(--accent)); border-color: var(--tag-color, var(--accent)); color: #fff; animation-play-state: paused; }
 .tags-pill-active:hover { background: var(--tag-color, var(--accent-hover)); border-color: var(--tag-color, var(--accent-hover)); color: #fff; }
 .tags-pill-count { font-size: 10px; opacity: 0.7; }
 .tags-group { margin-bottom: 48px; }
@@ -100,19 +100,49 @@ body { background: var(--bg-body); color: var(--text-primary); font-family: Inte
 .nav { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 .tags-page-title { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 60ms both; }
 .tags-selector { animation: page-enter 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms both; }
+@keyframes tagFloat {
+  0%, 100% { transform: translateY(0); border-color: var(--border-hairline); }
+  50% { transform: translateY(-3px); border-color: var(--tag-color, var(--accent)); }
+}
+html[data-tag-anim="off"] .tags-pill { animation: none; }
 @media (max-width: 767px) { .nav { padding: 16px 20px; position: sticky; top: 0; } .nav-right { position: static; order: 2; } .nav-links { visibility: hidden; opacity: 0; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-nav); border-bottom: 1px solid var(--border-hairline); flex-direction: column; padding: 0 20px; gap: 0; z-index: 100; transform: translateY(-10px); transition: opacity 300ms ease, transform 300ms ease, visibility 0s 300ms, padding 300ms ease; max-height: 0; overflow: hidden; } .nav-links.mobile-open { visibility: visible; opacity: 1; transform: translateY(0); padding: 16px 20px; max-height: 500px; transition: opacity 300ms ease, transform 300ms ease, visibility 0s, padding 300ms ease, max-height 300ms ease; } .nav-link { padding: 12px 0; font-size: 14px; border-bottom: 1px solid var(--border-hairline); width: 100%; } .nav-link:last-child { border-bottom: none; } .tags-page { padding: 32px 20px; } .tags-page-title { font-size: 28px; } .blog-cards { grid-template-columns: 1fr; } .tags-selector { gap: 8px; } .tags-pill { font-size: 11px; padding: 6px 12px; } }
 html.transitioning, html.transitioning *, html.transitioning *::before, html.transitioning *::after { transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important; }
 .dark-toggle { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border-hairline); background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .dark-toggle:hover { border-color: var(--accent); background: var(--bg-surface); }
 .dark-toggle svg { color: var(--text-muted); }
-.theme-panel-backdrop { position: fixed; inset: 0; background: var(--overlay); z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+.theme-panel-backdrop { position: fixed; inset: 0; background: var(--overlay); z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
 .theme-panel-backdrop.show { opacity: 1; pointer-events: all; }
-.theme-panel { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.92); width: 340px; max-width: calc(100vw - 32px); background: var(--bg-body); border: 2px solid var(--border-strong); z-index: 9999; opacity: 0; pointer-events: none; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); padding: 24px; }
+.theme-panel-backdrop.closing { opacity: 0; pointer-events: none; }
+.theme-panel { position: fixed; top: 50%; left: 50%; width: 340px; max-width: calc(100vw - 32px); max-height: calc(100vh - 60px); overflow-y: auto; background: var(--bg-body); border: 2px solid var(--border-strong); z-index: 9999; padding: 24px; opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 24px)) scale(0.94); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
 .theme-panel.show { opacity: 1; pointer-events: all; transform: translate(-50%, -50%) scale(1); }
-.theme-panel-header { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted-soft); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-hairline); }
-.theme-panel-section { margin-bottom: 20px; }
+.theme-panel.closing { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-50% + 16px)) scale(0.96); transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.5, 0, 0.75, 0); }
+.theme-panel-section { margin-bottom: 20px; opacity: 0; transform: translateY(8px); }
+.theme-panel.show .theme-panel-section { animation: panelItemIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.theme-panel-header { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted-soft); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-hairline); opacity: 0; transform: translateY(8px); }
+.theme-panel.show .theme-panel-header { animation: panelItemIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards; }
+.theme-panel.show .theme-panel-section:nth-child(2) { animation-delay: 0.12s; }
+.theme-panel.show .theme-panel-section:nth-child(3) { animation-delay: 0.19s; }
+.theme-panel.show .theme-panel-section:nth-child(4) { animation-delay: 0.26s; }
+.theme-panel.show .theme-panel-section:nth-child(5) { animation-delay: 0.33s; }
+.theme-panel.closing .theme-panel-section,
+.theme-panel.closing .theme-panel-header { animation: panelItemOut 0.15s ease forwards; }
+@keyframes panelItemIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes panelItemOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(6px); } }
 .theme-panel-section:last-child { margin-bottom: 0; }
 .theme-panel-label { font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; color: var(--text-muted-soft); margin-bottom: 10px; }
+@media (min-width: 768px) { html[data-panel-anim="off"] .theme-panel,
+html[data-panel-anim="off"] .theme-panel-backdrop { transition: opacity 0.1s ease; }
+html[data-panel-anim="off"] .theme-panel { transform: translate(-50%, -50%) scale(1); }
+html[data-panel-anim="off"] .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel-header,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-header { opacity: 1; transform: none; animation: none !important; } }
+@media (max-width: 767px) { html[data-panel-anim="off"] .theme-panel { transform: translateY(0) scale(1); }
+html[data-panel-anim="off"] .theme-panel.closing { transform: translateY(0) scale(1); }
+html[data-panel-anim="off"] .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel-header,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-section,
+html[data-panel-anim="off"] .theme-panel.closing .theme-panel-header { opacity: 1; transform: none; animation: none !important; } }
 .theme-mode-toggle { display: flex; border: 1px solid var(--border-hairline); overflow: hidden; }
 .theme-mode-option { flex: 1; font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px; text-align: center; cursor: pointer; background: transparent; color: var(--text-primary); border: none; transition: all 0.12s ease; }
 .theme-mode-option:hover { background: var(--bg-surface); }
@@ -124,6 +154,14 @@ html.transitioning, html.transitioning *, html.transitioning *::before, html.tra
 .theme-scheme-swatches { display: flex; gap: 3px; flex-shrink: 0; }
 .theme-scheme-swatch { width: 14px; height: 14px; border: 1px solid rgba(0,0,0,0.1); }
 .theme-scheme-name { font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-primary); line-height: 1.2; }
+.theme-toggle-row { display: flex; align-items: center; justify-content: space-between; }
+.theme-toggle-row .theme-panel-label { margin-bottom: 0; }
+.theme-toggle-switch { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+.theme-toggle-switch input { opacity: 0; width: 0; height: 0; }
+.theme-toggle-switch .tslider { position: absolute; inset: 0; cursor: pointer; background: var(--bg-surface); border: 1px solid var(--border-hairline); transition: all 0.2s ease; border-radius: 11px; }
+.theme-toggle-switch .tslider::before { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; background: var(--text-muted-soft); border-radius: 50%; transition: all 0.2s ease; }
+.theme-toggle-switch input:checked + .tslider { background: var(--accent); border-color: var(--accent); }
+.theme-toggle-switch input:checked + .tslider::before { transform: translateX(18px); background: #fff; }
 .hamburger-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border-hairline); background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .hamburger-btn:hover { border-color: var(--accent); background: var(--bg-surface); }
 .hamburger-icon, .close-icon { color: var(--text-muted); }
@@ -134,8 +172,9 @@ html.transitioning, html.transitioning *, html.transitioning *::before, html.tra
 .mobile-menu-overlay.open { opacity: 1; visibility: visible; transition: opacity 300ms ease, visibility 0s; }
 @media (min-width: 768px) { .mobile-menu-overlay { display: none; } }
 @media (max-width: 767px) { .hamburger-btn { display: flex; } }
-@media (max-width: 767px) { .theme-panel { width: calc(100vw - 32px); padding: 20px; top: auto; bottom: 16px; left: 16px; right: 16px; transform: translateY(20px); max-width: none; }
-  .theme-panel.show { transform: translateY(0); } }
+@media (max-width: 767px) { .theme-panel { width: calc(100vw - 32px); padding: 20px; top: auto; bottom: max(16px, env(safe-area-inset-bottom, 16px)); left: 16px; right: 16px; border-radius: 12px 12px 0 0; max-height: calc(100vh - 80px); transform: translateY(24px) scale(1); max-width: none; }
+  .theme-panel.show { transform: translateY(0) scale(1); }
+  .theme-panel.closing { transform: translateY(24px) scale(1); } }
 .hamburger-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid #e6dfd8; background: transparent; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color 0.15s, background 0.15s; border-radius: 8px; }
 .hamburger-btn:hover { border-color: #cc785c; background: #f5f0e8; }
 .hamburger-icon, .close-icon { color: #6c6a64; }
@@ -201,6 +240,7 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
       <a href="/blog/" class="nav-link">博客</a>
       <a href="/about/" class="nav-link">关于</a>
       <a href="/tags/" class="nav-link nav-link-active">标签</a>
+      <a href="/changelog/" class="nav-link">日志</a>
       <a href="/calendar/" class="nav-link">日历</a>
       <a href="/archives/" class="nav-link">归档</a>
     </div>
@@ -213,14 +253,14 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
 <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div><div class="tags-page">
   <h1 class="tags-page-title">标签</h1>
   <div class="tags-selector" id="tagSelector">
-    <button class="tags-pill tags-pill-active" data-tag="all" onclick="switchTag('all')">全部<span class="tags-pill-count">25</span></button>
-    <button class="tags-pill" data-tag="状态小作文" style="--tag-color:#5b8fa8" onclick="switchTag('状态小作文')">状态小作文<span class="tags-pill-count">22</span></button>
+    <button class="tags-pill tags-pill-active" data-tag="all" onclick="switchTag('all')">全部<span class="tags-pill-count">26</span></button>
+    <button class="tags-pill" data-tag="状态小作文" style="--tag-color:#5b8fa8" onclick="switchTag('状态小作文')">状态小作文<span class="tags-pill-count">23</span></button>
     <button class="tags-pill" data-tag="拓展内容" style="--tag-color:#a36b7c" onclick="switchTag('拓展内容')">拓展内容<span class="tags-pill-count">2</span></button>
     <button class="tags-pill" data-tag="公告" style="--tag-color:#6b8e5e" onclick="switchTag('公告')">公告<span class="tags-pill-count">1</span></button>
   </div>
   <div id="tagAll">
     <div class="tags-group">
-      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">22</span></h2>
+      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">23</span></h2>
       <div class="blog-cards">
         <a href="/posts/2026-05-24/posts01/" class="blog-card">
           <div class="blog-card-title">第一篇 戒备心与无我</div>
@@ -249,15 +289,6 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">651 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-28/posts05/" class="blog-card">
-          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">904 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-05-26/posts03/" class="blog-card">
           <div class="blog-card-title">第三篇 亚公顶与她</div>
           <div class="blog-card-footer">
@@ -267,13 +298,13 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">889 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-30/posts07/" class="blog-card">
-          <div class="blog-card-title">第七篇 我与月见草</div>
+        <a href="/posts/2026-05-28/posts05/" class="blog-card">
+          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">840 字</span>
+            <span class="blog-card-words">904 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-29/posts06/" class="blog-card">
@@ -285,15 +316,6 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">535 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-31/posts08/" class="blog-card">
-          <div class="blog-card-title">第八篇 为什么我会加一个喵</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">898 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-06-01/posts09/" class="blog-card">
           <div class="blog-card-title">第九篇 关于欲望减速</div>
           <div class="blog-card-footer">
@@ -301,6 +323,24 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">668 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-30/posts07/" class="blog-card">
+          <div class="blog-card-title">第七篇 我与月见草</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">840 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-31/posts08/" class="blog-card">
+          <div class="blog-card-title">第八篇 为什么我会加一个喵</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">898 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-02/posts10/" class="blog-card">
@@ -366,6 +406,15 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">920 字</span>
           </div>
         </a>
+        <a href="/posts/2026-06-13/posts19/" class="blog-card">
+          <div class="blog-card-title">第十九篇 做事的核心准则</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">852 字</span>
+          </div>
+        </a>
         <a href="/posts/2026-06-10/posts17/" class="blog-card">
           <div class="blog-card-title">第十七篇 本心</div>
           <div class="blog-card-footer">
@@ -382,15 +431,6 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">947 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-13/posts19/" class="blog-card">
-          <div class="blog-card-title">第十九篇 做事的核心准则</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">852 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-14/posts20/" class="blog-card">
@@ -420,20 +460,20 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">783 字</span>
           </div>
         </a>
+        <a href="/posts/2026-06-22/posts23/" class="blog-card">
+          <div class="blog-card-title">第二十三篇 月见花园</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">918 字</span>
+          </div>
+        </a>
       </div>
     </div>
     <div class="tags-group">
       <h2 class="tags-group-header">拓展内容 <span class="tags-group-count">2</span></h2>
       <div class="blog-cards">
-        <a href="/posts/2026-06-03/DLC01/" class="blog-card">
-          <div class="blog-card-title">为什么说我是内向的，但是好像一点都不内向</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
-            </div>
-            <span class="blog-card-words">1413 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-06-05/DLC02/" class="blog-card">
           <div class="blog-card-title">第二人生 其二</div>
           <div class="blog-card-footer">
@@ -441,6 +481,15 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
               <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
             </div>
             <span class="blog-card-words">1599 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-03/DLC01/" class="blog-card">
+          <div class="blog-card-title">为什么说我是内向的，但是好像一点都不内向</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
+            </div>
+            <span class="blog-card-words">1413 字</span>
           </div>
         </a>
       </div>
@@ -462,7 +511,7 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
   </div>
   <div id="tag-状态小作文" style="display:none;">
     <div class="tags-group">
-      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">22</span></h2>
+      <h2 class="tags-group-header">状态小作文 <span class="tags-group-count">23</span></h2>
       <div class="blog-cards">
         <a href="/posts/2026-05-24/posts01/" class="blog-card">
           <div class="blog-card-title">第一篇 戒备心与无我</div>
@@ -491,15 +540,6 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">651 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-28/posts05/" class="blog-card">
-          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">904 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-05-26/posts03/" class="blog-card">
           <div class="blog-card-title">第三篇 亚公顶与她</div>
           <div class="blog-card-footer">
@@ -509,13 +549,13 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">889 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-30/posts07/" class="blog-card">
-          <div class="blog-card-title">第七篇 我与月见草</div>
+        <a href="/posts/2026-05-28/posts05/" class="blog-card">
+          <div class="blog-card-title">第五篇 关于我为什么不再掏心掏肺帮别人 其一</div>
           <div class="blog-card-footer">
             <div class="blog-card-tags">
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
-            <span class="blog-card-words">840 字</span>
+            <span class="blog-card-words">904 字</span>
           </div>
         </a>
         <a href="/posts/2026-05-29/posts06/" class="blog-card">
@@ -527,15 +567,6 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">535 字</span>
           </div>
         </a>
-        <a href="/posts/2026-05-31/posts08/" class="blog-card">
-          <div class="blog-card-title">第八篇 为什么我会加一个喵</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">898 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-06-01/posts09/" class="blog-card">
           <div class="blog-card-title">第九篇 关于欲望减速</div>
           <div class="blog-card-footer">
@@ -543,6 +574,24 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">668 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-30/posts07/" class="blog-card">
+          <div class="blog-card-title">第七篇 我与月见草</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">840 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-05-31/posts08/" class="blog-card">
+          <div class="blog-card-title">第八篇 为什么我会加一个喵</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">898 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-02/posts10/" class="blog-card">
@@ -608,6 +657,15 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">920 字</span>
           </div>
         </a>
+        <a href="/posts/2026-06-13/posts19/" class="blog-card">
+          <div class="blog-card-title">第十九篇 做事的核心准则</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">852 字</span>
+          </div>
+        </a>
         <a href="/posts/2026-06-10/posts17/" class="blog-card">
           <div class="blog-card-title">第十七篇 本心</div>
           <div class="blog-card-footer">
@@ -624,15 +682,6 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
               <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
             </div>
             <span class="blog-card-words">947 字</span>
-          </div>
-        </a>
-        <a href="/posts/2026-06-13/posts19/" class="blog-card">
-          <div class="blog-card-title">第十九篇 做事的核心准则</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
-            </div>
-            <span class="blog-card-words">852 字</span>
           </div>
         </a>
         <a href="/posts/2026-06-14/posts20/" class="blog-card">
@@ -662,6 +711,15 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
             <span class="blog-card-words">783 字</span>
           </div>
         </a>
+        <a href="/posts/2026-06-22/posts23/" class="blog-card">
+          <div class="blog-card-title">第二十三篇 月见花园</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#5b8fa8;border-color:#5b8fa833">状态小作文</span>
+            </div>
+            <span class="blog-card-words">918 字</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -669,15 +727,6 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
     <div class="tags-group">
       <h2 class="tags-group-header">拓展内容 <span class="tags-group-count">2</span></h2>
       <div class="blog-cards">
-        <a href="/posts/2026-06-03/DLC01/" class="blog-card">
-          <div class="blog-card-title">为什么说我是内向的，但是好像一点都不内向</div>
-          <div class="blog-card-footer">
-            <div class="blog-card-tags">
-              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
-            </div>
-            <span class="blog-card-words">1413 字</span>
-          </div>
-        </a>
         <a href="/posts/2026-06-05/DLC02/" class="blog-card">
           <div class="blog-card-title">第二人生 其二</div>
           <div class="blog-card-footer">
@@ -685,6 +734,15 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
               <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
             </div>
             <span class="blog-card-words">1599 字</span>
+          </div>
+        </a>
+        <a href="/posts/2026-06-03/DLC01/" class="blog-card">
+          <div class="blog-card-title">为什么说我是内向的，但是好像一点都不内向</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags">
+              <span class="blog-card-tag" style="color:#a36b7c;border-color:#a36b7c33">拓展内容</span>
+            </div>
+            <span class="blog-card-words">1413 字</span>
           </div>
         </a>
       </div>
@@ -722,8 +780,8 @@ function switchTag(tag) {
 </script>
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
-  <p class="footer-stats">共 24 篇文章 &middot; 20571 字</p>
-  <p class="deploy-time">Built: 2026-06-21 22:06</p>
+  <p class="footer-stats">共 25 篇文章 &middot; 21489 字</p>
+  <p class="deploy-time">Built: 2026-06-22 20:27</p>
 </footer>
 <button class="history-trigger" id="historyTrigger" aria-label="浏览历史" title="浏览历史">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -753,6 +811,8 @@ var T = {
 };
 
 var CURRENT_THEME = "default";
+var tagAnimEnabled = true;
+var panelAnimEnabled = true;
 var panelOpen = false;
 
 (function() {
@@ -766,6 +826,12 @@ var panelOpen = false;
   if (dark) document.documentElement.classList.add("dark-mode");
   // Color theme
   if (theme && T[theme]) { CURRENT_THEME = theme; applyTheme(); }
+  // Tag animation toggle
+  tagAnimEnabled = (cfg ? cfg.tagAnim !== false : true);
+  if (!tagAnimEnabled) document.documentElement.setAttribute("data-tag-anim", "off");
+  // Panel animation toggle
+  panelAnimEnabled = (cfg ? cfg.panelAnim !== false : true);
+  if (!panelAnimEnabled) document.documentElement.setAttribute("data-panel-anim", "off");
 })();
 
 function applyTheme() {
@@ -790,7 +856,9 @@ function saveThemeConfig() {
   try {
     localStorage.setItem("page2-theme", JSON.stringify({
       theme: CURRENT_THEME,
-      dark: document.documentElement.classList.contains("dark-mode")
+      dark: document.documentElement.classList.contains("dark-mode"),
+      tagAnim: tagAnimEnabled,
+      panelAnim: panelAnimEnabled
     }));
   } catch(e) {}
 }
@@ -835,6 +903,24 @@ function buildPanelHTML() {
     h += '</button>';
   });
   h += '</div></div>';
+  h += '<div class="theme-panel-section">';
+  h += '  <div class="theme-toggle-row">';
+  h += '    <div class="theme-panel-label">标签动画</div>';
+  h += '    <label class="theme-toggle-switch">';
+  h += '      <input type="checkbox" id="tagAnimToggle">';
+  h += '      <span class="tslider"></span>';
+  h += '    </label>';
+  h += '  </div>';
+  h += '</div>';
+  h += '<div class="theme-panel-section">';
+  h += '  <div class="theme-toggle-row">';
+  h += '    <div class="theme-panel-label">面板动画</div>';
+  h += '    <label class="theme-toggle-switch">';
+  h += '      <input type="checkbox" id="panelAnimToggle">';
+  h += '      <span class="tslider"></span>';
+  h += '    </label>';
+  h += '  </div>';
+  h += '</div>';
   return h;
 }
 
@@ -860,21 +946,54 @@ function injectPanel() {
   panel.querySelectorAll(".theme-scheme-card").forEach(function(card) {
     card.addEventListener("click", function() { selectTheme(card.dataset.theme); });
   });
+  // Tag animation toggle
+  var animToggle = panel.querySelector("#tagAnimToggle");
+  if (animToggle) {
+    animToggle.checked = tagAnimEnabled;
+    animToggle.addEventListener("change", function() {
+      tagAnimEnabled = animToggle.checked;
+      if (tagAnimEnabled) { document.documentElement.removeAttribute("data-tag-anim"); }
+      else { document.documentElement.setAttribute("data-tag-anim", "off"); }
+      saveThemeConfig();
+    });
+  }
+  // Panel animation toggle
+  var panelAnimToggle = panel.querySelector("#panelAnimToggle");
+  if (panelAnimToggle) {
+    panelAnimToggle.checked = panelAnimEnabled;
+    panelAnimToggle.addEventListener("change", function() {
+      panelAnimEnabled = panelAnimToggle.checked;
+      if (panelAnimEnabled) { document.documentElement.removeAttribute("data-panel-anim"); }
+      else { document.documentElement.setAttribute("data-panel-anim", "off"); }
+      saveThemeConfig();
+    });
+  }
 }
 
 function openPanel() {
   panelOpen = true;
-  document.getElementById("themePanel").classList.add("show");
-  document.getElementById("themeBackdrop").classList.add("show");
+  var panel = document.getElementById("themePanel");
+  var backdrop = document.getElementById("themeBackdrop");
+  panel.classList.remove("closing");
+  backdrop.classList.remove("closing");
+  panel.classList.add("show");
+  backdrop.classList.add("show");
   document.body.style.overflow = "hidden";
   updatePanelUI();
 }
 
 function closePanel() {
   panelOpen = false;
-  document.getElementById("themePanel").classList.remove("show");
-  document.getElementById("themeBackdrop").classList.remove("show");
-  document.body.style.overflow = "";
+  var panel = document.getElementById("themePanel");
+  var backdrop = document.getElementById("themeBackdrop");
+  panel.classList.add("closing");
+  backdrop.classList.add("closing");
+  // Wait for close animation then remove show
+  setTimeout(function() {
+    panel.classList.remove("show", "closing");
+    backdrop.classList.remove("show", "closing");
+    document.body.style.overflow = "";
+  }, 250);
 }
 
 function updatePanelUI() {
@@ -887,6 +1006,10 @@ function updatePanelUI() {
   panel.querySelectorAll(".theme-scheme-card").forEach(function(card) {
     card.classList.toggle("active", card.dataset.theme === CURRENT_THEME);
   });
+  var animToggle = panel.querySelector("#tagAnimToggle");
+  if (animToggle) animToggle.checked = tagAnimEnabled;
+  var panelAnimToggle = panel.querySelector("#panelAnimToggle");
+  if (panelAnimToggle) panelAnimToggle.checked = panelAnimEnabled;
 }
 
 window.__ThemeConfig = { getConfig: function() { return { theme: CURRENT_THEME, dark: document.documentElement.classList.contains("dark-mode"), name: T[CURRENT_THEME] ? T[CURRENT_THEME].name : "" }; } };

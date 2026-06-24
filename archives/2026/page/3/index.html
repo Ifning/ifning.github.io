@@ -2,976 +2,390 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"default"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
-
-    <meta name="description" content="一个用 Hexo 搭建的个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="月见花园">
-<meta property="og:url" content="http://example.com/archives/2026/page/3/index.html">
-<meta property="og:site_name" content="月见花园">
-<meta property="og:description" content="一个用 Hexo 搭建的个人博客">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="blog, technology, design">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/archives/2026/page/3/">
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2026/page/3/index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 月见花园</title>
-  
-
-
-
-
-
-
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-<!-- WIRED-Inspired Font Loading -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Theme Configuration Panel -->
-<script>
-(function() {
-  'use strict';
-
-  // ================================================================
-  // 1. THEME DEFINITIONS
-  // Each theme defines color overrides for light and dark modes.
-  // Keys map to CSS custom properties on :root.
-  // ================================================================
-
-  var THEMES = {
-    default: {
-      name: '\u9ED8\u8BA4', // 默认
-      label: 'Default',
-      swatches: ['#cc785c', '#141413', '#faf9f5'],
-      light: {
-        '--body-bg-color': '#faf9f5',
-        '--content-bg-color': '#faf9f5',
-        '--card-bg-color': '#efe9de',
-        '--text-color': '#141413',
-        '--link-color': '#141413',
-        '--link-hover-color': '#cc785c',
-        '--btn-default-bg': '#faf9f5',
-        '--btn-default-color': '#141413',
-        '--btn-default-border-color': '#e6dfd8',
-        '--btn-default-hover-bg': '#141413',
-        '--btn-default-hover-color': '#faf9f5',
-        '--btn-default-hover-border-color': '#141413',
-        '--selection-bg': '#cc785c',
-        '--selection-color': '#ffffff',
-        '--blockquote-color': '#6c6a64',
-        '--brand-color': '#141413',
-        '--brand-hover-color': '#cc785c',
-        '--theme-color': '#222222',
-        '--menu-item-bg-color': '#f5f5f5',
-        '--table-row-odd-bg-color': '#faf9f5',
-        '--table-row-hover-bg-color': '#efe9de',
-        '--highlight-background': '#f5f0e8',
-        '--highlight-foreground': '#141413',
-        '--highlight-gutter-background': '#efe9de',
-        '--highlight-gutter-foreground': '#6c6a64'
-      },
-      dark: {
-        '--body-bg-color': '#1a1a18',
-        '--content-bg-color': '#1a1a18',
-        '--card-bg-color': '#2a2a27',
-        '--text-color': '#e8e4de',
-        '--link-color': '#e8e4de',
-        '--link-hover-color': '#cc785c',
-        '--btn-default-bg': '#2a2a27',
-        '--btn-default-color': '#e8e4de',
-        '--btn-default-border-color': '#3d3d3a',
-        '--btn-default-hover-bg': '#cc785c',
-        '--btn-default-hover-color': '#ffffff',
-        '--btn-default-hover-border-color': '#cc785c',
-        '--selection-bg': '#cc785c',
-        '--selection-color': '#ffffff',
-        '--blockquote-color': '#8e8b82',
-        '--brand-color': '#e8e4de',
-        '--brand-hover-color': '#cc785c',
-        '--theme-color': '#222222',
-        '--menu-item-bg-color': '#2a2a27',
-        '--table-row-odd-bg-color': '#1a1a18',
-        '--table-row-hover-bg-color': '#2a2a27',
-        '--highlight-background': '#2a2a27',
-        '--highlight-foreground': '#e8e4de',
-        '--highlight-gutter-background': '#222220',
-        '--highlight-gutter-foreground': '#8e8b82'
-      }
-    },
-    sakura: {
-      name: '\u6A31\u82B1\u7C89', // 樱花粉
-      label: 'Sakura',
-      swatches: ['#e8a0b4', '#3d2a30', '#fdf6f7'],
-      light: {
-        '--body-bg-color': '#fdf6f7',
-        '--content-bg-color': '#fdf6f7',
-        '--card-bg-color': '#f7e8ec',
-        '--text-color': '#3d2a30',
-        '--link-color': '#3d2a30',
-        '--link-hover-color': '#e07a95',
-        '--btn-default-bg': '#fdf6f7',
-        '--btn-default-color': '#3d2a30',
-        '--btn-default-border-color': '#e8c8d0',
-        '--btn-default-hover-bg': '#d46a86',
-        '--btn-default-hover-color': '#ffffff',
-        '--btn-default-hover-border-color': '#d46a86',
-        '--selection-bg': '#e8a0b4',
-        '--selection-color': '#ffffff',
-        '--blockquote-color': '#b08a92',
-        '--brand-color': '#3d2a30',
-        '--brand-hover-color': '#e07a95',
-        '--theme-color': '#3d2a30',
-        '--menu-item-bg-color': '#f7e8ec',
-        '--table-row-odd-bg-color': '#fdf6f7',
-        '--table-row-hover-bg-color': '#f7e8ec',
-        '--highlight-background': '#f7e8ec',
-        '--highlight-foreground': '#3d2a30',
-        '--highlight-gutter-background': '#f0dce2',
-        '--highlight-gutter-foreground': '#b08a92'
-      },
-      dark: {
-        '--body-bg-color': '#2a1d22',
-        '--content-bg-color': '#2a1d22',
-        '--card-bg-color': '#3d2830',
-        '--text-color': '#f0e0e4',
-        '--link-color': '#f0e0e4',
-        '--link-hover-color': '#e8a0b4',
-        '--btn-default-bg': '#3d2830',
-        '--btn-default-color': '#f0e0e4',
-        '--btn-default-border-color': '#5a3d46',
-        '--btn-default-hover-bg': '#d46a86',
-        '--btn-default-hover-color': '#ffffff',
-        '--btn-default-hover-border-color': '#d46a86',
-        '--selection-bg': '#e8a0b4',
-        '--selection-color': '#1a1a18',
-        '--blockquote-color': '#a0808a',
-        '--brand-color': '#f0e0e4',
-        '--brand-hover-color': '#e8a0b4',
-        '--theme-color': '#3d2a30',
-        '--menu-item-bg-color': '#3d2830',
-        '--table-row-odd-bg-color': '#2a1d22',
-        '--table-row-hover-bg-color': '#3d2830',
-        '--highlight-background': '#3d2830',
-        '--highlight-foreground': '#f0e0e4',
-        '--highlight-gutter-background': '#2a1d22',
-        '--highlight-gutter-foreground': '#a0808a'
-      }
-    },
-    forest: {
-      name: '\u68EE\u6797\u7EFF', // 森林绿
-      label: 'Forest',
-      swatches: ['#5b9279', '#1a2e26', '#f4f8f5'],
-      light: {
-        '--body-bg-color': '#f4f8f5',
-        '--content-bg-color': '#f4f8f5',
-        '--card-bg-color': '#e4eee8',
-        '--text-color': '#1a2e26',
-        '--link-color': '#1a2e26',
-        '--link-hover-color': '#3b8262',
-        '--btn-default-bg': '#f4f8f5',
-        '--btn-default-color': '#1a2e26',
-        '--btn-default-border-color': '#bdd0c4',
-        '--btn-default-hover-bg': '#3b8262',
-        '--btn-default-hover-color': '#ffffff',
-        '--btn-default-hover-border-color': '#3b8262',
-        '--selection-bg': '#5b9279',
-        '--selection-color': '#ffffff',
-        '--blockquote-color': '#6a8a7a',
-        '--brand-color': '#1a2e26',
-        '--brand-hover-color': '#3b8262',
-        '--theme-color': '#1a2e26',
-        '--menu-item-bg-color': '#e4eee8',
-        '--table-row-odd-bg-color': '#f4f8f5',
-        '--table-row-hover-bg-color': '#e4eee8',
-        '--highlight-background': '#e4eee8',
-        '--highlight-foreground': '#1a2e26',
-        '--highlight-gutter-background': '#d4e2da',
-        '--highlight-gutter-foreground': '#6a8a7a'
-      },
-      dark: {
-        '--body-bg-color': '#141f1a',
-        '--content-bg-color': '#141f1a',
-        '--card-bg-color': '#1e3028',
-        '--text-color': '#dce8e0',
-        '--link-color': '#dce8e0',
-        '--link-hover-color': '#5b9279',
-        '--btn-default-bg': '#1e3028',
-        '--btn-default-color': '#dce8e0',
-        '--btn-default-border-color': '#2d4a3c',
-        '--btn-default-hover-bg': '#3b8262',
-        '--btn-default-hover-color': '#ffffff',
-        '--btn-default-hover-border-color': '#3b8262',
-        '--selection-bg': '#5b9279',
-        '--selection-color': '#1a1a18',
-        '--blockquote-color': '#6a8a7a',
-        '--brand-color': '#dce8e0',
-        '--brand-hover-color': '#5b9279',
-        '--theme-color': '#1a2e26',
-        '--menu-item-bg-color': '#1e3028',
-        '--table-row-odd-bg-color': '#141f1a',
-        '--table-row-hover-bg-color': '#1e3028',
-        '--highlight-background': '#1e3028',
-        '--highlight-foreground': '#dce8e0',
-        '--highlight-gutter-background': '#141f1a',
-        '--highlight-gutter-foreground': '#6a8a7a'
-      }
-    },
-    ocean: {
-      name: '\u6D77\u6D0B\u84DD', // 海洋蓝
-      label: 'Ocean',
-      swatches: ['#5d8fa8', '#1a2a36', '#f2f6f9'],
-      light: {
-        '--body-bg-color': '#f2f6f9',
-        '--content-bg-color': '#f2f6f9',
-        '--card-bg-color': '#e0eaee',
-        '--text-color': '#1a2a36',
-        '--link-color': '#1a2a36',
-        '--link-hover-color': '#3d7a9a',
-        '--btn-default-bg': '#f2f6f9',
-        '--btn-default-color': '#1a2a36',
-        '--btn-default-border-color': '#b8ccd6',
-        '--btn-default-hover-bg': '#3d7a9a',
-        '--btn-default-hover-color': '#ffffff',
-        '--btn-default-hover-border-color': '#3d7a9a',
-        '--selection-bg': '#5d8fa8',
-        '--selection-color': '#ffffff',
-        '--blockquote-color': '#5a7a8a',
-        '--brand-color': '#1a2a36',
-        '--brand-hover-color': '#3d7a9a',
-        '--theme-color': '#1a2a36',
-        '--menu-item-bg-color': '#e0eaee',
-        '--table-row-odd-bg-color': '#f2f6f9',
-        '--table-row-hover-bg-color': '#e0eaee',
-        '--highlight-background': '#e0eaee',
-        '--highlight-foreground': '#1a2a36',
-        '--highlight-gutter-background': '#d0dee4',
-        '--highlight-gutter-foreground': '#5a7a8a'
-      },
-      dark: {
-        '--body-bg-color': '#121e26',
-        '--content-bg-color': '#121e26',
-        '--card-bg-color': '#1a2e3a',
-        '--text-color': '#d8e4ec',
-        '--link-color': '#d8e4ec',
-        '--link-hover-color': '#5d8fa8',
-        '--btn-default-bg': '#1a2e3a',
-        '--btn-default-color': '#d8e4ec',
-        '--btn-default-border-color': '#2a4a58',
-        '--btn-default-hover-bg': '#3d7a9a',
-        '--btn-default-hover-color': '#ffffff',
-        '--btn-default-hover-border-color': '#3d7a9a',
-        '--selection-bg': '#5d8fa8',
-        '--selection-color': '#1a1a18',
-        '--blockquote-color': '#5a8a9a',
-        '--brand-color': '#d8e4ec',
-        '--brand-hover-color': '#5d8fa8',
-        '--theme-color': '#1a2e3a',
-        '--menu-item-bg-color': '#1a2e3a',
-        '--table-row-odd-bg-color': '#121e26',
-        '--table-row-hover-bg-color': '#1a2e3a',
-        '--highlight-background': '#1a2e3a',
-        '--highlight-foreground': '#d8e4ec',
-        '--highlight-gutter-background': '#121e26',
-        '--highlight-gutter-foreground': '#5a8a9a'
-      }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>归档 | 月见花园</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #faf9f5; --bg-nav: #faf9f5; --bg-card: #ffffff;
+      --bg-surface: #f5f0e8; --bg-surface-hover: #efe9de; --bg-code: #f5f0e8;
+      --text-primary: #141413; --text-body: #2d2d2a; --text-secondary: #3d3d3a;
+      --text-muted: #6c6a64; --text-muted-soft: #8e8b82; --text-muted-pale: #a3a09a;
+      --border-hairline: #e6dfd8; --border-strong: #141413;
+      --accent: #cc785c; --accent-hover: #a9583e; --accent-soft: #f5f0e8;
+      --overlay: rgba(0,0,0,0.35);
     }
-  };
-
-  // ================================================================
-  // 2. STATE
-  // ================================================================
-
-  var STORAGE_KEY = 'page2-theme-config';
-  var currentTheme = 'default';   // theme key
-  var currentMode = 'light';      // 'light' | 'dark'
-  var isPanelOpen = false;
-
-  // ================================================================
-  // 3. DOM REFS (populated on init)
-  // ================================================================
-
-  var rootEl;
-  var btnEl;
-  var panelEl;
-  var backdropEl;
-  var modeOptions;
-  var schemeCards;
-
-  // ================================================================
-  // 4. SVG ICON (palette icon for the toggle button)
-  // ================================================================
-
-  var PALETTE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 1 7 7c0 1.5-.8 2.5-2 3-1.2.5-2 .5-2 2 0 .6.2 1 .6 1.4.4.4.4 1 0 1.4-.4.3-.8.5-1.3.6"/><circle cx="8" cy="9" r="1.2"/><circle cx="14" cy="7" r="1.2"/><circle cx="11" cy="16" r="1"/></svg>';
-
-  // ================================================================
-  // 5. APPLY THEME
-  // Sets CSS custom properties on :root based on selected theme + mode
-  // ================================================================
-
-  function applyTheme() {
-    var theme = THEMES[currentTheme];
-    if (!theme) return;
-
-    var colors = theme[currentMode];
-    if (!colors) return;
-
-    // Set CSS variables on root
-    Object.keys(colors).forEach(function(key) {
-      rootEl.style.setProperty(key, colors[key]);
-    });
-
-    // Set color-scheme for native UI
-    rootEl.style.setProperty('color-scheme', currentMode === 'dark' ? 'dark' : 'light');
-
-    // Update image opacity for dark mode
-    var images = document.querySelectorAll('img');
-    images.forEach(function(img) {
-      if (currentMode === 'dark') {
-        img.style.setProperty('opacity', '0.75', 'important');
-      } else {
-        img.style.removeProperty('opacity');
-      }
-    });
-  }
-
-  // ================================================================
-  // 6. PERSISTENCE
-  // ================================================================
-
-  function saveConfig() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        theme: currentTheme,
-        mode: currentMode
-      }));
-    } catch (e) {
-      // localStorage unavailable — silently ignore
+    html.dark-mode {
+      --bg-body: #1a1a1a; --bg-nav: #1a1a1a; --bg-card: #242424;
+      --bg-surface: #2a2a2a; --bg-surface-hover: #333333; --bg-code: #2a2a2a;
+      --text-primary: #e8e6e1; --text-body: #c8c5be; --text-secondary: #b8b5ae;
+      --text-muted: #9e9b94; --text-muted-soft: #7a7870; --text-muted-pale: #7a7870;
+      --border-hairline: #2d2d2d; --border-strong: #3d3d3d;
+      --accent: #cc785c; --accent-hover: #b5694d; --accent-soft: #2a2a2a;
+      --overlay: rgba(0,0,0,0.5);
     }
-  }
 
-  function loadConfig() {
-    try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        var config = JSON.parse(saved);
-        if (config.theme && THEMES[config.theme]) {
-          currentTheme = config.theme;
-        }
-        if (config.mode === 'light' || config.mode === 'dark') {
-          currentMode = config.mode;
-        }
-      }
-    } catch (e) {
-      // Corrupted data — reset
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg-body);color:var(--text-primary);font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.7}
+
+    /* Nav */
+    .nav{display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:20px 48px;border-bottom:1px solid var(--border-hairline);position:sticky;top:0;z-index:10;background:var(--bg-nav)}
+    .nav-brand{font-family:"Playfair Display",Georgia,serif;font-size:24px;font-weight:700;color:var(--text-primary);text-decoration:none;letter-spacing:-0.3px}
+    .nav-right{display:flex;align-items:center;gap:24px}
+    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-actions{display:flex;align-items:center;gap:8px}
+    .nav-link{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);text-decoration:none;transition:color 0.15s}
+    .nav-link:hover{color:var(--accent)}
+    .nav-link-active{color:var(--accent)}
+
+    /* Page */
+    .page-wrap{width:75%;max-width:1200px;margin:0 auto;padding:80px 48px 120px}
+    @keyframes article-enter{from{opacity:0;transform:translateY(8px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+    @media(prefers-reduced-motion:reduce){.page-enter{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+    .page-back{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted-soft);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:48px;transition:color 0.15s,gap 0.15s cubic-bezier(0.22,1,0.36,1)}
+    .page-back:hover{color:var(--accent);gap:10px}
+    .page-title{font-family:"Playfair Display",Georgia,serif;font-size:48px;font-weight:400;line-height:1.1;letter-spacing:-1px;color:var(--text-primary);margin-bottom:56px;padding-bottom:32px;border-bottom:1px solid var(--border-hairline);animation:article-enter 500ms cubic-bezier(0.25,0.46,0.45,0.94) both}
+    .page-body{animation:article-enter 500ms cubic-bezier(0.25,0.46,0.45,0.94) 120ms both}
+    .page-body h2{font-family:"Playfair Display",Georgia,serif;font-size:32px;font-weight:600;letter-spacing:-0.5px;color:var(--text-primary);margin:56px 0 20px;line-height:1.2}
+    .page-body table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}
+    .page-body th{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1.1px;color:var(--text-muted-soft);text-align:left;padding:12px 16px;border-bottom:2px solid var(--border-hairline)}
+    .page-body td{padding:12px 16px;border-bottom:1px solid var(--border-hairline);color:var(--text-body)}
+    .page-body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(204,120,92,0.3);transition:text-decoration-color 0.15s}
+    .page-body a:hover{text-decoration-color:rgba(204,120,92,1)}
+
+    /* Footer */
+    .footer{padding:40px 48px;text-align:center;border-top:1px solid var(--border-hairline)}
+    .footer-text{font-family:"JetBrains Mono",monospace;font-size:14px;text-transform:uppercase;letter-spacing:1.1px;color:var(--text-muted-soft)}
+    .footer-text a{color:var(--text-muted);text-decoration:none}
+    .footer-text a:hover{color:var(--accent)}
+    .deploy-time{font-family:"JetBrains Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted-pale);margin-top:6px}
+    .footer-stats{font-family:"JetBrains Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted-pale);margin-top:6px}
+
+    /* Dark Mode UI */
+    html.transitioning,html.transitioning *,html.transitioning *::before,html.transitioning *::after{transition:background 0.35s ease,color 0.35s ease,border-color 0.35s ease,box-shadow 0.35s ease!important}
+    .dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border-hairline);background:transparent;cursor:pointer;padding:0;flex-shrink:0;transition:border-color 0.15s,background 0.15s;border-radius:8px}
+    .dark-toggle:hover{border-color:var(--accent);background:var(--bg-surface)}
+    .dark-toggle svg{color:var(--text-muted)}
+    .theme-panel-backdrop{position:fixed;inset:0;background:var(--overlay);z-index:9998;opacity:0;pointer-events:none;transition:opacity 0.35s ease}
+    .theme-panel-backdrop.show{opacity:1;pointer-events:all}
+    .theme-panel-backdrop.closing{opacity:0;pointer-events:none}
+    .theme-panel{position:fixed;top:50%;left:50%;width:340px;max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto;background:var(--bg-body);border:2px solid var(--border-strong);z-index:9999;padding:24px;opacity:0;pointer-events:none;transform:translate(-50%,calc(-50% + 24px)) scale(0.94);transition:opacity 0.35s ease,transform 0.35s cubic-bezier(0.16,1,0.3,1)}
+    .theme-panel.show{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1)}
+    .theme-panel.closing{opacity:0;pointer-events:none;transform:translate(-50%,calc(-50% + 16px)) scale(0.96);transition:opacity 0.2s ease,transform 0.2s cubic-bezier(0.5,0,0.75,0)}
+    .theme-panel-section{margin-bottom:20px;opacity:0;transform:translateY(8px)}
+    .theme-panel.show .theme-panel-section{animation:panelItemIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards}
+    .theme-panel-header{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-muted-soft);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border-hairline);opacity:0;transform:translateY(8px)}
+    .theme-panel.show .theme-panel-header{animation:panelItemIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.05s forwards}
+    .theme-panel.show .theme-panel-section:nth-child(2){animation-delay:0.12s}
+    .theme-panel.show .theme-panel-section:nth-child(3){animation-delay:0.19s}
+    .theme-panel.show .theme-panel-section:nth-child(4){animation-delay:0.26s}
+    .theme-panel.show .theme-panel-section:nth-child(5){animation-delay:0.33s}
+    .theme-panel.closing .theme-panel-section,.theme-panel.closing .theme-panel-header{animation:panelItemOut 0.15s ease forwards}
+    @keyframes panelItemIn{to{opacity:1;transform:translateY(0)}}
+    @keyframes panelItemOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(6px)}}
+    .theme-panel-section:last-child{margin-bottom:0}
+    .theme-panel-label{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;color:var(--text-muted-soft);margin-bottom:10px}
+    @media(min-width:768px){html[data-panel-anim="off"] .theme-panel,html[data-panel-anim="off"] .theme-panel-backdrop{transition:opacity 0.1s ease}html[data-panel-anim="off"] .theme-panel{transform:translate(-50%,-50%) scale(1)}html[data-panel-anim="off"] .theme-panel-section,html[data-panel-anim="off"] .theme-panel-header,html[data-panel-anim="off"] .theme-panel.closing .theme-panel-section,html[data-panel-anim="off"] .theme-panel.closing .theme-panel-header{opacity:1;transform:none;animation:none!important}}
+    @media(max-width:767px){html[data-panel-anim="off"] .theme-panel{transform:translateY(0) scale(1)}html[data-panel-anim="off"] .theme-panel.closing{transform:translateY(0) scale(1)}html[data-panel-anim="off"] .theme-panel-section,html[data-panel-anim="off"] .theme-panel-header,html[data-panel-anim="off"] .theme-panel.closing .theme-panel-section,html[data-panel-anim="off"] .theme-panel.closing .theme-panel-header{opacity:1;transform:none;animation:none!important}}
+    .theme-mode-toggle{display:flex;border:1px solid var(--border-hairline);overflow:hidden}
+    .theme-mode-option{flex:1;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;padding:8px 12px;text-align:center;cursor:pointer;background:transparent;color:var(--text-primary);border:none;transition:all 0.12s ease}
+    .theme-mode-option:hover{background:var(--bg-surface)}
+    .theme-mode-option.active{background:var(--text-primary);color:var(--bg-body)}
+    .theme-scheme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .theme-scheme-card{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border-hairline);cursor:pointer;transition:all 0.12s ease;background:transparent;width:100%;text-align:left;font-family:inherit}
+    .theme-scheme-card:hover{border-color:var(--accent)}
+    .theme-scheme-card.active{border-color:var(--text-primary);background:var(--bg-surface)}
+    .theme-scheme-swatches{display:flex;gap:3px;flex-shrink:0}
+    .theme-scheme-swatch{width:14px;height:14px;border:1px solid rgba(0,0,0,0.1)}
+    .theme-scheme-name{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-primary);line-height:1.2}
+    .theme-toggle-row{display:flex;align-items:center;justify-content:space-between}
+    .theme-toggle-row .theme-panel-label{margin-bottom:0}
+    .theme-toggle-switch{position:relative;width:40px;height:22px;flex-shrink:0}
+    .theme-toggle-switch input{opacity:0;width:0;height:0}
+    .theme-toggle-switch .tslider{position:absolute;inset:0;cursor:pointer;background:var(--bg-surface);border:1px solid var(--border-hairline);transition:all 0.2s ease;border-radius:11px}
+    .theme-toggle-switch .tslider::before{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;background:var(--text-muted-soft);border-radius:50%;transition:all 0.2s ease}
+    .theme-toggle-switch input:checked+.tslider{background:var(--accent);border-color:var(--accent)}
+    .theme-toggle-switch input:checked+.tslider::before{transform:translateX(18px);background:#fff}
+
+    /* Hamburger + History */
+    .hamburger-btn{display:none;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border-hairline);background:transparent;cursor:pointer;padding:0;flex-shrink:0;transition:border-color 0.15s,background 0.15s;border-radius:8px}
+    .hamburger-btn:hover{border-color:var(--accent);background:var(--bg-surface)}
+    .hamburger-icon,.close-icon{color:var(--text-muted)}
+    .close-icon{display:none}
+    .hamburger-btn.active .hamburger-icon{display:none}
+    .hamburger-btn.active .close-icon{display:block}
+    .mobile-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:9;opacity:0;visibility:hidden;transition:opacity 300ms ease,visibility 0s 300ms}
+    .mobile-menu-overlay.open{opacity:1;visibility:visible;transition:opacity 300ms ease,visibility 0s}
+    @media(min-width:768px){.mobile-menu-overlay{display:none}}
+    @media(max-width:767px){.hamburger-btn{display:flex}}
+    .history-trigger{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:999;display:flex;align-items:center;justify-content:center;width:36px;height:60px;background:var(--accent);border:none;cursor:grab;padding:0;border-radius:8px 0 0 8px;box-shadow:-2px 2px 8px rgba(0,0,0,0.1);transition:background 0.15s,width 0.15s;user-select:none;touch-action:none}
+    .history-trigger:hover{background:var(--accent-hover);width:40px}
+    .history-trigger:active{cursor:grabbing}
+    .history-trigger.dragging{cursor:grabbing;transition:none;background:var(--accent-hover)}
+    .history-trigger svg{color:#fff;width:20px;height:20px;pointer-events:none}
+    .history-overlay{position:fixed;inset:0;background:var(--overlay);z-index:998;opacity:0;visibility:hidden;transition:opacity 300ms ease,visibility 0s 300ms}
+    .history-overlay.open{opacity:1;visibility:visible;transition:opacity 300ms ease,visibility 0s}
+    .history-drawer{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:90vw;background:var(--bg-body);z-index:999;transform:translateX(100%);transition:transform 350ms cubic-bezier(0.22,1,0.36,1);box-shadow:-4px 0 24px rgba(0,0,0,0.08);display:flex;flex-direction:column}
+    .history-drawer.open{transform:translateX(0)}
+    .history-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border-hairline);flex-shrink:0}
+    .history-drawer-title{font-family:"Playfair Display",Georgia,serif;font-size:20px;font-weight:600;color:var(--text-primary)}
+    .history-drawer-actions{display:flex;align-items:center;gap:8px}
+    .history-clear-btn{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;background:transparent;border:1px solid var(--border-hairline);color:var(--text-muted-soft);padding:6px 12px;cursor:pointer;transition:all 0.15s;border-radius:4px}
+    .history-clear-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--bg-surface)}
+    .history-close-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:transparent;border:1px solid var(--border-hairline);cursor:pointer;border-radius:4px;color:var(--text-muted);transition:all 0.15s}
+    .history-close-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--bg-surface)}
+    .history-drawer-body{flex:1;overflow-y:auto;padding:16px 24px}
+    .history-empty{text-align:center;padding:60px 20px;color:var(--text-muted-soft)}
+    .history-empty-icon{font-size:40px;margin-bottom:16px;opacity:0.6}
+    .history-empty-title{font-family:"Playfair Display",Georgia,serif;font-size:18px;font-weight:600;color:var(--text-muted-soft);margin-bottom:8px}
+    .history-empty-desc{font-size:14px;color:var(--text-muted-pale);line-height:1.6}
+    .history-empty-guide{font-size:14px;color:var(--accent);margin-top:8px}
+    .history-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--border-hairline);cursor:pointer;transition:background 0.15s;border-radius:4px;padding-left:8px;padding-right:8px;margin:0 -8px;text-decoration:none}
+    .history-item:hover{background:var(--bg-surface)}
+    .history-item-info{flex:1;min-width:0}
+    .history-item-title{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+    .history-item:hover .history-item-title{color:var(--accent)}
+    .history-item-time{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-muted-soft);text-transform:uppercase;letter-spacing:0.5px}
+    .history-item-delete{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:transparent;border:none;cursor:pointer;color:var(--text-muted-pale);flex-shrink:0;opacity:0;transition:opacity 0.15s,color 0.15s;border-radius:4px}
+    .history-item:hover .history-item-delete{opacity:1}
+    .history-item-delete:hover{color:var(--accent);background:var(--bg-surface)}
+    .history-drawer-body::-webkit-scrollbar{width:4px}
+    .history-drawer-body::-webkit-scrollbar-track{background:transparent}
+    .history-drawer-body::-webkit-scrollbar-thumb{background:var(--text-muted-pale);border-radius:2px}
+    .history-drawer-body::-webkit-scrollbar-thumb:hover{background:var(--text-muted-soft)}
+
+    @media(max-width:767px){
+      .nav{padding:16px 20px;position:sticky;top:0}
+      .nav-right{position:static;order:2}
+      .nav-links{visibility:hidden;opacity:0;position:absolute;top:100%;left:0;right:0;background:var(--bg-nav);border-bottom:1px solid var(--border-hairline);flex-direction:column;padding:0 20px;gap:0;z-index:100;transform:translateY(-10px);transition:opacity 300ms ease,transform 300ms ease,visibility 0s 300ms,padding 300ms ease;max-height:0;overflow:hidden}
+      .nav-links.mobile-open{visibility:visible;opacity:1;transform:translateY(0);padding:16px 20px;max-height:500px;transition:opacity 300ms ease,transform 300ms ease,visibility 0s,padding 300ms ease,max-height 300ms ease}
+      .nav-link{padding:12px 0;font-size:14px;border-bottom:1px solid var(--border-hairline);width:100%}
+      .nav-link:last-child{border-bottom:none}
+      .page-wrap{width:100%;padding:48px 20px 80px}
+      .page-title{font-size:32px}
+      .theme-panel{width:calc(100vw - 32px);padding:20px;top:auto;bottom:max(16px,env(safe-area-inset-bottom,16px));left:16px;right:16px;border-radius:12px 12px 0 0;max-height:calc(100vh - 80px);transform:translateY(24px) scale(1);max-width:none}
+      .theme-panel.show{transform:translateY(0) scale(1)}
+      .theme-panel.closing{transform:translateY(24px) scale(1)}
+      .history-trigger{width:44px;height:56px;border-radius:8px 0 0 8px}
+      .history-trigger:hover{width:46px}
+      .history-trigger svg{width:20px;height:20px}
+      .history-drawer{width:85vw}
     }
-  }
-
-  // ================================================================
-  // 7. PANEL UI UPDATE
-  // ================================================================
-
-  function updatePanelUI() {
-    // Update mode buttons
-    modeOptions.forEach(function(btn) {
-      btn.classList.toggle('theme-mode-option--active', btn.dataset.mode === currentMode);
-    });
-
-    // Update scheme cards
-    schemeCards.forEach(function(card) {
-      card.classList.toggle('theme-scheme-card--active', card.dataset.theme === currentTheme);
-    });
-  }
-
-  // ================================================================
-  // 8. PANEL OPEN / CLOSE
-  // ================================================================
-
-  function openPanel() {
-    isPanelOpen = true;
-    panelEl.classList.add('theme-panel--open');
-    backdropEl.classList.add('theme-panel-backdrop--visible');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePanel() {
-    isPanelOpen = false;
-    panelEl.classList.remove('theme-panel--open');
-    backdropEl.classList.remove('theme-panel-backdrop--visible');
-    document.body.style.overflow = '';
-  }
-
-  function togglePanel(e) {
-    e.stopPropagation();
-    if (isPanelOpen) {
-      closePanel();
-    } else {
-      openPanel();
-    }
-  }
-
-  // ================================================================
-  // 9. SELECT HANDLERS
-  // ================================================================
-
-  function selectMode(mode) {
-    if (mode === currentMode) return;
-    currentMode = mode;
-    applyTheme();
-    saveConfig();
-    updatePanelUI();
-  }
-
-  function selectScheme(schemeKey) {
-    if (schemeKey === currentTheme) return;
-    currentTheme = schemeKey;
-    applyTheme();
-    saveConfig();
-    updatePanelUI();
-  }
-
-  // ================================================================
-  // 10. PUBLIC API
-  // Expose getter so other modules can read current config.
-  // ================================================================
-
-  function getConfig() {
-    return {
-      theme: currentTheme,
-      mode: currentMode,
-      themeName: THEMES[currentTheme] ? THEMES[currentTheme].name : currentTheme
-    };
-  }
-
-  // Attach to window for global access
-  window.__ThemeConfig = {
-    getConfig: getConfig
-  };
-
-  // ================================================================
-  // 11. BUILD DOM
-  // Creates all elements and injects them into the page.
-  // ================================================================
-
-  function buildButton() {
-    btnEl = document.createElement('button');
-    btnEl.className = 'theme-toggle-btn';
-    btnEl.setAttribute('aria-label', 'Toggle theme panel');
-    btnEl.setAttribute('title', '\u914D\u8272\u8BBE\u7F6E'); // 配色设置
-    btnEl.innerHTML = PALETTE_SVG;
-    btnEl.addEventListener('click', togglePanel);
-    return btnEl;
-  }
-
-  function buildPanelHTML() {
-    var html = '';
-
-    // Header
-    html += '<div class="theme-panel-header">\u914D\u8272\u8BBE\u7F6E</div>';
-
-    // Dark/Light mode section
-    html += '<div class="theme-panel-section">';
-    html += '  <div class="theme-panel-label">\u663E\u793A\u6A21\u5F0F</div>'; // 显示模式
-    html += '  <div class="theme-mode-toggle">';
-    html += '    <button class="theme-mode-option" data-mode="light">\u6D45\u8272</button>'; // 浅色
-    html += '    <button class="theme-mode-option" data-mode="dark">\u6DF1\u8272</button>'; // 深色
-    html += '  </div>';
-    html += '</div>';
-
-    // Color scheme section
-    html += '<div class="theme-panel-section">';
-    html += '  <div class="theme-panel-label">\u914D\u8272\u4E3B\u9898</div>'; // 配色主题
-    html += '  <div class="theme-scheme-grid">';
-
-    var themeKeys = Object.keys(THEMES);
-    themeKeys.forEach(function(key) {
-      var t = THEMES[key];
-      html += '<button class="theme-scheme-card" data-theme="' + key + '">';
-      html += '  <span class="theme-scheme-swatches">';
-      t.swatches.forEach(function(color) {
-        html += '    <span class="theme-scheme-swatch" style="background:' + color + '"></span>';
-      });
-      html += '  </span>';
-      html += '  <span class="theme-scheme-name">' + t.name + '</span>';
-      html += '</button>';
-    });
-
-    html += '  </div>';
-    html += '</div>';
-
-    return html;
-  }
-
-  function buildPanel() {
-    panelEl = document.createElement('div');
-    panelEl.className = 'theme-panel';
-    panelEl.innerHTML = buildPanelHTML();
-    return panelEl;
-  }
-
-  function buildBackdrop() {
-    backdropEl = document.createElement('div');
-    backdropEl.className = 'theme-panel-backdrop';
-    backdropEl.addEventListener('click', closePanel);
-    return backdropEl;
-  }
-
-  function injectButton() {
-    // Find the main navigation area in the header
-    var nav = document.querySelector('.main-nav');
-    if (nav) {
-      nav.appendChild(buildButton());
-    } else {
-      // Fallback: inject into header-inner
-      var header = document.querySelector('.header-inner');
-      if (header) {
-        header.appendChild(buildButton());
-      } else {
-        // Last resort: prepend to body
-        document.body.insertBefore(buildButton(), document.body.firstChild);
-      }
-    }
-  }
-
-  function injectPanel() {
-    document.body.appendChild(buildBackdrop());
-    document.body.appendChild(buildPanel());
-  }
-
-  function cacheDOMElements() {
-    modeOptions = panelEl.querySelectorAll('.theme-mode-option');
-    schemeCards = panelEl.querySelectorAll('.theme-scheme-card');
-  }
-
-  function attachEventListeners() {
-    // Mode toggle
-    modeOptions.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        selectMode(btn.dataset.mode);
-      });
-    });
-
-    // Scheme select
-    schemeCards.forEach(function(card) {
-      card.addEventListener('click', function() {
-        selectScheme(card.dataset.theme);
-      });
-    });
-
-    // Escape key to close
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && isPanelOpen) {
-        closePanel();
-      }
-    });
-
-    // Re-attach button if page changes (for PJAX compatibility)
-    document.addEventListener('pjax:success', function() {
-      // The old DOM elements are gone; we need to re-inject
-      // This is handled by checking on page:loaded
-    });
-  }
-
-  // ================================================================
-  // 12. INIT
-  // ================================================================
-
-  function init() {
-    // Only run once
-    if (window.__ThemeConfig && window.__ThemeConfig._inited) return;
-
-    rootEl = document.documentElement;
-
-    // Load saved preferences
-    loadConfig();
-
-    // Build DOM
-    injectButton();
-    injectPanel();
-
-    // Cache DOM refs after injection
-    cacheDOMElements();
-
-    // Apply saved theme
-    applyTheme();
-    updatePanelUI();
-
-    // Attach events
-    attachEventListeners();
-
-    window.__ThemeConfig._inited = true;
-  }
-
-  // Run on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
-  // Re-run on PJAX navigation (new page loaded)
-  document.addEventListener('pjax:success', function() {
-    // Re-init state for new page
-    setTimeout(function() {
-      // The panel HTML is injected into body, which survives PJAX.
-      // But button in header may be gone — check and re-inject if needed.
-      if (!document.querySelector('.theme-toggle-btn')) {
-        injectButton();
-      }
-      // Re-cache DOM refs
-      cacheDOMElements();
-      attachEventListeners();
-      applyTheme();
-      updatePanelUI();
-    }, 100);
-  });
-
-})();
-</script>
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">月见花园</h1>
-      <i class="logo-line"></i>
-    </a>
-      <p class="site-subtitle" itemprop="description">记录月见草</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-blog"><a href="/blog/" rel="section"><i class="fa fa-pen fa-fw"></i>blog</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
-  </ul>
-</nav>
-
-
-
-
-<div class="wired-accent-ribbon">
-  <span>TECHNOLOGY · DESIGN · CULTURE</span>
-</div>
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
-  <div class="site-description" itemprop="description">一个用 Hexo 搭建的个人博客</div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">26</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
+  </style>
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav-brand">月见花园</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/" class="nav-link">首页</a>
+        <a href="/blog/" class="nav-link">博客</a>
+        <a href="/about/" class="nav-link">关于</a>
+        <a href="/tags/" class="nav-link">标签</a>
+        <a href="/changelog/" class="nav-link">日志</a>
+        <a href="/calendar/" class="nav-link">日历</a>
+        <a href="/archives/" class="nav-link nav-link-active">归档</a>
       </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span>
+      <div class="nav-actions">
+        <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="菜单" aria-expanded="false">
+          <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="dark-toggle" id="themeToggleBtn" aria-label="配色设置" title="配色设置">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 1 7 7c0 1.5-.8 2.5-2 3-1.2.5-2 .5-2 2 0 .6.2 1 .6 1.4.4.4.4 1 0 1.4-.4.3-.8.5-1.3.6"/><circle cx="8" cy="9" r="1.2"/><circle cx="14" cy="7" r="1.2"/><circle cx="11" cy="16" r="1"/></svg>
+        </button>
       </div>
+    </div>
   </nav>
-</div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
 
-<div class="wired-sidebar-label">
-  <span>Navigate</span>
-</div>
-
-        </div>
-      </div>
-    </div>
-
-    
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner archive posts-collapse">
-
-
-  
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 26 篇日志。 继续努力。</span>
-      </div>
-
+  <div class="page-wrap">
+    <a href="/" class="page-back">&larr; 返回首页</a>
+    <h1 class="page-title">归档</h1>
+    <div class="page-body">
       
-    <div class="collection-year">
-      <span class="collection-header">2026<span class="collection-year-count">26</span></span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-05-29T00:44:00+08:00"
-              content="2026-05-29">
-          05-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/2026-05-29/posts06/" itemprop="url">
-            <span itemprop="name">第六篇 关于我为什么不再掏心掏肺帮别人 其二</span>
-          </a>
-      </div>
-
+      <h2>2026 <span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:400;color:#8e8b82;margin-left:8px">27</span></h2>
+      <table>
+        <thead><tr><th>日期</th><th>标题</th></tr></thead>
+        <tbody>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-22</td>
+            <td><a href="/posts/2026-06-22/posts24/">第二十四篇 关于多巴胺截断</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-22</td>
+            <td><a href="/posts/2026-06-22/posts23/">第二十三篇 月见花园</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-20</td>
+            <td><a href="/posts/2026-06-20/posts22/">第二十二篇 关于棉花娃娃</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-19</td>
+            <td><a href="/posts/2026-06-19/announcement/">关于这里</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-19</td>
+            <td><a href="/posts/2026-06-19/posts21/">第二十一篇 关于称呼混乱</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-14</td>
+            <td><a href="/posts/2026-06-14/posts20/">第二十篇 敏感的心</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-13</td>
+            <td><a href="/posts/2026-06-13/posts19/">第十九篇 做事的核心准则</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-12</td>
+            <td><a href="/posts/2026-06-12/posts18/">第十八篇 未曾停歇的乐曲 其二</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-10</td>
+            <td><a href="/posts/2026-06-10/posts17/">第十七篇 本心</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-09</td>
+            <td><a href="/posts/2026-06-09/posts16/">第十六篇 无题</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-07</td>
+            <td><a href="/posts/2026-06-07/posts15/">第十五篇 关于完美主义者</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-06</td>
+            <td><a href="/posts/2026-06-06/posts14/">第十四篇 关于跟别人相处中的画个人画像</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-05</td>
+            <td><a href="/posts/2026-06-05/DLC02/">第二人生 其二</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-05</td>
+            <td><a href="/posts/2026-06-05/posts13/">第十三篇 第二人生</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-04</td>
+            <td><a href="/posts/2026-06-04/posts12/">第十二篇 这里是月子</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-03</td>
+            <td><a href="/posts/2026-06-03/DLC01/">为什么说我是内向的，但是好像一点都不内向</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-02</td>
+            <td><a href="/posts/2026-06-02/posts11/">第十一篇 我为什么需要自习</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-02</td>
+            <td><a href="/posts/2026-06-02/posts10/">第十篇 无题（杂项）</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">06-01</td>
+            <td><a href="/posts/2026-06-01/posts09/">第九篇 关于欲望减速</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-31</td>
+            <td><a href="/posts/2026-05-31/posts08/">第八篇 为什么我会加一个喵</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-30</td>
+            <td><a href="/posts/2026-05-30/posts07/">第七篇 我与月见草</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-29</td>
+            <td><a href="/posts/2026-05-29/posts06/">第六篇 关于我为什么不再掏心掏肺帮别人 其二</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-28</td>
+            <td><a href="/posts/2026-05-28/posts05/">第五篇 关于我为什么不再掏心掏肺帮别人 其一</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-27</td>
+            <td><a href="/posts/2026-05-27/posts04/">第四篇 未曾停歇的乐曲</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-26</td>
+            <td><a href="/posts/2026-05-26/posts03/">第三篇 亚公顶与她</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-25</td>
+            <td><a href="/posts/2026-05-25/posts02/">第二篇 朋友</a></td>
+          </tr>
+          
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#8e8b82">05-24</td>
+            <td><a href="/posts/2026-05-24/posts01/">第一篇 戒备心与无我</a></td>
+          </tr>
+          
+        </tbody>
+      </table>
       
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-05-28T23:25:00+08:00"
-              content="2026-05-28">
-          05-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/2026-05-28/posts05/" itemprop="url">
-            <span itemprop="name">第五篇 关于我为什么不再掏心掏肺帮别人 其一</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-05-27T00:18:00+08:00"
-              content="2026-05-27">
-          05-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/2026-05-27/posts04/" itemprop="url">
-            <span itemprop="name">第四篇 未曾停歇的乐曲</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-05-26T00:13:00+08:00"
-              content="2026-05-26">
-          05-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/2026-05-26/posts03/" itemprop="url">
-            <span itemprop="name">第三篇 亚公顶与她</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-05-25T00:08:00+08:00"
-              content="2026-05-25">
-          05-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/2026-05-25/posts02/" itemprop="url">
-            <span itemprop="name">第二篇 朋友</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-05-24T00:13:00+08:00"
-              content="2026-05-24">
-          05-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/2026-05-24/posts01/" itemprop="url">
-            <span itemprop="name">第一篇 戒备心与无我</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-
     </div>
   </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/archives/2026/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2026/">1</a><a class="page-number" href="/archives/2026/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
-</div>
-  </main>
 
   <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2026</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">John Doe</span>
-  </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-<div class="wired-footer">
-  <div class="wired-footer-inner">
-    <div class="wired-footer-brand">
-      <span class="wired-footer-title">月见花园</span>
-    </div>
-    <div class="wired-footer-meta">
-      <span>&copy; <span id="wired-year"></span> John Doe</span>
-    </div>
-    <div class="wired-footer-powered">
-      <span>POWERED BY</span>
-      <a href="https://hexo.io" target="_blank" rel="noopener">HEXO</a>
-      <span>&</span>
-      <a href="https://theme-next.js.org" target="_blank" rel="noopener">NexT</a>
-    </div>
-  </div>
-</div>
-<script>document.getElementById('wired-year').textContent = new Date().getFullYear();</script>
-
-
-    </div>
+    <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a></p>
+    
+    <p class="footer-stats">共 26 篇文章 &middot; 22235 字</p>
+    
+    <p class="deploy-time">Built: 2026-06-24 19:35</p>
   </footer>
 
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
+  <!-- History Drawer Trigger -->
+<button class="history-trigger" id="historyTrigger" aria-label="浏览历史" title="浏览历史">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+  </svg>
+</button>
+<div class="history-overlay" id="historyOverlay"></div>
+<div class="history-drawer" id="historyDrawer">
+  <div class="history-drawer-header">
+    <h2 class="history-drawer-title">浏览历史</h2>
+    <div class="history-drawer-actions">
+      <button class="history-clear-btn" id="historyClearBtn">清空</button>
+      <button class="history-close-btn" id="historyCloseBtn" aria-label="关闭">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
   </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="history-drawer-body" id="historyBody"></div>
+</div>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+  <script src="/js/theme.js"></script>
+  <script src="/js/hamburger.js"></script>
+  <script src="/js/history.js"></script>
 </body>
 </html>

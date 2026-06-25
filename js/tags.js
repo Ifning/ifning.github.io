@@ -9,7 +9,7 @@
   var noTagPosts = data.noTagPosts || [];
   var totalPosts = data.totalPosts || 0;
 
-  var tagColors = ["#cc785c","#4a90a4","#6b8e5e","#8b6bb5","#c4915e","#5b8fa8","#a36b7c","#7a8b5e","#8e6ba8","#5e8b8b","#b07a4a","#6a7fb5","#8b5e6b","#5e8b6a","#9b7b5e","#5e6b8b","#8b8b5e","#7b5e8b","#5e8b7b","#8b5e5e"];
+  var tagColors = ["#cc785c","#4a90a4","#6b8e5e","#8b6bb5","#c4915e","#5b8fa8","#a36b7c","#7a8b5e","#8e6ba8","#5e8b8b","#b07a4a","#6a7fb5","#8b5e6b","#5e8b6a","#9b7b5e","#5e6b8b","#8b8b5e","#7b5e8b","#5e8b7b","#8b5e5e","#c47a5c","#4a919b","#6ea06e","#9b70b8","#c99b5e","#5b95a8","#a37b90","#7a9b5e","#8e7ba8","#5e9b8b","#b07a5a","#6a8fb5","#8b6e7b","#5e9b6a","#9b8b5e","#5e7b8b","#8b9b5e","#7b8e5e","#5e8b8e","#8b6e5e"];
   function getTagColor(tag) {
     var hash = 0;
     for (var i = 0; i < tag.length; i++) { hash = tag.charCodeAt(i) + ((hash << 5) - hash); }

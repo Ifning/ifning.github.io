@@ -41,7 +41,7 @@
     .nav-link-active{color:var(--accent)}
 
     /* === Changelog Page === */
-    .changelog-page{max-width:860px;margin:0 auto;padding:64px 48px;flex:1;width:100%}
+    .changelog-page{max-width:960px;margin:0 auto;padding:64px 48px;flex:1;width:100%}
     .changelog-page-title{font-family:"Playfair Display",Georgia,serif;font-size:40px;font-weight:400;letter-spacing:-0.8px;color:var(--text-primary);margin-bottom:12px}
     .changelog-page-subtitle{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--text-muted-soft);text-transform:uppercase;letter-spacing:1px;margin-bottom:40px}
     .changelog-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border-hairline)}
@@ -250,10 +250,30 @@
 
     <div class="changelog-timeline" id="changelogTimeline">
       
+      <div class="changelog-entry changelog-entry--visible" data-categories="bugfix improvement">
+        <div class="changelog-entry-dot changelog-entry-dot--bugfix"></div>
+        <div class="changelog-entry-header">
+          <span class="changelog-entry-version">v1.8.1</span>
+          <span class="changelog-entry-date">2026-06-26</span>
+          <span class="changelog-entry-badge changelog-entry-badge--bugfix">修复</span><span class="changelog-entry-badge changelog-entry-badge--improvement">改进</span>
+        </div>
+        <div class="changelog-entry-items">
+          
+          <div class="changelog-entry-item">修复日历页面写作目标（30/90/180篇）使用滚动窗口统计而非累计总篇数的问题</div>
+          
+          <div class="changelog-entry-item">清理 landing.js 中 18 处死代码（1312 行），消除 helpers.js 与 landing.js 的 getChangelogData 重复定义误导</div>
+          
+          <div class="changelog-entry-item">修复文章内页字数统计与博客列表不一致的问题（reading-progress.js 改用与 helpers.js 一致的算法）</div>
+          
+          <div class="changelog-entry-item">统一日志页面正文宽度为 960px（与博客、标签页面一致）</div>
+          
+        </div>
+      </div>
+      
       <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement breaking">
         <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
         <div class="changelog-entry-header">
-          <span class="changelog-entry-version">v2.7</span>
+          <span class="changelog-entry-version">v1.7</span>
           <span class="changelog-entry-date">2026-06-24</span>
           <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span><span class="changelog-entry-badge changelog-entry-badge--improvement">改进</span><span class="changelog-entry-badge changelog-entry-badge--breaking">重大变更</span>
         </div>
@@ -277,7 +297,7 @@
       <div class="changelog-entry changelog-entry--visible" data-categories="feature">
         <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
         <div class="changelog-entry-header">
-          <span class="changelog-entry-version">v2.6</span>
+          <span class="changelog-entry-version">v1.6</span>
           <span class="changelog-entry-date">2026-06-22</span>
           <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
         </div>
@@ -295,7 +315,7 @@
       <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
         <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
         <div class="changelog-entry-header">
-          <span class="changelog-entry-version">v2.5</span>
+          <span class="changelog-entry-version">v1.5</span>
           <span class="changelog-entry-date">2026-06-22</span>
           <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span><span class="changelog-entry-badge changelog-entry-badge--improvement">改进</span>
         </div>
@@ -317,7 +337,7 @@
       <div class="changelog-entry changelog-entry--visible" data-categories="feature">
         <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
         <div class="changelog-entry-header">
-          <span class="changelog-entry-version">v2.4</span>
+          <span class="changelog-entry-version">v1.4</span>
           <span class="changelog-entry-date">2026-06-22</span>
           <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span>
         </div>
@@ -335,7 +355,7 @@
       <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
         <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
         <div class="changelog-entry-header">
-          <span class="changelog-entry-version">v2.3</span>
+          <span class="changelog-entry-version">v1.3</span>
           <span class="changelog-entry-date">2026-06-22</span>
           <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span><span class="changelog-entry-badge changelog-entry-badge--improvement">改进</span>
         </div>
@@ -355,7 +375,7 @@
       <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
         <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
         <div class="changelog-entry-header">
-          <span class="changelog-entry-version">v2.2</span>
+          <span class="changelog-entry-version">v1.2</span>
           <span class="changelog-entry-date">2026-06-21</span>
           <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span><span class="changelog-entry-badge changelog-entry-badge--improvement">改进</span>
         </div>
@@ -373,7 +393,7 @@
       <div class="changelog-entry changelog-entry--visible" data-categories="feature improvement">
         <div class="changelog-entry-dot changelog-entry-dot--feature"></div>
         <div class="changelog-entry-header">
-          <span class="changelog-entry-version">v2.1</span>
+          <span class="changelog-entry-version">v1.1</span>
           <span class="changelog-entry-date">2026-06-18</span>
           <span class="changelog-entry-badge changelog-entry-badge--feature">新功能</span><span class="changelog-entry-badge changelog-entry-badge--improvement">改进</span>
         </div>
@@ -402,9 +422,9 @@
   <footer class="footer">
     <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a></p>
     
-    <p class="footer-stats">共 27 篇文章 &middot; 22937 字</p>
+    <p class="footer-stats">共 28 篇文章 &middot; 23923 字</p>
     
-    <p class="deploy-time">Built: 2026-06-25 21:34</p>
+    <p class="deploy-time">Built: 2026-06-26 23:32</p>
   </footer>
 
   <!-- History Drawer Trigger -->

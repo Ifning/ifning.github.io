@@ -322,10 +322,10 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
     <span class="cal-legend-label">多</span>
   </div>
   <div class="cal-stats">
-    <div class="cal-stat-card"><div class="cal-stat-number">27</div><div class="cal-stat-label">文章总数</div></div>
-    <div class="cal-stat-card"><div class="cal-stat-number">22,937</div><div class="cal-stat-label">总字数</div></div>
-    <div class="cal-stat-card"><div class="cal-stat-number">24</div><div class="cal-stat-label">创作天数</div></div>
-    <div class="cal-stat-card"><div class="cal-stat-number-sm">33</div><div class="cal-stat-label">开始天数</div><div class="cal-stat-sub">在月见花园的第 33 天</div></div>
+    <div class="cal-stat-card"><div class="cal-stat-number">28</div><div class="cal-stat-label">文章总数</div></div>
+    <div class="cal-stat-card"><div class="cal-stat-number">23,923</div><div class="cal-stat-label">总字数</div></div>
+    <div class="cal-stat-card"><div class="cal-stat-number">25</div><div class="cal-stat-label">创作天数</div></div>
+    <div class="cal-stat-card"><div class="cal-stat-number-sm">34</div><div class="cal-stat-label">开始天数</div><div class="cal-stat-sub">在月见花园的第 34 天</div></div>
   </div>
   <div class="cal-goals">
     <h2 class="cal-goals-title">写作目标</h2>
@@ -338,8 +338,8 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
 </div>
 <footer class="footer">
   <p class="footer-text">&copy; 2026 John Doe &middot; Powered by <a href="https://hexo.io">Hexo</a></p>
-  <p class="footer-stats">共 27 篇文章 &middot; 22937 字</p>
-  <p class="deploy-time">Built: 2026-06-25 21:34</p>
+  <p class="footer-stats">共 28 篇文章 &middot; 23923 字</p>
+  <p class="deploy-time">Built: 2026-06-26 23:32</p>
 </footer>
 <button class="history-trigger" id="historyTrigger" aria-label="浏览历史" title="浏览历史">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -363,9 +363,9 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
 <div class="cal-tooltip" id="calTooltip"></div>
 <script>
 (function() {
-  var dateMap = {"2026-06-03":1,"2026-06-05":2,"2026-06-24":1,"2026-05-25":1,"2026-05-24":1,"2026-05-28":1,"2026-05-26":1,"2026-05-27":1,"2026-06-01":1,"2026-05-31":1,"2026-05-29":1,"2026-05-30":1,"2026-06-02":2,"2026-06-04":1,"2026-06-06":1,"2026-06-09":1,"2026-06-07":1,"2026-06-12":1,"2026-06-10":1,"2026-06-13":1,"2026-06-14":1,"2026-06-20":1,"2026-06-19":1,"2026-06-22":2};
-  var dailyWordMap = {"2026-06-03":1413,"2026-06-05":2353,"2026-06-24":702,"2026-05-25":914,"2026-05-24":666,"2026-05-28":904,"2026-05-26":889,"2026-05-27":651,"2026-06-01":668,"2026-05-31":898,"2026-05-29":535,"2026-05-30":840,"2026-06-02":1546,"2026-06-04":755,"2026-06-06":886,"2026-06-09":920,"2026-06-07":913,"2026-06-12":947,"2026-06-10":662,"2026-06-13":852,"2026-06-14":741,"2026-06-20":783,"2026-06-19":835,"2026-06-22":1664};
-  var totalWords = 22937;
+  var dateMap = {"2026-06-03":1,"2026-06-05":2,"2026-06-24":1,"2026-05-24":1,"2026-05-25":1,"2026-05-26":1,"2026-06-25":1,"2026-05-27":1,"2026-05-28":1,"2026-05-30":1,"2026-05-29":1,"2026-06-01":1,"2026-05-31":1,"2026-06-02":2,"2026-06-04":1,"2026-06-06":1,"2026-06-09":1,"2026-06-07":1,"2026-06-13":1,"2026-06-12":1,"2026-06-14":1,"2026-06-20":1,"2026-06-22":2,"2026-06-19":1,"2026-06-10":1};
+  var dailyWordMap = {"2026-06-03":1413,"2026-06-05":2353,"2026-06-24":702,"2026-05-24":666,"2026-05-25":914,"2026-05-26":889,"2026-06-25":986,"2026-05-27":651,"2026-05-28":904,"2026-05-30":840,"2026-05-29":535,"2026-06-01":668,"2026-05-31":898,"2026-06-02":1546,"2026-06-04":755,"2026-06-06":886,"2026-06-09":920,"2026-06-07":913,"2026-06-13":852,"2026-06-12":947,"2026-06-14":741,"2026-06-20":783,"2026-06-22":1664,"2026-06-19":835,"2026-06-10":662};
+  var totalWords = 23923;
   var currentYear = new Date().getFullYear();
   var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var dayLabels = ["日","一","二","三","四","五","六"];
@@ -457,7 +457,9 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
   var today = now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0") + "-" + String(now.getDate()).padStart(2,"0");
 
   function getTrailingStats(days) {
-    var cutoff = new Date(now - days * 86400000);
+    var cutoff = new Date(now);
+    cutoff.setDate(cutoff.getDate() - days + 1);
+    cutoff.setHours(0, 0, 0, 0);
     var articles = 0, words = 0;
     for (var key in dateMap) {
       var parts = key.split("-");
@@ -482,13 +484,12 @@ html.dark-mode .hamburger-icon, html.dark-mode .close-icon { color: #9e9b94; }
     if (!grid) return;
     var gridHtml = "";
     GOAL_PERIODS.forEach(function(p) {
-      var stats = getTrailingStats(p.days);
-      var articlePct = Math.min(100, Math.round(stats.articles / p.goalArticles * 100));
+      var articlePct = Math.min(100, Math.round(totalArticles / p.goalArticles * 100));
       gridHtml += '<div class="cal-goal-card">';
       gridHtml += '  <div class="cal-goal-period">' + p.label + '</div>';
       gridHtml += '  <div class="cal-goal-stat">';
       gridHtml += '    <div class="cal-goal-label">文章数量</div>';
-      gridHtml += '    <div class="cal-goal-numbers"><strong>' + stats.articles + '</strong> / ' + p.goalArticles + ' 篇</div>';
+      gridHtml += '    <div class="cal-goal-numbers"><strong>' + totalArticles + '</strong> / ' + p.goalArticles + ' 篇</div>';
       gridHtml += '    <div class="cal-goal-bar"><div class="cal-goal-bar-fill" style="width:' + articlePct + '%"></div></div>';
       gridHtml += '  </div>';
       gridHtml += '</div>';

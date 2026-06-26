@@ -32,12 +32,14 @@
   if (!el) return;
   var body = document.querySelector(".article-body");
   if (!body) return;
-  var text = body.textContent || "";
+  var raw = (body.textContent || "").replace(/\s+/g, " ").trim();
   var count = 0;
-  for (var i = 0; i < text.length; i++) {
-    var c = text.charCodeAt(i);
+  for (var i = 0; i < raw.length; i++) {
+    var c = raw.charCodeAt(i);
     if (c >= 0x4e00 && c <= 0x9fff) count++;
+    else if (c === 0x20 && i > 0 && raw.charCodeAt(i - 1) !== 0x20) count++;
   }
+  if (raw.length > 0 && raw.charCodeAt(raw.length - 1) !== 0x20) count++;
   if (count > 0) {
     el.textContent = count + " 字";
   }

@@ -26,14 +26,14 @@ const pjax = new Pjax({
   },
   analytics: false,
   cacheBust: false,
-  scrollTo : !CONFIG.bookmark.enable
+  scrollTo : !(typeof CONFIG !== 'undefined' && CONFIG.bookmark && CONFIG.bookmark.enable)
 });
 
 document.addEventListener('pjax:success', () => {
   pjax.executeScripts(document.querySelectorAll('script[data-pjax]'));
-  NexT.boot.refresh();
+  if (typeof NexT !== 'undefined' && NexT.boot) NexT.boot.refresh();
   // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
+  if (typeof CONFIG !== 'undefined' && CONFIG.motion && CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
       .add(NexT.motion.middleWares.subMenu)
@@ -42,7 +42,7 @@ document.addEventListener('pjax:success', () => {
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
-  if (CONFIG.sidebar.display !== 'remove') {
+  if (typeof CONFIG !== 'undefined' && CONFIG.sidebar && CONFIG.sidebar.display !== 'remove') {
     const hasTOC = document.querySelector('.post-toc:not(.placeholder-toc)');
     document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
     NexT.utils.activateSidebarPanel(hasTOC ? 0 : 1);
